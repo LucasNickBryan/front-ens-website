@@ -9,8 +9,17 @@
     &:hover{
         background-color: white;
         border-right: 3px solid $redcolor ;
-        padding-left: 15%;
+        padding-left: 20%;
         color: $redcolor;
         transition: all ease .4s;
+        @media (max-width: 640px) { 
+            padding-left: 15%;
+        }
+    }
+}
+
+.dropdownmenu{
+    &:hover{
+        background-color:#f1f5f9;
     }
 }
