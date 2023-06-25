@@ -3,10 +3,11 @@ import { NavbarAdmin } from './navbar'
 import { SidebarAdmin } from './sidebar'
 import { ContentAdmin } from './content'
 import './styles.scss'
+import { Outlet } from 'react-router-dom'
 
 export const AdminPage = () => {
   return (
-    <div className="flex w-full min-h-screen bg-gradient-to-b from-white from-95% to-red-200">
+    <div className="flex w-full h-screen bg-gradient-to-b from-white from-95% to-red-200">
       <div className='md:w-80 sm:60 p-3'>
         <SidebarAdmin />
       </div>
@@ -14,8 +15,8 @@ export const AdminPage = () => {
       <div className='p-3 w-full'>
         <NavbarAdmin />
 
-        <div className='p-3'>
-          <ContentAdmin />
+        <div className='p-3 drop-shadow-lg bg-white mt-4 admincontent'>
+          <Outlet/>
         </div>
       </div>
 
