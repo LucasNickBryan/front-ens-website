@@ -15,7 +15,8 @@ export const AdminPage = () => {
     });
     if(e.target.classList.contains('admin-panel')){
       e.target.classList.add('active-admin')
-    }else{
+    }
+    else{
       e.target.classList.add('active')
     }
   }
@@ -27,7 +28,7 @@ export const AdminPage = () => {
       </div>
 
       <div className='p-3 w-full'>
-        <NavbarAdmin pageLocation={pageLocation} newLocation={setPageLocation} />
+        <NavbarAdmin pageLocation={pageLocation} newLocation={setPageLocation}/>
 
         <div className='p-3 shadow-xl rounded bg-white mt-4 admincontent'>
           <ContentAdmin/>
