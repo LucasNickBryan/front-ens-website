@@ -1,29 +1,38 @@
 @import '/src/index.scss';
 
-.active{
+.active {
+    background-color: white;
+    border-right: 3px solid $redcolor ;
+    padding-left: 20%;
+    color: $redcolor;
+    transition: all ease .4s;
+}
+.active-admin{
     color: $redcolor;
 }
 
-.buttonui{
+.buttonui {
     cursor: pointer;
-    &:hover{
+
+    &:hover {
         background-color: white;
         border-right: 3px solid $redcolor ;
         padding-left: 20%;
         color: $redcolor;
         transition: all ease .4s;
-        @media (max-width: 640px) { 
+
+        @media (max-width: 640px) {
             padding-left: 15%;
         }
     }
 }
 
-.dropdownmenu{
-    &:hover{
-        background-color:#f1f5f9;
+.dropdownmenu {
+    &:hover {
+        background-color: #f1f5f9;
     }
 }
 
-.admincontent{
+.admincontent {
     height: calc(100% - 63px);
 }
