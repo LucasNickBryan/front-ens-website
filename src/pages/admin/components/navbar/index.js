@@ -1,21 +1,22 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 
-export const NavbarAdmin = () => {
+export const NavbarAdmin = (props) => {
   const [isMenuShown, setIsMenuShown] = useState(false)
-  const [defaultPage, setDefaultPage] = useState('admin panel')
+  const {pageLocation, newLocation} = props
 
-  const toggleMenu = () => {
+  const toggleDropdownMenu = () => {
     setIsMenuShown(!isMenuShown)
   }
 
   return (
     <div className="w-full p-2 drop-shadow-lg bg-gradient-to-r from-white to-green-200 rounded flex justify-between px-10">
-      <div>page: <span className='underline underline-offset-4'>{defaultPage}</span></div>
+      <div>page: <span className='underline underline-offset-4'>{pageLocation}</span></div>
 
       {/* DROPDOWN */}
       <div className="relative inline-block text-left">
         <div>
-          <button type="button" onClick={toggleMenu}
+          <button type="button" onClick={toggleDropdownMenu}
             className="inline-flex w-full justify-center text-2xl " id="menu-button" aria-expanded="true" aria-haspopup="true">
             <i className="fa fa-cog hover:text-white hover:animate-spin"></i>
           </button>
@@ -23,19 +24,19 @@ export const NavbarAdmin = () => {
         {/* Dropdown menu */}
         {
           isMenuShown &&
-          <div className="absolute right-0 z-10 mt-2 w-40 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5"
+          <div className="absolute right-0 z-10 dropdownmenubox mt-2 w-40 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5"
             role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
             <div className="py-1" role="none">
-              <a href="#" className="text-gray-700 block px-4 py-2 text-sm dropdownmenu" role="menuitem" tabindex="-1">
+              <Link to="account" className="text-gray-700 block px-4 py-2 text-sm dropdownmenu" onClick={()=>{toggleDropdownMenu(); newLocation('mon compte')}}>
                 <span><i className='fa fa-user-edit'></i> mon compte</span>
-              </a>
-              <a href="#" className="text-gray-700 block px-4 py-2 text-sm dropdownmenu" role="menuitem" tabindex="-1">
+              </Link>
+              <Link to="users" className="text-gray-700 block px-4 py-2 text-sm dropdownmenu" onClick={()=>{toggleDropdownMenu(); newLocation('utilisateur(s)')}}>
                 <span><i className='fa fa-users'></i> utilisateur(s)</span>
-              </a>
+              </Link>
               <hr className='mt-3'/>
-              <a href="#" className="text-gray-700 block px-4 py-2 text-sm dropdownmenu" role="menuitem" tabindex="-1">
+              <Link to="#" className="text-gray-700 block px-4 py-2 text-sm dropdownmenu"  onClick={toggleDropdownMenu}>
                 <span className='text-redcolor'><i className='fa fa-sign-out-alt'></i> se déconnecter</span>
-              </a>
+              </Link>
             </div>
           </div>
         }
