@@ -1,8 +1,11 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import userDefaultImage from './../../../../assets/images/User.ico'
 
 export const NavbarAdmin = (props) => {
   const [isMenuShown, setIsMenuShown] = useState(false)
+  const [userConnected, setUserConncted] = useState({})
+  
   const {pageLocation, newLocation} = props
 
   const toggleDropdownMenu = () => {
@@ -22,10 +25,15 @@ export const NavbarAdmin = (props) => {
 
   return (
     <div className="w-full p-2 drop-shadow-lg bg-gradient-to-r from-white to-green-200 rounded flex justify-between px-10">
-      <div>page: <span className='underline underline-offset-4'>{pageLocation}</span></div>
+      <div className='pt-1.5'>page: <span className='underline underline-offset-4'>{pageLocation}</span></div>
+
+      <div className='sm:hidden md:block'>
+        <img src={userDefaultImage} alt="User image" className='inline h-10 mr-1 hover:scale-110'/>
+        <span>John Doe</span>
+      </div>
 
       {/* DROPDOWN */}
-      <div className="relative inline-block text-left">
+      <div className="relative inline-block text-left pt-1.5">
         <div>
           <button type="button" onClick={toggleDropdownMenu}
             className="inline-flex w-full justify-center text-2xl " id="menu-button" aria-expanded="true" aria-haspopup="true">
