@@ -1,9 +1,7 @@
 @import '/src/index.scss';
 
 .active {
-    background-color: white;
-    border-right: 3px solid $redcolor ;
-    padding-left: 20%;
+    background-color: $redcolor-200;
     color: $redcolor;
     transition: all ease .4s;
 }
@@ -15,11 +13,9 @@
     cursor: pointer;
 
     &:hover {
-        background-color: white;
-        border-right: 3px solid $redcolor ;
-        padding-left: 20%;
+        background-color: $redcolor-200;
         color: $redcolor;
-        transition: all ease .4s;
+        transition: all ease-out .4s;
 
         @media (max-width: 640px) {
             padding-left: 15%;

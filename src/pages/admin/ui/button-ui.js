@@ -12,7 +12,7 @@ export const ButtonUi = (props) => {
   }
 
   return (
-    <span className='block py-2 text-lg buttonui md:pl-8 sm:pl2 to-active'
+    <span className='py-2 text-lg buttonui text-center rounded-lg to-active shadow-lg bg-white mb-5 w-44'
       onClick={(e)=>onHandleClick(e)}>
       {props.children}
     </span>

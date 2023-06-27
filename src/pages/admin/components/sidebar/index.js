@@ -19,10 +19,18 @@ export const SidebarAdmin = (props) => {
 
       <hr className='h-1 bg-white' />
       <div className='mt-20'>
-        <ButtonUi url="content" location="contenu" newLocation={newLocation} onChangeActive={onChangeActive}>contenu</ButtonUi>
-        <ButtonUi url="gallery" location="galerie" newLocation={newLocation} onChangeActive={onChangeActive}>galerie</ButtonUi>
-        <ButtonUi url="function" location="fonction" newLocation={newLocation} onChangeActive={onChangeActive}>fonction</ButtonUi>
-        <ButtonUi url="personnel" location="personel" newLocation={newLocation} onChangeActive={onChangeActive}>personnel</ButtonUi>
+        <div className='flex justify-center'>
+          <ButtonUi url="content" location="contenu" newLocation={newLocation} onChangeActive={onChangeActive}>contenu</ButtonUi>
+        </div>
+        <div className='flex justify-center'>
+          <ButtonUi url="gallery" location="galerie" newLocation={newLocation} onChangeActive={onChangeActive}>galerie</ButtonUi>
+        </div>
+        <div className='flex justify-center'>
+          <ButtonUi url="function" location="fonction" newLocation={newLocation} onChangeActive={onChangeActive}>fonction</ButtonUi>
+        </div>
+        <div className='flex justify-center'>
+          <ButtonUi url="personnel" location="personel" newLocation={newLocation} onChangeActive={onChangeActive}>personnel</ButtonUi>
+        </div>
       </div>
     </div>
   )
