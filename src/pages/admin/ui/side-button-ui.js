@@ -1,7 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 
-export const ButtonUi = (props) => {
+export const SideButtonUi = (props) => {
   let navigate = useNavigate()
   const { url, location, newLocation, onChangeActive } = props
 
@@ -19,6 +19,6 @@ export const ButtonUi = (props) => {
   )
 }
 
-ButtonUi.defaultProps = {
+SideButtonUi.defaultProps = {
   url: "#",
 }

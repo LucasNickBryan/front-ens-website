@@ -1,5 +1,5 @@
 import React from 'react'
-import { ButtonUi } from '../../ui/button-ui'
+import { SideButtonUi } from '../../ui/side-button-ui'
 import { useNavigate } from 'react-router-dom'
 
 export const SidebarAdmin = (props) => {
@@ -20,16 +20,16 @@ export const SidebarAdmin = (props) => {
       <hr className='h-1 bg-white' />
       <div className='mt-20'>
         <div className='flex justify-center'>
-          <ButtonUi url="content" location="contenu" newLocation={newLocation} onChangeActive={onChangeActive}>contenu</ButtonUi>
+          <SideButtonUi url="content" location="contenu" newLocation={newLocation} onChangeActive={onChangeActive}>contenu</SideButtonUi>
         </div>
         <div className='flex justify-center'>
-          <ButtonUi url="gallery" location="galerie" newLocation={newLocation} onChangeActive={onChangeActive}>galerie</ButtonUi>
+          <SideButtonUi url="gallery" location="galerie" newLocation={newLocation} onChangeActive={onChangeActive}>galerie</SideButtonUi>
         </div>
         <div className='flex justify-center'>
-          <ButtonUi url="function" location="fonction" newLocation={newLocation} onChangeActive={onChangeActive}>fonction</ButtonUi>
+          <SideButtonUi url="function" location="fonction" newLocation={newLocation} onChangeActive={onChangeActive}>fonction</SideButtonUi>
         </div>
         <div className='flex justify-center'>
-          <ButtonUi url="personnel" location="personel" newLocation={newLocation} onChangeActive={onChangeActive}>personnel</ButtonUi>
+          <SideButtonUi url="personnel" location="personel" newLocation={newLocation} onChangeActive={onChangeActive}>personnel</SideButtonUi>
         </div>
       </div>
     </div>

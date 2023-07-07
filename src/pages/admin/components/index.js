@@ -23,7 +23,7 @@ export const AdminPage = () => {
 
   return (
     <div className="flex w-full h-screen bg-gradient-to-b from-white from-95% to-red-200">
-      <div className='md:w-80 sm:60 p-3'>
+      <div className='w-80 p-3'>
         <SidebarAdmin newLocation={setPageLocation} onChangeActive={onChangeActive} />
       </div>
 

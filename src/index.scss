@@ -6,3 +6,7 @@ $redcolor:#E52523;
 $redcolor-200:#fecaca;
 
 $greencolor:#08A25D;
+body{
+    max-height: 100vh;
+    overflow-y: auto;
+}
