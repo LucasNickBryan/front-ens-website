@@ -23,7 +23,7 @@ function AddContent() {
 
         <div className='pb-5'>
           <label className='uppercase'>Titre</label>
-          <Input value={title} onChange={e => setTitle(e.target.value)} />
+          <Input value={title} onChange={e => setTitle(e.target.value)}/>
         </div>
         <div className='pb-5'>
           <label className='uppercase'>Lien vers un aperçu</label>
@@ -39,11 +39,11 @@ function AddContent() {
           <label className='uppercase'>Type de l'événement</label>
           <div className='flex gap-5 sm:flex-col'>
             <div className='border border-black-100 w-40 p-4 rounded cursor-pointer' onClick={() => onChangeEvent(true)}>
-              <Input type="radio" useDefaultClassname={false} className="mr-1" checked={isHistory} />
+              <Input type="radio" useDefaultClassName={false} className="mr-1" checked={isHistory} />
               <span>Historique</span>
             </div>
             <div className='border border-black-100 w-40 p-4 rounded cursor-pointer' onClick={() => onChangeEvent(false)}>
-              <Input type="radio" useDefaultClassname={false} checked={!isHistory} className="mr-1" />
+              <Input type="radio" useDefaultClassName={false} checked={!isHistory} className="mr-1" />
               <span>Actualité</span>
             </div>
           </div>

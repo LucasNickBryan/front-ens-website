@@ -1,11 +1,11 @@
 import React from 'react'
 
 export const Input = (props) => {
-    const { className, useDefaultClassname, onClick, onChange, value, type, checked } = props
-    const default_classname = "w-full shadow-md border border-black-100 rounded p-1 mb-2"
+    const { className, useDefaultClassName, onClick, onChange, value, type, checked } = props
+    const default_classname = "w-full shadow-md border border-black-100 rounded p-1 mb-2 focus:shadow-greencolor"
     return (
         <input
-            className={`${useDefaultClassname && default_classname} ${className}`}
+            className={`${useDefaultClassName && default_classname} ${className}`}
             value={value}
             onChange={onChange}
             onClick={onClick}
@@ -16,7 +16,7 @@ export const Input = (props) => {
 }
 
 Input.defaultProps = {
-    useDefaultClassname:true,
+    useDefaultClassName:true,
     onChange: ()=>{},
     onClick: ()=>{},
     value:'',
