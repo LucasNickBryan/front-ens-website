@@ -1,23 +1,33 @@
-import React from 'react';
+import React, {useState} from 'react';
 import ImageUploading from 'react-images-uploading';
-import CloudUploadAlt from '../../../assets/images/cloud-upload-alt.png'
-import TrashIcon from '../../../assets/images/trash.png'
-import RedoIcon from '../../../assets/images/redo.png'
+import CloudUploadAlt from '../../../assets/icons/cloud-upload-alt.png'
+import TrashIcon from '../../../assets/icons/trash.png'
+import RedoIcon from '../../../assets/icons/redo.png'
 
-export function ImageUploader() {
-  const [images, setImages] = React.useState([]);
+export function ImageUploader(props) {
+  const [images, setImages] = useState([]);
+  const [checkedImages, setCheckedImages] = useState([])
+  const {mutilple} = props
   const maxNumber = 69;
 
   const onChange = (imageList, addUpdateIndex) => {
     // data for submit
-    console.log(imageList, addUpdateIndex);
+    console.log(imageList);
     setImages(imageList);
   };
+  const onCheckImage = ()=>{
+    const checklists = []
+    const inputs = document.querySelectorAll('.checkbox_input')
+    for(let i=0; i<inputs.length; i++ ){
+      inputs[i].checked && checklists.push(i)
+    }
+    setCheckedImages(checklists)
+  }
 
   return (
     <div className="App">
       <ImageUploading
-        multiple
+        multiple={mutilple}
         value={images}
         onChange={onChange}
         maxNumber={maxNumber}
@@ -38,7 +48,7 @@ export function ImageUploader() {
               style={isDragging ? { color: 'red' } : undefined}
               onClick={onImageUpload}
               {...dragProps}
-              className='border border-4 border-dashed border-gray-500 w-full py-8 mb-4'
+              className={`border border-4 border-dashed border-gray-500 w-full py-8 mb-4 ${images.length > 0 && !mutilple ? 'hidden': ''}`}
             >
               <div className='flex justify-center gap-3'>
                 <img src={CloudUploadAlt} alt='file' className='max-w-[100px] sm:hidden' />
@@ -46,13 +56,12 @@ export function ImageUploader() {
                   <div>appyuer pour ajouter des images</div>
                   <div>ou</div>
                   <div>glissez et déposez vos images ici</div>
-
                 </div>
               </div>
             </button>
 
             {
-              images.length > 0 &&
+              (images.length > 0 && mutilple )&&
               <div className='mb-5'>
                 <button onClick={onImageRemoveAll} className='bg-white p-2 rounded-full shadow-lg'>
                   <img src={TrashIcon} alt="delete" className='w-4 inline-block' />
@@ -64,8 +73,9 @@ export function ImageUploader() {
             <div className='grid grid-cols-5 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 content-around'>
               {imageList.map((image, index) => (
                 <div key={index} className="bg-white shadow-lg max-w-[200px] p-3 flex flex-col justify-between">
-                  <img src={image['data_url']} alt="" className='h-auto' />
+                  <img src={image['data_url']} alt="" className='h-auto hover:scale-110 transition ease-in-out delay-150' />
                   <div className="mt-2 flex justify-evenly gap-8">
+                    {mutilple && <input className='cursor-pointer checkbox_input' type="checkbox" onChange={onCheckImage}/>}
                     <button onClick={() => onImageUpdate(index)}>
                       <img src={RedoIcon} alt='redo' className='w-4' />
                     </button>
@@ -81,4 +91,8 @@ export function ImageUploader() {
       </ImageUploading>
     </div>
   );
+}
+
+ImageUploader.defautProps={
+  mutilple:false
 }

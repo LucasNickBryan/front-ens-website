@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import { EditorState } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
 import '/node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
-import { Input } from '../../../../ui/input';
+import { Input } from '../../../../../ui/input';
+import { ImageUploader } from '../../../../../ui/image-uploader';
 
 function AddContent() {
   const [editorState, setEditorState] = useState(
@@ -51,6 +52,10 @@ function AddContent() {
       </div>
 
       <div className='p-5'>
+        <div className='pb-5'>
+          <label className='uppercase'>Image</label>
+          <ImageUploader />
+        </div>
         <div className='pb-5'>
           <label className='uppercase'>Descriptions</label>
           <Editor

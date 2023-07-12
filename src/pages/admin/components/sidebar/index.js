@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React from 'react'
 import { SideButtonUi } from '../../ui/side-button-ui'
 import { useNavigate } from 'react-router-dom'
 
@@ -12,11 +12,7 @@ export const SidebarAdmin = (props) => {
     newLocation("admin panel")
     onChangeActive(e)
   }
-
-  useEffect(()=>{
-    console.log("current url ", window.location.href );
-  },[])
-
+  
   return (
     <div className='h-full p-2 drop-shadow-lg bg-gradient-to-b from-white to-green-200 rounded'>
       <div className='text-2xl font-mono text-center py-2 cursor-pointer hover:text-redcolor to-active active-admin admin-panel'
