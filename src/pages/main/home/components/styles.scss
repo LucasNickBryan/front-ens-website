@@ -1,0 +1,13 @@
+.HOME_STYLES{
+    .texte {
+        text-align: left;
+      }
+      .multicolor-text {
+        background-image: linear-gradient(to right, yellow, green, blue, indigo);
+        -webkit-background-clip: text;
+        -moz-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+      
+}

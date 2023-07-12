@@ -1,16 +1,21 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import { SideButtonUi } from '../../ui/side-button-ui'
 import { useNavigate } from 'react-router-dom'
 
 export const SidebarAdmin = (props) => {
   let navigate = useNavigate()
   const { newLocation, onChangeActive } = props
+  const href = window.location.href
 
   const onAdminClick = (e) => {
     navigate("");
     newLocation("admin panel")
     onChangeActive(e)
   }
+
+  useEffect(()=>{
+    console.log("current url ", window.location.href );
+  },[])
 
   return (
     <div className='h-full p-2 drop-shadow-lg bg-gradient-to-b from-white to-green-200 rounded'>
