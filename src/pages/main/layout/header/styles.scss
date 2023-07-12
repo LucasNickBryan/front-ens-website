@@ -1,0 +1,52 @@
+.NAVBAR_STYLES {
+  .con {
+    color: azure;
+    border-radius: 10px;
+    border-color: aqua;
+    position: relative;
+    right: 220px;
+  }
+  .con:hover {
+    background: linear-gradient(
+      to right,
+      rgb(49, 95, 49),
+      rgba(44, 99, 201, 0.253)
+    );
+    color: azure;
+  }
+  .insc {
+    color: azure;
+    background: linear-gradient(
+      to right,
+      rgb(49, 95, 49),
+      rgba(44, 99, 201, 0.253)
+    );
+    border-radius: 10px;
+    position: absolute;
+    right: 120px;
+  }
+  .insc:hover {
+    background-color: blue;
+    color: azure;
+  }
+
+  .navbt-resp {
+    display: none;
+  }
+
+  .navbt-resp2 {
+    display: block;
+    position: absolute;
+    right: 0;
+  }
+
+  @media screen and (max-width: 992px) {
+    .navbt-resp {
+      display: block;
+    }
+
+    .navbt-resp2 {
+      display: none;
+    }
+  }
+}

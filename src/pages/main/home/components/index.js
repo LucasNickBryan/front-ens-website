@@ -1,6 +1,5 @@
 import React from "react";
 // import Indexe from "./src/pages/main/layout/Index.js";
-import MainNavbar from "../../layout/navbar";
 import image from "../../../../assets/images/Jonas.png";
 import images from "../../../../assets/images/images.png";
 import image2 from "../../../../assets/images/vadil.jpg";
@@ -9,6 +8,9 @@ import image4 from "../../../../assets/images/vasily.jpg";
 import image5 from "../../../../assets/images/andrea.jpg";
 import "./styles.scss";
 import "w3-css/w3.css";
+
+import MainNavbar from "../../layout/header";
+import MainFooter from "../../layout/footer";
 
 export const HomePage = () => {
   return (
@@ -54,7 +56,10 @@ export const HomePage = () => {
           <div className="btn btn-success btn-lg">En savoir plus</div>
         </div>
       </div>
-      <div className="container" style={{ paddingTop: "3%" }}>
+      <div
+        className="container"
+        style={{ paddingTop: "3%", textAlign: "center" }}
+      >
         <h1>
           <strong>
             Ecole Norm
@@ -74,7 +79,8 @@ export const HomePage = () => {
                 <b>TITLE HEADING</b>
               </h3>
               <h5>
-                Title description, <span className="w3-opacity">April 7, 2014</span>
+                Title description,{" "}
+                <span className="w3-opacity">April 7, 2014</span>
               </h5>
             </div>
 
@@ -169,11 +175,12 @@ export const HomePage = () => {
 
       <div
         className="container"
-        style={{ paddingTop: "2%", paddingBottom: "2%" }}
+        style={{ paddingTop: "2%", paddingBottom: "2%", textAlign: "center" }}
       >
         <h2>
           <strong>
-            <span style={{ color: "green" }}>Histo</span>rique
+            <span style={{ color: "green" }}>Histo</span>
+            rique
           </strong>
         </h2>
       </div>
@@ -209,6 +216,7 @@ export const HomePage = () => {
           </div>
         </div>
       </div>
+      <MainFooter />
     </div>
   );
 };
