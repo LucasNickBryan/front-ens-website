@@ -33,7 +33,7 @@ export function ImageUploader() {
           dragProps,
         }) => (
           // write your building UI
-          <div className="h-full rounded-lg bg-gray-100 p-2 ">
+          <div className="h-full rounded-lg bg-gray-100 p-2 h-[100%]">
             <button
               style={isDragging ? { color: 'red' } : undefined}
               onClick={onImageUpload}
@@ -51,12 +51,15 @@ export function ImageUploader() {
               </div>
             </button>
 
-            <div className='mb-5'>
-              <button onClick={onImageRemoveAll} className='bg-white p-2 rounded-full shadow-lg'>
-                <img src={TrashIcon} alt="delete" className='w-4 inline-block' />
-                <span className='text-redcolor inline-block ml-1'>retirer toute les images</span>
-              </button>
-            </div>
+            {
+              images.length > 0 &&
+              <div className='mb-5'>
+                <button onClick={onImageRemoveAll} className='bg-white p-2 rounded-full shadow-lg'>
+                  <img src={TrashIcon} alt="delete" className='w-4 inline-block' />
+                  <span className='text-redcolor inline-block ml-1'>retirer toute les images</span>
+                </button>
+              </div>
+            }
 
             <div className='grid grid-cols-5 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 content-around'>
               {imageList.map((image, index) => (
