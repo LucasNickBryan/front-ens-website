@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import Skeleton from '../../../../../ui/skeleton'
-import ImageNotAvalaibleIcon from '../../../../../../../assets/icons/Image-not-available.png'
 
 export default function ListGallery() {
     const [images, setImages] = useState([])
