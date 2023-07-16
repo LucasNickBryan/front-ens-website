@@ -5,6 +5,8 @@ import '/node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import { Input } from '../../../../../ui/input';
 import { ImageUploader } from '../../../../../ui/image-uploader';
 
+const requiredStar = <span className='text-redcolor'>*</span>
+
 function AddContent() {
   const [editorState, setEditorState] = useState(
     () => EditorState.createEmpty()
@@ -23,7 +25,7 @@ function AddContent() {
       <div className='w-1/2 lg:!w-full p-5'>
 
         <div className='pb-5'>
-          <label className='uppercase'>Titre</label>
+          <label className='uppercase'>Titre {requiredStar}</label>
           <Input value={title} onChange={e => setTitle(e.target.value)}/>
         </div>
         <div className='pb-5'>
@@ -32,7 +34,7 @@ function AddContent() {
         </div>
 
         <div className='pb-5'>
-          <label className='uppercase'>Date de l'événement</label>
+          <label className='uppercase'>Date de l'événement {requiredStar}</label>
           <Input type="date" className="w-36 block"  value={date}  onChange={e => setDate(e.target.value)}  />
         </div>
 
@@ -53,11 +55,11 @@ function AddContent() {
 
       <div className='p-5'>
         <div className='pb-5'>
-          <label className='uppercase'>Image</label>
+          <label className='uppercase'>Image {requiredStar}</label>
           <ImageUploader />
         </div>
         <div className='pb-5'>
-          <label className='uppercase'>Descriptions</label>
+          <label className='uppercase'>Descriptions {requiredStar}</label>
           <Editor
             wrapperClassName="border border-black rounded min-h-72 "
             onChange={setEditorState}
