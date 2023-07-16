@@ -1,4 +1,4 @@
-export const TextBox = () => {
+export const UniqueImageText = () => {
     return (
         <div>
             <div>appyper pour ajouter une image</div>
@@ -7,3 +7,5 @@ export const TextBox = () => {
         </div>
     )
 } 
+
+export const RequiredStar = ()=> {return <span className='text-redcolor'>*</span>}

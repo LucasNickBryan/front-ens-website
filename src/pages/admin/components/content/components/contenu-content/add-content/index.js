@@ -4,9 +4,7 @@ import { Editor } from 'react-draft-wysiwyg';
 import '/node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import { Input } from '../../../../../ui/input';
 import { ImageUploader } from '../../../../../ui/image-uploader';
-import { TextBox } from '../../../../../ui/texts';
-
-export const requiredStar = <span className='text-redcolor'>*</span>
+import { RequiredStar, UniqueImageText } from '../../../../../ui/texts';
 
 function AddContent() {
   const [editorState, setEditorState] = useState(
@@ -26,7 +24,7 @@ function AddContent() {
       <div className='w-1/2 lg:!w-full p-5'>
 
         <div className='pb-5'>
-          <label className='uppercase'>Titre {requiredStar}</label>
+          <label className='uppercase'>Titre {<RequiredStar/>}</label>
           <Input value={title} onChange={e => setTitle(e.target.value)}/>
         </div>
         <div className='pb-5'>
@@ -35,7 +33,7 @@ function AddContent() {
         </div>
 
         <div className='pb-5'>
-          <label className='uppercase'>Date de l'événement {requiredStar}</label>
+          <label className='uppercase'>Date de l'événement {<RequiredStar/>}</label>
           <Input type="date" className="w-36 block"  value={date}  onChange={e => setDate(e.target.value)}  />
         </div>
 
@@ -56,11 +54,11 @@ function AddContent() {
 
       <div className='p-5'>
         <div className='pb-5'>
-          <label className='uppercase'>Image {requiredStar}</label>
-          <ImageUploader text_box={<TextBox/>} />
+          <label className='uppercase'>Image {<RequiredStar/>}</label>
+          <ImageUploader text_box={<UniqueImageText/>} />
         </div>
         <div className='pb-5'>
-          <label className='uppercase'>Descriptions {requiredStar}</label>
+          <label className='uppercase'>Descriptions {<RequiredStar/>}</label>
           <Editor
             wrapperClassName="border border-black rounded min-h-72 "
             onChange={setEditorState}
