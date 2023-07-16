@@ -9,8 +9,8 @@ export default function ListUser() {
             <table className="table-auto w-full">
                 <thead className='bg-gray-200 rounded-t-2xl shadow-lg'>
                     <tr className='uppercase text-left'>
-                        <th className='p-3'>nom d'utilisateur</th>
-                        <th>username</th>
+                        <th className='p-3'>photo</th>
+                        <th>nom d'utilisateur</th>
                         <th>rôle</th>
                         <th>compte</th>
                         <th>actions</th>

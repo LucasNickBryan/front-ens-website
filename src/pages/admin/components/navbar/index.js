@@ -45,9 +45,9 @@ export const NavbarAdmin = (props) => {
           <div className="absolute right-0 z-10 dropdownmenubox mt-2 w-40 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5"
             role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
             <div className="py-1" role="none">
-              <Link to="account" className="text-gray-700 block px-4 py-2 text-sm dropdownmenu" onClick={() => onHandleClick('mon compte')}>
+              {/* <Link to="account" className="text-gray-700 block px-4 py-2 text-sm dropdownmenu" onClick={() => onHandleClick('mon compte')}>
                 <span><i className='fa fa-user-edit'></i> mon compte</span>
-              </Link>
+              </Link> */}
               <Link to="users" className="text-gray-700 block px-4 py-2 text-sm dropdownmenu" onClick={() => onHandleClick('utilisateur(s)')}>
                 <span><i className='fa fa-users'></i> utilisateur(s)</span>
               </Link>
