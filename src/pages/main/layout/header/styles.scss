@@ -1,52 +1,118 @@
 .NAVBAR_STYLES {
-  .con {
-    color: azure;
-    border-radius: 10px;
-    border-color: aqua;
-    position: relative;
-    right: 220px;
+  :root {
+    --pink: #e84383;
   }
-  .con:hover {
-    background: linear-gradient(
-      to right,
-      rgb(49, 95, 49),
-      rgba(44, 99, 201, 0.253)
-    );
-    color: azure;
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    outline: none;
+    border: none;
+    text-decoration: none;
+    text-transform: capitalize;
+    transition: 0.2s linear;
   }
-  .insc {
-    color: azure;
-    background: linear-gradient(
-      to right,
-      rgb(49, 95, 49),
-      rgba(44, 99, 201, 0.253)
-    );
-    border-radius: 10px;
-    position: absolute;
-    right: 120px;
+  html {
+    font-size: 62.5%;
+    scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
+    overflow-x: hidden;
   }
-  .insc:hover {
-    background-color: blue;
-    color: azure;
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: #fff;
+    padding: 1rem 9%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1000;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
   }
 
-  .navbt-resp {
+  header .logo {
+    font-size: 2rem;
+    color: #333;
+    font-weight: bolder;
+  }
+  header .logo span {
+    color: #e84383;
+  }
+  header .navbar a {
+    font-size: 1.5rem;
+    padding: 0 1.5rem;
+    color: #666;
+  }
+  header .navbar a:hover {
+    color: #e84383;
+  }
+  header .btn button {
+    font-size: large;
+    height: 40px;
+    width: 200px;
+    background: linear-gradient(
+      to right,
+      rgb(49, 95, 49),
+      rgba(44, 99, 201, 0.253)
+    );
+    border-radius: 20px;
+    cursor: pointer;
+  }
+  header .btn button:hover {
+    background-color: #e84383;
+  }
+  header #toggler {
+    display: none;
+  }
+  header .fa-bars {
+    font-size: 2rem;
+    color: #333;
+    border-radius: 0.5rem;
+    padding: 0.5rem 1.5rem;
+    cursor: pointer;
+    border: 0.1rem solid rgba(0, 0, 0, 0.3);
     display: none;
   }
 
-  .navbt-resp2 {
-    display: block;
-    position: absolute;
-    right: 0;
+  /* media queries */
+  @media (max-width: 991px) {
+    html {
+      font-size: 55%;
+    }
+    header {
+      padding: 1rem;
+    }
   }
-
-  @media screen and (max-width: 992px) {
-    .navbt-resp {
+  @media (max-width: 768px) {
+    header .fa-bars {
       display: block;
     }
-
-    .navbt-resp2 {
-      display: none;
+    header .navbar {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: #eee;
+      border-top: 0.1rem solid rgba(0, 0, 0, 0.1);
+      clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+    }
+    header #toggler:checked ~ .navbar {
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+    }
+    header .navbar a {
+      margin: 1.5rem;
+      padding: 1.5rem;
+      background: #fff;
+      border: 0.1rem solid rgba(0, 0, 0, 0.1);
+      display: block;
+    }
+  }
+  @media (max-width: 450) {
+    html {
+      font-size: 50%;
     }
   }
 }

@@ -4,7 +4,7 @@ import "w3-css/w3.css";
 
 export default function MainFooter() {
   return (
-    <div className="NAVBAR_STYLES">
+    <div className="FOOTER_STYLES">
       <footer>
         <div className="container">
           <div className="footer">

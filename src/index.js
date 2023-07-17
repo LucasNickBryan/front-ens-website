@@ -1,12 +1,13 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.scss';
-import './assets/lib/fontawesome/fontawesome.min.css'
-import { RoutesConfig } from './config/routes';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.scss";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./assets/lib/fontawesome/fontawesome.min.css";
+import { RoutesConfig } from "./config/routes";
 
-import 'bootstrap/dist/js/bootstrap'
+import "bootstrap/dist/js/bootstrap";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <RoutesConfig />
