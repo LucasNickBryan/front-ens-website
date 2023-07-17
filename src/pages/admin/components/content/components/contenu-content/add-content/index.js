@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { EditorState } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
 import { Input } from '../../../../../ui/input';
@@ -8,8 +8,11 @@ import { convertToHTML } from 'draft-convert';
 import SaveIcon from '../../../../../../../assets/icons/save.png'
 import '/node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import { useForm } from 'react-hook-form';
+import ContentServices from '../../../../../../../services/Content.services';
+import { ContentContext } from '../../../../../../../contexts/ContentContext';
 
 function AddContent() {
+  const { contents, addContent } = useContext(ContentContext)
   const [editorState, setEditorState] = useState(
     () => EditorState.createEmpty()
   );
@@ -53,6 +56,18 @@ function AddContent() {
         image: image.length > 0 ? image[0].file : null,
         isActuality: !isHistory
       }
+
+      addContent(data)
+      console.log("NEW VALUES ", contents);
+      
+      ContentServices.post(data)
+      .then((res)=>{
+        console.log("SUCCESS");
+      },
+      err=>{
+        console.log("ERROR");
+      }
+      )
     }
 
   }
@@ -110,16 +125,13 @@ function AddContent() {
           <div className='pb-5'>
             <label className='uppercase'>Descriptions {<RequiredStar />}</label>
             <Editor
-              wrapperClassName="border border-black rounded min-h-72 "
+              wrapperClassName="min-h-72 p-1"
+              editorClassName="border border-black rounded-lg min-h-72 p-2 focus:shadow-lg "
               editorState={editorState}
               onEditorStateChange={setEditorState}
               toolbar={{
                 options: ['inline', 'blockType', 'list', 'textAlign', 'history'],
                 inline: {
-                  inDropdown: false,
-                  className: undefined,
-                  component: undefined,
-                  dropdownClassName: undefined,
                   options: ['bold', 'italic', 'underline', 'superscript', 'subscript'],
                 },
                 blockType: {

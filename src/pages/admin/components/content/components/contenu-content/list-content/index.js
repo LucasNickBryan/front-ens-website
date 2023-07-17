@@ -1,9 +1,26 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import DefautImage from '../../../../../../../assets/icons/image.png'
 import PencilIcon from '../../../../../../../assets/icons/pencil-alt.png'
 import DeleteIcon from '../../../../../../../assets/icons/trash.png'
+import ContentServices from '../../../../../../../services/Content.services'
+import { ContentContext } from '../../../../../../../contexts/ContentContext'
+import Skeleton from '../../../../../ui/skeleton'
 
 export default function ListContent() {
+
+    const { contents, fetchContent } = useContext(ContentContext)
+
+    useEffect(() => {
+        ContentServices.get()
+            .then((res) => {
+                console.log("SUCCEES");
+            },
+                err => {
+                    console.log("ERROR");
+                }
+            )
+    }, [])
+
     return (
         <div className='overflow-auto rounded min-w-sm md:overflow-auto'>
             <table className="table-auto w-full">
@@ -18,24 +35,33 @@ export default function ListContent() {
                         <th>actions</th>
                     </tr>
                 </thead>
-                <tbody className='border border-2 rounded p-2'>
-                    <tr>
-                        <td className='p-2'>
-                            <img src={DefautImage} className='w-24' />
-                        </td>
-                        <td>Réception Novices</td>
-                        <td>08/06/2023</td>
-                        <td>lorem upsum</td>
-                        <td>www.facebook.com/aeens/</td>
-                        <td>Actualité</td>
-                        <td className='table-cell align-middle'>
-                            <div className='m-auto grid grid-cols-2'>
-                                <img src={PencilIcon} alt="edit" className='w-7 cursor-pointer' />
-                                <img src={DeleteIcon} alt="delete" className='w-5 cursor-pointer' />
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
+                {
+                    contents.length > 0 ?
+                        <tbody className='border border-2 rounded p-2'>
+                            {
+                                contents.map((content) => (
+                                    <tr key={content.id}>
+                                        <td className='p-2'>
+                                            <img src={content.image ?? DefautImage} className='w-24' />
+                                        </td>
+                                        <td>{content.title}</td>
+                                        <td>{content.date}</td>
+                                        <td>{content.description}</td>
+                                        <td>{content.link ?? ""}</td>
+                                        <td>{content.isActuality ? "Actu" : "Historique"}</td>
+                                        <td className='table-cell align-middle'>
+                                            <div className='m-auto grid grid-cols-2'>
+                                                <img src={PencilIcon} alt="edit" className='w-7 cursor-pointer' />
+                                                <img src={DeleteIcon} alt="delete" className='w-5 cursor-pointer' />
+                                            </div>
+                                        </td>
+                                    </tr>
+                                ))
+                            }
+                        </tbody>
+                        :
+                        <Skeleton />
+                }
             </table>
         </div>
     )

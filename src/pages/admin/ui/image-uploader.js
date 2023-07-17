@@ -45,6 +45,7 @@ export function ImageUploader(props) {
           // write your building UI
           <div className="h-full rounded-lg bg-gray-100 p-2 h-[100%]">
             <button
+              type='button'
               style={isDragging ? { color: 'red' } : undefined}
               onClick={onImageUpload}
               {...dragProps}
@@ -65,7 +66,7 @@ export function ImageUploader(props) {
             {
               (images.length > 0 && mutilple) &&
               <div className='mb-5'>
-                <button onClick={onImageRemoveAll} className='bg-white p-2 rounded-full shadow-lg'>
+                <button type='button' onClick={onImageRemoveAll} className='bg-white p-2 rounded-full shadow-lg'>
                   <img src={TrashIcon} alt="delete" className='w-4 inline-block' />
                   <span className='text-redcolor inline-block ml-1'>retirer toute les images</span>
                 </button>
@@ -78,10 +79,10 @@ export function ImageUploader(props) {
                   <img src={image['data_url']} alt="" className='h-auto hover:scale-110 transition ease-in-out delay-150' />
                   <div className="mt-2 flex justify-evenly gap-8">
                     {mutilple && <input className='cursor-pointer checkbox_input' type="checkbox" onChange={onCheckImage} />}
-                    <button onClick={() => onImageUpdate(index)}>
+                    <button type='button' onClick={() => onImageUpdate(index)}>
                       <img src={RedoIcon} alt='redo' className='w-4' />
                     </button>
-                    <button onClick={() => onImageRemove(index)}>
+                    <button type='button' onClick={() => onImageRemove(index)}>
                       <img src={TrashIcon} alt='delete' className='w-4' />
                     </button>
                   </div>

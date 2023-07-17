@@ -12,14 +12,13 @@ const header = ()=>{
     return config;
 }
 
-class AuthService {
-    login(user_data){
-        return axios.post(API_URL + "/login", user_data);
+class ContentServices {
+    get(){
+        return axios.get(API_URL + "/content/getAll");
     }
-    
-    logout(){
-        return axios.get(API_URL + "/logout", header());
+    post(data){
+        return axios.post(API_URL + "/contents", data, header());
     }
 }
 
-export default new AuthService()
+export default new ContentServices()
