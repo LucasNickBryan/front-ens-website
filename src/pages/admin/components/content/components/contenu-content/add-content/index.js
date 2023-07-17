@@ -3,7 +3,7 @@ import { EditorState } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
 import { Input } from '../../../../../ui/input';
 import { ImageUploader } from '../../../../../ui/image-uploader';
-import { RequiredStar, UniqueImageText } from '../../../../../ui/texts';
+import { RequiredStar, RequiredText, UniqueImageText } from '../../../../../ui/texts';
 import { convertToHTML } from 'draft-convert';
 import SaveIcon from '../../../../../../../assets/icons/save.png'
 import '/node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
@@ -40,8 +40,9 @@ function AddContent() {
     if (description == "<p></p>") {
       valid = false;
       setValidDescription(false)
+    }else{
+      setValidDescription(true)
     }
-    (image.length > 0) && setImage(img => img[0].file)
 
     if (valid) {
       const data = {
@@ -49,7 +50,7 @@ function AddContent() {
         description: description,
         link: value.link,
         date: value.date,
-        image: image[0].file,
+        image: image.length > 0 ? image[0].file : null,
         isActuality: !isHistory
       }
     }
@@ -67,7 +68,7 @@ function AddContent() {
               {...register("title", { required: true })}
               onChange={(e) => setValue('title', e.target.value)}
             />
-            {errors.title && <span className='text-redcolor'>vous devez remplir ce champ</span>}
+            {errors.title && <RequiredText />}
           </div>
           <div className='pb-5'>
             <label className='uppercase'>Lien vers un aperçu</label>
@@ -83,6 +84,7 @@ function AddContent() {
               {...register("date", { required: true })}
               onChange={(e) => setValue('date', e.target.value)}
             />
+            {errors.date && <RequiredText />}
           </div>
 
           <div className='pb-5'>
@@ -102,7 +104,7 @@ function AddContent() {
 
         <div className='p-5'>
           <div className='pb-5'>
-            <label className='uppercase'>Image {<RequiredStar />}</label>
+            <label className='uppercase'>Image</label>
             <ImageUploader text_box={<UniqueImageText />} updateImages={setImage} />
           </div>
           <div className='pb-5'>
@@ -133,6 +135,7 @@ function AddContent() {
                 },
               }}
             />
+            {!isValidDescription && <RequiredText />}
           </div>
         </div>
       </div>

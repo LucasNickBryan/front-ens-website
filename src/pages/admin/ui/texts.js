@@ -9,3 +9,10 @@ export const UniqueImageText = () => {
 } 
 
 export const RequiredStar = ()=> {return <span className='text-redcolor'>*</span>}
+
+export const RequiredText = (props)=>{
+    const {text} =props
+    return(
+        <span className='text-redcolor'>{text ?? "vous devez remplir ce champ"}</span>
+    )
+}
