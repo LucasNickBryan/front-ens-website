@@ -1,0 +1,42 @@
+.FOOTER_STYLES {
+  .footer {
+    background-color: #00004d;
+    color: aliceblue;
+    padding: 2rem 0;
+  }
+
+  .ft1 h3 {
+    padding: -left 2rem;
+  }
+
+  .ft1 p {
+    text-align: left;
+    padding: 2rem;
+  }
+
+  .ft2 ul {
+    list-style: none;
+  }
+
+  .ft2 ul a {
+    text-decoration: none;
+  }
+
+  .ft2 ul li {
+    padding: 0.35rem;
+    font-weight: 500;
+  }
+
+  .ft3 ul {
+    list-style: none;
+  }
+
+  .ft3 ul a {
+    text-decoration: none;
+  }
+
+  .ft3 ul li {
+    padding: 0.35rem;
+    font-weight: 500;
+  }
+}
