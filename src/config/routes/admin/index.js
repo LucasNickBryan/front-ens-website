@@ -8,7 +8,7 @@ import { GalerieContent } from '../../../pages/admin/components/content/componen
 import { MainContent } from '../../../pages/admin/components/content/components/main-content'
 import { ContenuContent } from '../../../pages/admin/components/content/components/contenu-content'
 import { AccountAdmin } from '../../../pages/admin/components/account'
-import { UsersAdmin } from '../../../pages/admin/components/users'
+import { UsersAdmin } from '../../../pages/admin/components/content/components/user-content'
 
 export const AdminRoutes = () => {
   return (

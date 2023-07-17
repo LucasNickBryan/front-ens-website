@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import userDefaultImage from './../../../../assets/images/User.ico'
+import userDefaultImage from './../../../../assets/icons/User.ico'
 
 export const NavbarAdmin = (props) => {
   const [isMenuShown, setIsMenuShown] = useState(false)

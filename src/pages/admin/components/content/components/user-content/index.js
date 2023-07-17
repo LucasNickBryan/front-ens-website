@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import AddContent from './add-content'
-import ListContent from './list-content'
+import ListUser from './list-users'
+import AddUser from './add-users'
 
-export const ContenuContent = () => {
+export const UsersAdmin = () => {
   const [state, setState] = useState(true) // true: ListContent
   const [textState, setTextState] = useState('ajouter')
 
@@ -17,11 +17,11 @@ export const ContenuContent = () => {
       {
         state ?
           <div className='mt-5'>
-            <ListContent />
+            <ListUser />
           </div>
           :
           <div className='mt-5'>
-            <AddContent />
+            <AddUser />
           </div>
       }
     </div>
