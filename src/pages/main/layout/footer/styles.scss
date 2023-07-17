@@ -1,8 +1,10 @@
 .FOOTER_STYLES {
+  @import "~bootstrap/scss/bootstrap";
   .footer {
     background-color: #00004d;
     color: aliceblue;
     padding: 2rem 0;
+    padding-left: 5rem;
   }
 
   .ft1 h3 {
@@ -10,7 +12,7 @@
   }
 
   .ft1 p {
-    text-align: left;
+    text-align: center;
     padding: 2rem;
   }
 

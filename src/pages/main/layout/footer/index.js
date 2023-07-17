@@ -6,7 +6,7 @@ export default function MainFooter() {
   return (
     <div className="FOOTER_STYLES">
       <footer>
-        <div className="container">
+        <div className="">
           <div className="footer">
             <div className="row">
               <div className="col-md-6 col-lg-5 col-12 ft1">

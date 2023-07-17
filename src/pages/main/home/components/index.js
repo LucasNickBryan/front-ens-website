@@ -1,11 +1,6 @@
 import React from "react";
 // import Indexe from "./src/pages/main/layout/Index.js";
 import image from "../../../../assets/images/Jonas.png";
-import images from "../../../../assets/images/images.png";
-import image2 from "../../../../assets/images/vadil.jpg";
-import image3 from "../../../../assets/images/darya.jpg";
-import image4 from "../../../../assets/images/vasily.jpg";
-import image5 from "../../../../assets/images/andrea.jpg";
 import "./styles.scss";
 import "w3-css/w3.css";
 
@@ -18,6 +13,7 @@ export const HomePage = () => {
       <MainNavbar />
       <div className="con" id="home">
         <div className="banner">
+          <div className="linear"></div>
           <div className="banner-text">
             <h1>
               Association des Etudians de <br />
@@ -65,65 +61,7 @@ export const HomePage = () => {
         </div>
       </div>
 
-      <div className="w3-row-padding container" id="actu">
-        <div className="w3-center w3-padding-64">
-          <h1>
-            <strong>
-              Actu
-              <span className="multicolor-text" style={{}}>
-                alité
-              </span>
-            </strong>
-          </h1>
-        </div>
-
-        <div className="w3-third w3-margin-bottom">
-          <div className="w3-card-4">
-            <img src={image2} alt="John" style={{ width: "100%" }} />
-            <div className="w3-container">
-              <h3>Foot-ball masculine</h3>
-              <p className="w3-opacity">CEO & Founder</p>
-              <p>
-                <button className="w3-button w3-light-grey w3-block">
-                  Contact
-                </button>
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div className="w3-third w3-margin-bottom">
-          <div className="w3-card-4">
-            <img src={image3} alt="Mike" style={{ width: "100%" }} />
-            <div className="w3-container">
-              <h3>Basket-ball féminine</h3>
-              <p className="w3-opacity">Art Director</p>
-              <p>
-                <button className="w3-button w3-light-grey w3-block">
-                  Contact
-                </button>
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div className="w3-third w3-margin-bottom">
-          <div className="w3-card-4">
-            <img src={image5} alt="Jane" style={{ width: "100%" }} />
-            <div className="w3-container">
-              <h3>Des sorties de promotions</h3>
-              <p className="w3-opacity">Designer</p>
-              <p>
-                <button className="w3-button w3-light-grey w3-block">
-                  Contact
-                </button>
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <section className="histo" id="histo">
+      {/* <section className="histo" id="histo">
         <h1 className="heading">
           <span>Histo</span>rique
         </h1>
@@ -142,7 +80,7 @@ export const HomePage = () => {
             </p>
           </div>
         </div>
-      </section>
+      </section> */}
       <MainFooter />
     </div>
   );
