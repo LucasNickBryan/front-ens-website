@@ -1,8 +1,6 @@
 import React from "react";
-import Container from "react-bootstrap/Container";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
 import "./styles.scss";
+import { NavLink } from "react-router-dom";
 
 export default function MainNavbar() {
   return (
@@ -10,15 +8,28 @@ export default function MainNavbar() {
       <header>
         <input type="checkbox" nameName="" id="toggler" />
         <label for="toggler" className="fa fa-bars"></label>
-        <a href="#" className="logo">
+        <NavLink to="/bn" className="logo">
           AEENS <span>.</span>
-        </a>
+        </NavLink>
+
         <nav className="navbar">
-          <a href="#home">Accueil</a>
-          <a href="#actu">Actualité</a>
-          <a href="#histo">Historique</a>
-          <a href="#perso">Personnel</a>
-          <a href="#contact">Contact</a>
+          <ul>
+            <NavLink to="/" style={{ textDecoration: "none" }}>
+              <li>Accueil</li>
+            </NavLink>
+            <NavLink to="/actuality" style={{ textDecoration: "none" }}>
+              <li>Actualité</li>
+            </NavLink>
+            <NavLink to="/history" style={{ textDecoration: "none" }}>
+              <li>Historique</li>
+            </NavLink>
+            <NavLink to="/dsdsd" style={{ textDecoration: "none" }}>
+              <li>Personnel</li>
+            </NavLink>
+            <NavLink to="/dsd" style={{ textDecoration: "none" }}>
+              <li>Contact</li>
+            </NavLink>
+          </ul>
         </nav>
         <div className="btn">
           <button>Se connecter</button>
