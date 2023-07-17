@@ -7,13 +7,13 @@ import RedoIcon from '../../../assets/icons/redo.png'
 export function ImageUploader(props) {
   const [images, setImages] = useState([]);
   const [checkedImages, setCheckedImages] = useState([])
-  const { mutilple, text_box } = props
-  const maxNumber = 69;
+  const { mutilple, text_box, updateImages } = props
+  const maxNumber = 10;
 
   const onChange = (imageList, addUpdateIndex) => {
     // data for submit
-    console.log(imageList);
     setImages(imageList);
+    updateImages(imageList); // parent images
   };
   const onCheckImage = () => {
     const checklists = []

@@ -13,10 +13,12 @@ function AddContent() {
   const [editorState, setEditorState] = useState(
     () => EditorState.createEmpty()
   );
+  const [image, setImage] = useState([])
+  const [isValidDescription, setValidDescription] = useState(true)
+  const [isHistory, setIsHistory] = useState(true)
   const {
     register,
     handleSubmit,
-    watch,
     setValue,
     formState: { errors, isValid },
   } = useForm({
@@ -28,18 +30,34 @@ function AddContent() {
     }
   })
 
-  const [isHistory, setIsHistory] = useState(true)
 
   const onChangeEvent = (value) => {
     setIsHistory(value)
   }
-  const getValue = (value) => {
-    const html = convertToHTML(editorState.getCurrentContent());
-    console.log("VALUE ", value);
+  const confirmValues = (value) => {
+    let valid = true;
+    const description = convertToHTML(editorState.getCurrentContent());
+    if (description == "<p></p>") {
+      valid = false;
+      setValidDescription(false)
+    }
+    (image.length > 0) && setImage(img => img[0].file)
+
+    if (valid) {
+      const data = {
+        title: value.title,
+        description: description,
+        link: value.link,
+        date: value.date,
+        image: image[0].file,
+        isActuality: !isHistory
+      }
+    }
+
   }
 
   return (
-    <form noValidate onSubmit={handleSubmit(getValue)}>
+    <form noValidate onSubmit={handleSubmit(confirmValues)}>
       <div className='flex gap-5 lg:flex-col'>
         <div className='w-1/2 lg:!w-full p-5'>
 
@@ -49,7 +67,7 @@ function AddContent() {
               {...register("title", { required: true })}
               onChange={(e) => setValue('title', e.target.value)}
             />
-            {errors.title && <span>This field is required</span>}
+            {errors.title && <span className='text-redcolor'>vous devez remplir ce champ</span>}
           </div>
           <div className='pb-5'>
             <label className='uppercase'>Lien vers un aperçu</label>
@@ -85,7 +103,7 @@ function AddContent() {
         <div className='p-5'>
           <div className='pb-5'>
             <label className='uppercase'>Image {<RequiredStar />}</label>
-            <ImageUploader text_box={<UniqueImageText />} />
+            <ImageUploader text_box={<UniqueImageText />} updateImages={setImage} />
           </div>
           <div className='pb-5'>
             <label className='uppercase'>Descriptions {<RequiredStar />}</label>
@@ -93,6 +111,27 @@ function AddContent() {
               wrapperClassName="border border-black rounded min-h-72 "
               editorState={editorState}
               onEditorStateChange={setEditorState}
+              toolbar={{
+                options: ['inline', 'blockType', 'list', 'textAlign', 'history'],
+                inline: {
+                  inDropdown: false,
+                  className: undefined,
+                  component: undefined,
+                  dropdownClassName: undefined,
+                  options: ['bold', 'italic', 'underline', 'superscript', 'subscript'],
+                },
+                blockType: {
+                  inDropdown: true,
+                  options: ['Normal', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'Blockquote', 'Code'],
+                },
+                textAlign: {
+                  inDropdown: false,
+                  className: undefined,
+                  component: undefined,
+                  dropdownClassName: undefined,
+                  options: ['left', 'center', 'right', 'justify'],
+                },
+              }}
             />
           </div>
         </div>
