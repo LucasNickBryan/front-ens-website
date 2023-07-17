@@ -23,7 +23,7 @@ export default function MainNavbar() {
             <NavLink to="/history" style={{ textDecoration: "none" }}>
               <li>Historique</li>
             </NavLink>
-            <NavLink to="/dsdsd" style={{ textDecoration: "none" }}>
+            <NavLink to="/personnal" style={{ textDecoration: "none" }}>
               <li>Personnel</li>
             </NavLink>
             <NavLink to="/dsd" style={{ textDecoration: "none" }}>
