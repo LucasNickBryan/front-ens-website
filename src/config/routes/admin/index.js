@@ -7,7 +7,6 @@ import { FonctionContent } from '../../../pages/admin/components/content/compone
 import { GalerieContent } from '../../../pages/admin/components/content/components/galerie-content'
 import { MainContent } from '../../../pages/admin/components/content/components/main-content'
 import { ContenuContent } from '../../../pages/admin/components/content/components/contenu-content'
-import { AccountAdmin } from '../../../pages/admin/components/content/components/account-content'
 import { UsersAdmin } from '../../../pages/admin/components/content/components/user-content'
 
 export const AdminRoutes = () => {

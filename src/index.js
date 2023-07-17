@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.scss";
-import "bootstrap/dist/css/bootstrap.min.css";
 import "./assets/lib/fontawesome/fontawesome.min.css";
 import { RoutesConfig } from "./config/routes";
 

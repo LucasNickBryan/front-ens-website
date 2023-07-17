@@ -10,9 +10,9 @@ export default function ListGallery() {
                 <div>
                     <h2>Aucune image &agrave; afficher</h2>
                     <div className='flex gap-3 flex-row md:flex-col'>
-                        <Skeleton />
-                        <Skeleton />
-                        <Skeleton />
+                        <Skeleton delay={75} />
+                        <Skeleton delay={500} />
+                        <Skeleton delay={1000} />
                     </div>
                 </div>
             }
