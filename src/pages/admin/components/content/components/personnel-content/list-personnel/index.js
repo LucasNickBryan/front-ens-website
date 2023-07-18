@@ -7,7 +7,7 @@ export default function ListPersonnel() {
     return (
         <div className='overflow-auto rounded min-w-sm md:overflow-auto'>
             <table className="table-auto w-full">
-                <thead className='bg-gray-200 rounded-t-2xl shadow-lg'>
+                <thead className='bg-slate-100 rounded-t-2xl '>
                     <tr className='uppercase text-left'>
                         <th className='p-3'>photo</th>
                         <th>nom</th>
@@ -17,7 +17,7 @@ export default function ListPersonnel() {
                         <th>actions</th>
                     </tr>
                 </thead>
-                <tbody className='border border-2 rounded p-2'>
+                <tbody className='border border-1 rounded p-2'>
                     <tr>
                         <td className='p-2'>
                             <img src={DefautImage} className='w-24' />

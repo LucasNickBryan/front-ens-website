@@ -42,7 +42,7 @@ export default function ListContent(props) {
             }
 
             <table className="table-auto w-full">
-                <thead className='bg-gray-200 rounded-t-2xl shadow-lg'>
+                <thead className='bg-slate-100 rounded-t-2xl'>
                     <tr className='uppercase text-left'>
                         <th className='p-3'>image</th>
                         <th>titre</th>
@@ -53,7 +53,7 @@ export default function ListContent(props) {
                         <th>actions</th>
                     </tr>
                 </thead>
-                <tbody className='border border-2 rounded p-2'>
+                <tbody className='border border-1 rounded p-2'>
                     {
                         contents.length > 0 ?
                             contents.map((content) => (
