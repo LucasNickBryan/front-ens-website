@@ -10,7 +10,7 @@ import DeleteModal from '../../../../../ui/modal'
 export default function ListContent(props) {
     const { onUpdate } = props
     const { contents, fetchContent, deleteContent } = useContext(ContentContext)
-    const [openModal, setOpenModal] = useState(true)
+    const [openModal, setOpenModal] = useState(false)
     const [idToDelete, setIdToDelete] = useState(0)
 
     useEffect(() => {
