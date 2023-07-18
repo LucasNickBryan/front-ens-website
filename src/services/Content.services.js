@@ -31,7 +31,7 @@ class ContentServices {
         return axios.post(API_URL + "/contents", data, header("image"));
     }
     put(id, data){
-        return axios.post(API_URL + "/contents/" + id, data, header("image"));
+        return axios.put(API_URL + "/contents/" + id, data, header("image"));
     }
     delete(id){
         return axios.delete(API_URL + "/contents/" + id, header());
