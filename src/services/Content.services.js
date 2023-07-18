@@ -14,7 +14,7 @@ const header = ()=>{
 
 class ContentServices {
     get(){
-        return axios.get(API_URL + "/content/getAll");
+        return axios.get(API_URL + "/content");
     }
     post(data){
         return axios.post(API_URL + "/contents", data, header());

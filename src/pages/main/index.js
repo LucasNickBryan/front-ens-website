@@ -1,10 +1,10 @@
 import React from "react";
 import { Outlet } from "react-router";
-import "./styles.css";
+import "./styles.scss";
 
 function Main() {
   return (
-    <div>
+    <div className="MAIN_STYLES">
       <Outlet />
     </div>
   );

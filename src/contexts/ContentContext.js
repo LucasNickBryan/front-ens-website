@@ -13,12 +13,13 @@ export const ContentProvider = ({ children })=>{
         isActuality: false,
         link: "www.facebook.com/AEENS/actu"
     }])
-    let service = ContentServices
+    // let service = ContentServices
 
     const fetchContent = ()=>{
-        service.get()
+        ContentServices.get()
         .then((res)=>{
-            setData(res.data)
+            // setData(res.data.data)
+            console.log("BACK DATA ",res.data.data);
         })
     }
 
