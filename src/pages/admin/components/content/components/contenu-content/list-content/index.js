@@ -11,6 +11,7 @@ export default function ListContent() {
     const { contents, fetchContent } = useContext(ContentContext)
 
     useEffect(() => {
+        fetchContent()
         ContentServices.get()
             .then((res) => {
                 console.log("SUCCEES");
