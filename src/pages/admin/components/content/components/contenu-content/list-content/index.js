@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import DefautImage from '../../../../../../../assets/icons/image.png'
 import PencilIcon from '../../../../../../../assets/icons/pencil-alt.png'
+import EditIcon from '../../../../../../../assets/icons/edit.png'
 import DeleteIcon from '../../../../../../../assets/icons/trash.png'
 import { ContentContext } from '../../../../../../../contexts/ContentContext'
 import Skeleton from '../../../../../ui/skeleton'
@@ -17,18 +18,18 @@ export default function ListContent(props) {
         fetchContent()
     }, [])
 
-    const onHandleDelete =(id)=>{
+    const onHandleDelete = (id) => {
         setOpenModal(true)
         setIdToDelete(id)
     }
 
-    const onCancelDelete = ()=>{
+    const onCancelDelete = () => {
         setOpenModal(false)
         setIdToDelete(0)
     }
 
-    const onConfirmDelete = ()=>{
-        if(idToDelete > 0){
+    const onConfirmDelete = () => {
+        if (idToDelete > 0) {
             deleteContent(idToDelete)
             setOpenModal(false)
         }
@@ -70,8 +71,8 @@ export default function ListContent(props) {
                                     <td>{content.Content.link ?? ""}</td>
                                     <td>{content.Content.isActuality ? "Actu" : "Historique"}</td>
                                     <td className='table-cell align-middle'>
-                                        <div className='m-auto grid grid-cols-2'>
-                                            <img src={PencilIcon} alt="edit" className='w-7 cursor-pointer' onClick={() => onUpdate(content.id)} />
+                                        <div className='m-auto flex justify-center gap-7 sm:gap-3 sm:flex-col'>
+                                                <img src={EditIcon} alt="edit" className='w-7 cursor-pointer' onClick={() => onUpdate(content.id)} />
                                             <img src={DeleteIcon} alt="delete" className='w-5 cursor-pointer' onClick={() => onHandleDelete(content.id)} />
                                         </div>
                                     </td>
