@@ -1,35 +1,52 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { EditorState } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
 import { Input } from '../../../../../ui/input';
 import { ImageUploader } from '../../../../../ui/image-uploader';
 import { RequiredStar, RequiredText, UniqueImageText } from '../../../../../ui/texts';
-import { convertToHTML } from 'draft-convert';
+import { convertFromHTML, convertToHTML } from 'draft-convert';
 import SaveIcon from '../../../../../../../assets/icons/save.png'
 import '/node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import { useForm } from 'react-hook-form';
-import ContentServices from '../../../../../../../services/Content.services';
 import { ContentContext } from '../../../../../../../contexts/ContentContext';
+import { IMAGE_PATH } from '../../../../../../../config/env/env';
 
-function AddContent() {
+function AddContent(props) {
+  const { idToUpdate } = props
   const { contents, addContent } = useContext(ContentContext)
   const [editorState, setEditorState] = useState(
     () => EditorState.createEmpty()
   );
   const [image, setImage] = useState([])
+  const [currentImage, setCurrentImage] = useState(null)
   const [isValidDescription, setValidDescription] = useState(true)
   const [isHistory, setIsHistory] = useState(true)
+
+  useEffect(() => {
+    const item = contents.find(value => value.id == idToUpdate)
+    if (item) {
+      setValue('title', item.Content.title)
+      setValue('link', item.Content.link)
+      setValue('date', item.Content.date)
+      setCurrentImage(IMAGE_PATH + "/pictures/images/" + item.Picture.image)
+      setIsHistory(!item.Content.isActuality)
+      const contentState = convertFromHTML(item.Content.description);
+      const newEditorState = EditorState.createWithContent(contentState);
+      setEditorState(newEditorState)
+    }
+  }, [idToUpdate])
+
   const {
     register,
     handleSubmit,
     setValue,
+    getValues,
     formState: { errors, isValid },
   } = useForm({
     defaultValues: {
       title: '',
       link: '',
       date: '',
-      link: '',
     }
   })
 
@@ -43,7 +60,7 @@ function AddContent() {
     if (description == "<p></p>") {
       valid = false;
       setValidDescription(false)
-    }else{
+    } else {
       setValidDescription(true)
     }
 
@@ -58,16 +75,6 @@ function AddContent() {
       }
 
       addContent(data)
-      console.log("NEW VALUES ", contents);
-      
-      ContentServices.post(data)
-      .then((res)=>{
-        console.log("SUCCESS");
-      },
-      err=>{
-        console.log("ERROR");
-      }
-      )
     }
 
   }
@@ -80,6 +87,7 @@ function AddContent() {
           <div className='pb-5'>
             <label className='uppercase'>Titre {<RequiredStar />}</label>
             <Input
+              defaultValue={getValues('title')}
               {...register("title", { required: true })}
               onChange={(e) => setValue('title', e.target.value)}
             />
@@ -88,6 +96,7 @@ function AddContent() {
           <div className='pb-5'>
             <label className='uppercase'>Lien vers un aperçu</label>
             <Input
+              defaultValue={getValues('link')}
               {...register("link")}
               onChange={(e) => setValue('link', e.target.value)}
             />
@@ -96,6 +105,7 @@ function AddContent() {
           <div className='pb-5'>
             <label className='uppercase'>Date de l'événement {<RequiredStar />}</label>
             <Input type="date" className="w-36 block"
+              defaultValue={getValues('date')}
               {...register("date", { required: true })}
               onChange={(e) => setValue('date', e.target.value)}
             />
@@ -120,7 +130,17 @@ function AddContent() {
         <div className='p-5'>
           <div className='pb-5'>
             <label className='uppercase'>Image</label>
-            <ImageUploader text_box={<UniqueImageText />} updateImages={setImage} />
+            <div>
+              {
+                idToUpdate > 0 ?
+                  <>
+                    <img src={currentImage} alt="ENS" className='h-auto hover:scale-110 transition ease-in-out delay-150 max-w-[200px]' />
+                    <button className='p-2 rounded-full bg-yellow-500'>changer</button>
+                  </>
+                  :
+                  <ImageUploader text_box={<UniqueImageText />} updateImages={setImage} />
+              }
+            </div>
           </div>
           <div className='pb-5'>
             <label className='uppercase'>Descriptions {<RequiredStar />}</label>

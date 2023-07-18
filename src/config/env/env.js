@@ -1,2 +1,7 @@
-const ENV_MODE = "dev"
-export const API_URL = ENV_MODE === "dev" ? "http://localhost:8000" : "http://192.168.43.46:3000"
+const ENV_MODE = "prod"
+
+const IP = "http://192.168.88.4:3000"
+
+export const IMAGE_PATH = IP + "/data/uploads"
+
+export const API_URL = ENV_MODE === "dev" ? "http://localhost:8000" : IP

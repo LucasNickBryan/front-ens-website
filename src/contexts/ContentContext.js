@@ -4,40 +4,38 @@ import ContentServices from "../services/Content.services";
 export const ContentContext = createContext(null)
 
 export const ContentProvider = ({ children })=>{
-    const [data, setData] = useState([{
-        id:1,
-        image: null,
-        title: 'Réception Novices',
-        date: "08/06/2023",
-        description: "lorem upsum",
-        isActuality: false,
-        link: "www.facebook.com/AEENS/actu"
-    }])
-    // let service = ContentServices
+    const [data, setData] = useState([])
+    let service = ContentServices
 
     const fetchContent = ()=>{
-        ContentServices.get()
+        service.get()
         .then((res)=>{
-            // setData(res.data.data)
-            console.log("BACK DATA ",res.data.data);
+            setData(res.data.data)
         })
     }
 
     const addContent = (credential)=>{
-        // service.post(credential)
-        // .then((res)=>{
-        //     //
-        // })
+        service.post(credential)
+        .then((res)=>{
+            console.log("SUCCESS ", res.data.data);
+            fetchContent()
+        },
+        err=>{ console.log("FAILED OPERATION");}
+        )
+    }
 
-        // test data
-        let values = [...data]
-        const last_data = data.pop()
-        values.push({id:last_data.id+1, ...credential})
-        setData(values)
+    const deleteContent = (id)=>{
+        service.delete(id)
+        .then((res)=>{
+            console.log("SUCCESS ", res.data.data);
+            fetchContent()
+        },
+        err=>{ console.log("FAILED OPERATION");}
+        )
     }
 
     return(
-        <ContentContext.Provider value={{ contents:data, fetchContent, addContent }} >
+        <ContentContext.Provider value={{ contents:data, fetchContent, addContent, deleteContent }} >
             {children}
         </ContentContext.Provider>
     )

@@ -5,21 +5,15 @@ import DeleteIcon from '../../../../../../../assets/icons/trash.png'
 import ContentServices from '../../../../../../../services/Content.services'
 import { ContentContext } from '../../../../../../../contexts/ContentContext'
 import Skeleton from '../../../../../ui/skeleton'
+import { IMAGE_PATH } from '../../../../../../../config/env/env'
 
-export default function ListContent() {
+export default function ListContent(props) {
+    const { onUpdate } = props
 
-    const { contents, fetchContent } = useContext(ContentContext)
+    const { contents, fetchContent, deleteContent } = useContext(ContentContext)
 
     useEffect(() => {
         fetchContent()
-        ContentServices.get()
-            .then((res) => {
-                console.log("SUCCEES");
-            },
-                err => {
-                    console.log("ERROR");
-                }
-            )
     }, [])
 
     return (
@@ -43,17 +37,20 @@ export default function ListContent() {
                                 contents.map((content) => (
                                     <tr key={content.id}>
                                         <td className='p-2'>
-                                            <img src={content.image ?? DefautImage} className='w-24' />
+                                            <img src={content.Picture.image ?
+                                                IMAGE_PATH + "/pictures/images/" + content.Picture.image
+                                                :
+                                                DefautImage} className='w-24' />
                                         </td>
-                                        <td>{content.title}</td>
-                                        <td>{content.date}</td>
-                                        <td>{content.description}</td>
-                                        <td>{content.link ?? ""}</td>
-                                        <td>{content.isActuality ? "Actu" : "Historique"}</td>
+                                        <td>{content.Content.title}</td>
+                                        <td>{content.Content.date}</td>
+                                        <td>{content.Content.description}</td>
+                                        <td>{content.Content.link ?? ""}</td>
+                                        <td>{content.Content.isActuality ? "Actu" : "Historique"}</td>
                                         <td className='table-cell align-middle'>
                                             <div className='m-auto grid grid-cols-2'>
-                                                <img src={PencilIcon} alt="edit" className='w-7 cursor-pointer' />
-                                                <img src={DeleteIcon} alt="delete" className='w-5 cursor-pointer' />
+                                                <img src={PencilIcon} alt="edit" className='w-7 cursor-pointer' onClick={()=>onUpdate(content.id)} />
+                                                <img src={DeleteIcon} alt="delete" className='w-5 cursor-pointer' onClick={()=>deleteContent(content.id)} />
                                             </div>
                                         </td>
                                     </tr>

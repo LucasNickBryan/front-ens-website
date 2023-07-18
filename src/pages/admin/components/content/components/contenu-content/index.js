@@ -6,10 +6,18 @@ import { ContentProvider } from '../../../../../../contexts/ContentContext'
 export const ContenuContent = () => {
   const [state, setState] = useState(true) // true: ListContent
   const [textState, setTextState] = useState('ajouter')
+  const [idToUpdate, setIdToUpdate] = useState(0)
 
   const onHandleState = () => {
     setState(prev => !prev)
     state ? setTextState('voir la liste') : setTextState('ajouter')
+    !state && setIdToUpdate(0)
+  }
+
+  const onUpdate = (id)=>{
+    setTextState('retour')
+    setIdToUpdate(id)
+    setState(false)
   }
 
   return (
@@ -19,11 +27,11 @@ export const ContenuContent = () => {
         {
           state ?
             <div className='mt-5'>
-              <ListContent />
+              <ListContent onUpdate={onUpdate} />
             </div>
             :
             <div className='mt-5'>
-              <AddContent />
+              <AddContent idToUpdate={idToUpdate}  />
             </div>
         }
       </div>
