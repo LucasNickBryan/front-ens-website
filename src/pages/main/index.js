@@ -1,5 +1,6 @@
 import React from "react";
 import { Outlet } from "react-router";
+import "./styles.css";
 
 function Main() {
   return (
