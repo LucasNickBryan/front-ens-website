@@ -13,13 +13,14 @@ import { IMAGE_PATH } from '../../../../../../../config/env/env';
 
 function AddContent(props) {
   const { idToUpdate } = props
-  const { contents, addContent } = useContext(ContentContext)
+  const { contents, addContent, updateContent } = useContext(ContentContext)
   const [editorState, setEditorState] = useState(
     () => EditorState.createEmpty()
   );
   const [image, setImage] = useState([])
   const [currentImage, setCurrentImage] = useState(null)
   const [isValidDescription, setValidDescription] = useState(true)
+  const [isUpadte, setIsUpdate] = useState(false)
   const [isHistory, setIsHistory] = useState(true)
 
   useEffect(() => {
@@ -28,7 +29,9 @@ function AddContent(props) {
       setValue('title', item.Content.title)
       setValue('link', item.Content.link)
       setValue('date', item.Content.date)
-      setCurrentImage(IMAGE_PATH + "/pictures/images/" + item.Picture.image)
+      // setCurrentImage(IMAGE_PATH + "/pictures/images/" + item.Picture.image)
+      setCurrentImage(item.Picture.image)
+      setIsUpdate(true)
       setIsHistory(!item.Content.isActuality)
       const contentState = convertFromHTML(item.Content.description);
       const newEditorState = EditorState.createWithContent(contentState);
@@ -74,13 +77,14 @@ function AddContent(props) {
         isActuality: !isHistory
       }
 
-      addContent(data)
+      if (idToUpdate > 0) updateContent(idToUpdate, data)
+      else addContent(data)
     }
 
   }
 
   return (
-    <form noValidate onSubmit={handleSubmit(confirmValues)}>
+    <form noValidate onSubmit={handleSubmit(confirmValues)} className='ADD_CONTENT_STYLES'>
       <div className='flex gap-5 lg:flex-col'>
         <div className='w-1/2 lg:!w-full p-5'>
 
@@ -130,23 +134,38 @@ function AddContent(props) {
         <div className='p-5'>
           <div className='pb-5'>
             <label className='uppercase'>Image</label>
-            <div>
-              {
-                idToUpdate > 0 ?
-                  <>
-                    <img src={currentImage} alt="ENS" className='h-auto hover:scale-110 transition ease-in-out delay-150 max-w-[200px]' />
-                    <button className='p-2 rounded-full bg-yellow-500'>changer</button>
-                  </>
-                  :
-                  <ImageUploader text_box={<UniqueImageText />} updateImages={setImage} />
-              }
-            </div>
+            {
+              isUpadte &&
+              <div>
+                <img src={currentImage} alt="illustration" className="max-w-[200px] mx-auto" />
+                <div className='flex justify-center'>
+                  <button className='p-1 px-2 bg-white shadow-lg border border-1 border-amber-400 text-amber-400 hover:bg-amber-400 hover:text-white transition-all delay-100' 
+                  onClick={() => setIsUpdate(prev => !prev)}>changer l'image</button>
+                </div>
+              </div>
+            }
+
+            {
+              !isUpadte &&
+              <div>
+                <ImageUploader text_box={<UniqueImageText />} updateImages={setImage} />
+                {
+                  idToUpdate > 0 &&
+                  <div className='flex justify-center mt-1'>
+                    <button className='p-1 px-2 bg-white shadow-lg border border-1 border-redcolor text-redcolor hover:bg-redcolor hover:text-white transition-all delay-100'
+                      onClick={() => { setIsUpdate(prev => !prev); setImage([]) }}>annuler</button>
+                  </div>
+                }
+              </div>
+            }
+
+
           </div>
           <div className='pb-5'>
             <label className='uppercase'>Descriptions {<RequiredStar />}</label>
             <Editor
               wrapperClassName="min-h-72 p-1"
-              editorClassName="border border-black rounded-lg min-h-72 p-2 focus:shadow-lg "
+              editorClassName="border border-black rounded-lg min-h-72 p-2 focus:shadow-lg"
               editorState={editorState}
               onEditorStateChange={setEditorState}
               toolbar={{
@@ -172,7 +191,7 @@ function AddContent(props) {
         </div>
       </div>
       <div className='p-5 w-full flex justify-center'>
-        <button type='submit' className="bg-greencolor p-2 rounded-lg text-white hover:bg-green-500">
+        <button type='submit' className="bg-greencolor p-2 text-white hover:bg-green-500 transition-all delay-100">
           <img src={SaveIcon} alt='enregistrer' className='inline-block w-4' />
           <span className='inline-block ml-1'>enregistrer</span>
         </button>

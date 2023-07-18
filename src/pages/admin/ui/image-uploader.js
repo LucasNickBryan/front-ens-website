@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ImageUploading from 'react-images-uploading';
 import CloudUploadAlt from '../../../assets/icons/cloud-upload-alt.png'
 import TrashIcon from '../../../assets/icons/trash.png'
