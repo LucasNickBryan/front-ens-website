@@ -1,6 +1,6 @@
 import React from "react";
 // import Indexe from "./src/pages/main/layout/Index.js";
-import image from "../../../../assets/images/Jonas.png";
+
 import "./styles.scss";
 // import "w3-css/w3.css";
 

@@ -51,7 +51,10 @@
   "devDependencies": {
     "tailwindcss": "^3.3.2"
   },
-    "react-dotenv": {
-      "whitelist": ["ENV_MODE", "IP"]
-    }
+  "react-dotenv": {
+    "whitelist": [
+      "ENV_MODE",
+      "IP"
+    ]
+  }
 }
