@@ -235,11 +235,12 @@ export const FonctionContent = () => {
   
   useEffect(() => {
     updateNiveau();
-    // alert(nbNiv)
+    alert(nbNiv)
+
 
     FunctionServices.get().then(res =>{
       console.log(res.data)
-      // setListFunction(res.data)
+      setListFunction(res.data)
     })
 
   }, []);
@@ -411,12 +412,11 @@ export const FonctionContent = () => {
   function enregistrer(e){
 
     if(isAdd === true){
-      // var formData = new FormData();
-      // formData.append('name', nomFonction);
-      // formData.append('rank', rangFonction);
+      var formData = new FormData();
+      formData.append('name', nomFonction);
+      formData.append('rank', rangFonction);
 
-      // FunctionServices.post(formData);
-
+      FunctionServices.post(formData);
       init();
     }else{
       var elements = document.getElementsByClassName('22_fc');
