@@ -9,7 +9,7 @@ import SaveIcon from '../../../../../../../assets/icons/save.png'
 import '/node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import { useForm } from 'react-hook-form';
 import { ContentContext } from '../../../../../../../contexts/ContentContext';
-import { IMAGE_PATH } from '../../../../../../../config/env/env';
+import { IMAGE_PATH } from '../../../../../../../config/modules';
 
 function AddContent(props) {
   const { idToUpdate } = props

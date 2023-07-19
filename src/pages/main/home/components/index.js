@@ -4,7 +4,7 @@ import React from "react";
 import "./styles.scss";
 // import "w3-css/w3.css";
 
-// import MainNavbar from "../../layout/header";
+import MainNavbar from "../../layout/header";
 import MainFooter from "../../layout/footer";
 
 export const HomePage = () => {

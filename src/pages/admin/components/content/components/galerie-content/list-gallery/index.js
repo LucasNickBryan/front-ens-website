@@ -3,9 +3,10 @@ import Skeleton from '../../../../../ui/skeleton'
 import { GalleryContext } from '../../../../../../../contexts/GalleryContext'
 import TrashIcon from '../../../../../../../assets/icons/trash.png'
 import DeleteModal from '../../../../../ui/modal'
+import { IMAGE_PATH } from '../../../../../../../config/modules'
 
 export default function ListGallery() {
-    const { galleries, updateGallery, deleteGallery } = useContext(GalleryContext)
+    const { galleries, fetchGallery, updateGallery, deleteGallery } = useContext(GalleryContext)
     const [openModal, setOpenModal] = useState(false)
     const [idToDelete, setIdToDelete] = useState(0)
 
@@ -21,10 +22,14 @@ export default function ListGallery() {
 
     const onConfirmDelete = () => {
         if (idToDelete > 0) {
-            // deleteContent(idToDelete)
+            deleteGallery(idToDelete)
             setOpenModal(false)
         }
     }
+
+    useEffect(()=>{
+        fetchGallery()
+    }, [])
 
     return (
         <div>
@@ -49,7 +54,7 @@ export default function ListGallery() {
                             {
                                 galleries.map(gallery => (
                                     <div key={gallery.id} className="bg-white shadow-lg max-w-[250px] p-3 flex flex-col justify-between">
-                                        <img src={gallery.image} alt="" className='h-auto hover:scale-110 transition-all delay-100' />
+                                        <img src={ IMAGE_PATH + "/pictures/images/" + gallery.image} alt="" className='h-auto hover:scale-110 transition-all delay-100' />
                                         <div className="mt-2 flex justify-evenly gap-8">
                                             <input className='cursor-pointer checkbox_input' type="checkbox"
                                                 checked={gallery.isPrincipal}

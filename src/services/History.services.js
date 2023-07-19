@@ -1,17 +1,6 @@
 import axios from "axios";
-import { API_URL } from "../config/env/env";
-
-const header = () => {
-  const user_token = localStorage.getItem("user_token")
-    ? localStorage.getItem("user_token")
-    : "";
-  const config = {
-    headers: {
-      Authorization: `Bearer ${user_token}`,
-    },
-  };
-  return config;
-};
+import { header } from "./Auth.services";
+import { API_URL } from "../config/modules";
 
 class HistoryServices {
   get() {

@@ -15,7 +15,7 @@ export default function AddGallery() {
         isPrincipal: checkedImages.includes(i) ? true : false,
       }
     }
-    // addGallery(gallery_images)
+    addGallery(gallery_images)
   }
 
   return (
