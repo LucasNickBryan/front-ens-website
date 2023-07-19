@@ -7,7 +7,6 @@ import { ContentContext } from '../../../../../../../contexts/ContentContext'
 import Skeleton from '../../../../../ui/skeleton'
 import DeleteModal from '../../../../../ui/modal'
 import { IMAGE_PATH } from '../../../../../../../config/modules'
-import env from "react-dotenv";
 
 export default function ListContent(props) {
     const { onUpdate } = props

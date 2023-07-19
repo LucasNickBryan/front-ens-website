@@ -83,7 +83,7 @@ export const FonctionContent = () => {
   ];
 
   //fonction
-  var data_ex2 = [
+  var data_ex20 = [
     {
       id: 1,
       name: "president",
@@ -227,7 +227,7 @@ export const FonctionContent = () => {
   const [rangFonction, setRangFonction] = useState(0);
   const [isAdd, setIsAdd] = useState(false);
 
-  const [listFunction, setListFunction] = useState([]);
+  const [data_ex2, setListFunction] = useState([]);
 
   var nbNiv = 0;
   var rankR = [];
@@ -235,7 +235,13 @@ export const FonctionContent = () => {
   
   useEffect(() => {
     updateNiveau();
-    // setListFunction(FunctionServices.get());
+    // alert(nbNiv)
+
+    FunctionServices.get().then(res =>{
+      console.log(res.data)
+      // setListFunction(res.data)
+    })
+
   }, []);
 
   function updateNiveau(){
@@ -405,7 +411,12 @@ export const FonctionContent = () => {
   function enregistrer(e){
 
     if(isAdd === true){
-      alert("Ato ny mi-ajouter fonction vaovao");
+      // var formData = new FormData();
+      // formData.append('name', nomFonction);
+      // formData.append('rank', rangFonction);
+
+      // FunctionServices.post(formData);
+
       init();
     }else{
       var elements = document.getElementsByClassName('22_fc');
