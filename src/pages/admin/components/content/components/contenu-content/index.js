@@ -23,7 +23,7 @@ export const ContenuContent = () => {
   return (
     <ContentProvider>
       <div className='h-full w-full overflow-auto p-2'>
-        <span className='bg-black opacity-80 text-white p-2 rounded-full cursor-pointer hover:opacity-60' onClick={onHandleState}>{textState}</span>
+        <span className='bg-black opacity-80 text-white p-2 transition-all delay-100 cursor-pointer hover:opacity-60' onClick={onHandleState}>{textState}</span>
         {
           state ?
             <div className='mt-5'>

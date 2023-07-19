@@ -1,4 +1,4 @@
-const ENV_MODE = "prod";
+const ENV_MODE = "dev";
 
 const IP = "http://192.168.43.232:3000";
 
