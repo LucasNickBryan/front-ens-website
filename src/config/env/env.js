@@ -1,7 +1,7 @@
-const ENV_MODE = "dev"
+const ENV_MODE = "dev";
 
-const IP = "http://192.168.88.4:3000"
+const IP = "http://192.168.43.232:3000";
 
-export const IMAGE_PATH = IP + "/data/uploads"
+export const IMAGE_PATH = IP + "/data/uploads";
 
-export const API_URL = ENV_MODE === "dev" ? "http://localhost:8000" : IP
+export const API_URL = ENV_MODE === "dev" ? "http://localhost:8000" : IP;

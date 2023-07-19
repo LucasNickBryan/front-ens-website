@@ -1,14 +1,27 @@
-import React from "react";
-import MainNavbar from "../../layout/header";
+import React, { useEffect, useState } from "react";
+// import MainNavbar from "../../layout/header";
 import MainFooter from "../../layout/footer";
-import image2 from "../../../../assets/images/Jonas.png";
-import image3 from "../../../../assets/images/hicks.jpg";
-import image5 from "../../../../assets/images/andrea.jpg";
+// import image2 from "../../../../assets/images/Jonas.png";
+// import image3 from "../../../../assets/images/hicks.jpg";
+// import image5 from "../../../../assets/images/andrea.jpg";
 
 import "./styles.scss";
 import "w3-css/w3.css";
+import PersonnalServices from "../../../../services/Personnal.services";
 
 const Personnal = () => {
+  const [personnals, setPersonnals] = useState([]);
+
+  useEffect(() => {
+    PersonnalServices.get()
+      .then((res) => {
+        setPersonnals(res.data.data);
+        console.log("Personnal ", res.data.data);
+      })
+      .catch((er) => {
+        console.log(er);
+      });
+  }, []);
   return (
     <div className="PERSO_STYLES">
       {/* About Section with bg */}
