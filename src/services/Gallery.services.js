@@ -1,5 +1,5 @@
 import axios from "axios";
-import { API_URL } from "../config/env/env";
+import { API_URL } from "../config/modules";
 
 const header = (content_type="")=>{
     let content = ""
@@ -25,16 +25,16 @@ const header = (content_type="")=>{
 
 class GalleryServices {
     get(){
-        return axios.get(API_URL + "/galleries", header());
+        return axios.get(API_URL + "/pictures", header());
     }
     post(data){
-        return axios.post(API_URL + "/galleries", data, header("image"));
+        return axios.post(API_URL + "/pictures", data, header("image"));
     }
     put(id){
-        return axios.put(API_URL + "/galleries/" + id, header("json"));
+        return axios.put(API_URL + "/pictures/" + id, header("json"));
     }
     delete(id){
-        return axios.delete(API_URL + "/galleries/" + id, header());
+        return axios.delete(API_URL + "/pictures/" + id, header());
     }
 }
 

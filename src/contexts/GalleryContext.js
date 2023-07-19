@@ -6,26 +6,26 @@ export const GalleryContext = createContext(null)
 
 export const GalleryProvider = ({ children }) => {
     const [data, setData] = useState([
-        {
-            id: 1,
-            image: DefaultImage,
-            isPrincipal: false,
-        },
-        {
-            id: 2,
-            image: DefaultImage,
-            isPrincipal: false,
-        },
-        {
-            id: 3,
-            image: DefaultImage,
-            isPrincipal: false,
-        },
-        {
-            id: 4,
-            image: DefaultImage,
-            isPrincipal: false,
-        },
+        // {
+        //     id: 1,
+        //     image: DefaultImage,
+        //     isPrincipal: false,
+        // },
+        // {
+        //     id: 2,
+        //     image: DefaultImage,
+        //     isPrincipal: false,
+        // },
+        // {
+        //     id: 3,
+        //     image: DefaultImage,
+        //     isPrincipal: false,
+        // },
+        // {
+        //     id: 4,
+        //     image: DefaultImage,
+        //     isPrincipal: false,
+        // },
     ])
     let service = GalleryServices
 

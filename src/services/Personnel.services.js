@@ -1,5 +1,5 @@
 import axios from "axios";
-import { API_URL } from "../config/env/env";
+import { API_URL } from "../config/modules";
 
 const header = (content_type="")=>{
     let content = ""

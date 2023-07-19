@@ -5,8 +5,9 @@ import EditIcon from '../../../../../../../assets/icons/edit.png'
 import DeleteIcon from '../../../../../../../assets/icons/trash.png'
 import { ContentContext } from '../../../../../../../contexts/ContentContext'
 import Skeleton from '../../../../../ui/skeleton'
-import { IMAGE_PATH } from '../../../../../../../config/env/env'
 import DeleteModal from '../../../../../ui/modal'
+import { IMAGE_PATH } from '../../../../../../../config/modules'
+import env from "react-dotenv";
 
 export default function ListContent(props) {
     const { onUpdate } = props
