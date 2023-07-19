@@ -5,19 +5,21 @@ import DefaultImage from '../assets/icons/image.png'
 export const ContentContext = createContext(null)
 
 export const ContentProvider = ({ children }) => {
-    const [data, setData] = useState([{
-        id:1,
-        Content:{
-            title:"Fake Title",
-            link:"Fake link",
-            date:"2023-04-02",
-            isActuality: true,
-            description: "<p>Fake description</p>",
-        },
-        Picture:{
-            image:DefaultImage
-        }
-    }])
+    const [data, setData] = useState([
+        // {
+        //     id: 1,
+        //     Content: {
+        //         title: "Fake Title",
+        //         link: "Fake link",
+        //         date: "2023-04-02",
+        //         isActuality: true,
+        //         description: "<p>Fake description</p>",
+        //     },
+        //     Picture: {
+        //         image: DefaultImage
+        //     }
+        // }
+    ])
     let service = ContentServices
 
     const fetchContent = () => {
@@ -25,9 +27,9 @@ export const ContentProvider = ({ children }) => {
             .then((res) => {
                 setData(res.data.data)
             },
-            err=>{
-                console.log("ERROR ", err.message);
-            }
+                err => {
+                    console.log("ERROR ", err.message);
+                }
             )
     }
 

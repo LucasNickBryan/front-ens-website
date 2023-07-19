@@ -1,6 +1,6 @@
-const ENV_MODE = "dev"
+const ENV_MODE = "test"
 
-const IP = "http://192.168.88.4:3000"
+const IP = "http://192.168.137.1:3000"
 
 export const IMAGE_PATH = IP + "/data/uploads"
 
