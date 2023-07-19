@@ -1,14 +1,15 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import DefautImage from '../../../../../../../assets/icons/image.png'
 import PencilIcon from '../../../../../../../assets/icons/pencil-alt.png'
 import DeleteIcon from '../../../../../../../assets/icons/trash.png'
 import { PersonnelContext } from '../../../../../../../contexts/PersonnelContext'
 import Skeleton from '../../../../../ui/skeleton'
 import DeleteModal from '../../../../../ui/modal'
+import { IMAGE_PATH } from '../../../../../../../config/modules'
 
 export default function ListPersonnel(props) {
     const { onUpdate } = props
-    const { personnels, deletePersonnel } = useContext(PersonnelContext)
+    const { personnels, fetchPersonnel, deletePersonnel } = useContext(PersonnelContext)
     const [openModal, setOpenModal] = useState(false)
     const [idToDelete, setIdToDelete] = useState(0)
 
@@ -28,6 +29,10 @@ export default function ListPersonnel(props) {
             setOpenModal(false)
         }
     }
+
+    useEffect(()=>{
+        fetchPersonnel()
+    },[])
 
     return (
         <div className='overflow-auto rounded min-w-sm md:overflow-auto'>
@@ -51,12 +56,14 @@ export default function ListPersonnel(props) {
                             personnels.map(staff => (
                                 <tr key={staff.id}>
                                     <td className='p-2'>
-                                        <img src={ staff.image ?? DefautImage} className='w-24' />
+                                        <img src={ staff.avatar ?
+                                        IMAGE_PATH +  "/staffs/images/" :
+                                         DefautImage} className='w-24' />
                                     </td>
                                     <td>{staff.name}</td>
                                     <td>{staff.description}</td>
                                     <td>{staff.year}</td>
-                                    <td>{staff.Function.name}</td>
+                                    <td>{staff.Occupation.name}</td>
                                     <td className='table-cell align-middle'>
                                         <div className='m-auto grid grid-cols-2'>
                                             <img src={PencilIcon} alt="edit" className='w-7 cursor-pointer' onClick={() => onUpdate(staff.id)} />
@@ -69,7 +76,6 @@ export default function ListPersonnel(props) {
                             <tr>
                                 <td colSpan={6}><Skeleton /></td>
                             </tr>
-
                     }
                 </tbody>
             </table>

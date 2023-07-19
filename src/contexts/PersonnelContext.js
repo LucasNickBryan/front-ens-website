@@ -6,25 +6,24 @@ export const PersonnelContext = createContext(null)
 
 export const PersonnelProvider = ({ children }) => {
     const [data, setData] = useState([
-        {
-            id: 1,
-            name: "John Doe",
-            avatar: DefaultImage,
-            description: "Lorem upsum",
-            year: "2023-2024",
-            functionId: 2,
-            Function:{
-                name:"Président",
-                rank: 1,
-            }
-        },
+        // {
+        //     id: 1,
+        //     name: "John Doe",
+        //     avatar: DefaultImage,
+        //     description: "Lorem upsum",
+        //     year: "2023-2024",
+        //     occupationId: 2,
+        //     Occupation:{
+        //         name:"Président",
+        //     }
+        // },
     ])
     let service = PersonnelServices
 
     const fetchPersonnel = () => {
         service.get()
             .then((res) => {
-                setData(res.data.data)
+                setData(res.data)
             },
                 err => {
                     console.log("ERROR ", err.message);

@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './style.scss';
 import './styleHierarchie.scss';
 import { Input } from '../../../../ui/input';
+import FunctionServices from '../../../../../../services/Function.services';
 
 export const FonctionContent = () => {
 
@@ -82,7 +83,7 @@ export const FonctionContent = () => {
   ];
 
   //fonction
-  var data_ex2 = [
+  var data_ex20 = [
     {
       id: 1,
       name: "president",
@@ -226,8 +227,23 @@ export const FonctionContent = () => {
   const [rangFonction, setRangFonction] = useState(0);
   const [isAdd, setIsAdd] = useState(false);
 
+  const [data_ex2, setListFunction] = useState([]);
+
   var nbNiv = 0;
   var rankR = [];
+
+  
+  useEffect(() => {
+    updateNiveau();
+    alert(nbNiv)
+
+
+    FunctionServices.get().then(res =>{
+      console.log(res.data)
+      setListFunction(res.data)
+    })
+
+  }, []);
 
   function updateNiveau(){
     var isany = 0;
@@ -396,7 +412,11 @@ export const FonctionContent = () => {
   function enregistrer(e){
 
     if(isAdd === true){
-      alert("Ato ny mi-ajouter fonction vaovao");
+      var formData = new FormData();
+      formData.append('name', nomFonction);
+      formData.append('rank', rangFonction);
+
+      FunctionServices.post(formData);
       init();
     }else{
       var elements = document.getElementsByClassName('22_fc');
@@ -406,7 +426,51 @@ export const FonctionContent = () => {
 
       var elements2 = document.getElementsByClassName('11_fc');
       elements2[0].style.display = "none";
+
+      var elements0 = document.getElementsByClassName('44_fc');
+      elements0[0].style.display = "none";
     }
+  }
+
+  function supprimer(e){
+
+      var elements = document.getElementsByClassName('33_fc');
+      for (var i = 0; i < elements.length; i++) { 
+        elements[i].style.display = "block";
+      }
+
+      var elements2 = document.getElementsByClassName('11_fc');
+      elements2[0].style.display = "none";
+
+      var elements0 = document.getElementsByClassName('44_fc');
+      elements0[0].style.display = "none";
+
+  }
+
+  function oui2(e){
+    var elements = document.getElementsByClassName('33_fc');
+    for (var i = 0; i < elements.length; i++) { 
+      elements[i].style.display = "none";
+    }
+
+    var elements2 = document.getElementsByClassName('44_fc');
+    elements2[0].style.display = "block";
+
+    alert("ato ny mi-supprimer");
+    init();
+  }
+
+  function non2(e){
+    var elements = document.getElementsByClassName('33_fc');
+    for (var i = 0; i < elements.length; i++) { 
+      elements[i].style.display = "none";
+    }
+
+    var elements2 = document.getElementsByClassName('11_fc');
+    elements2[0].style.display = "block";
+
+    var elements0 = document.getElementsByClassName('44_fc');
+    elements0[0].style.display = "block";
   }
 
   function oui(e){
@@ -417,6 +481,9 @@ export const FonctionContent = () => {
 
     var elements2 = document.getElementsByClassName('11_fc');
     elements2[0].style.display = "block";
+
+    var elements0 = document.getElementsByClassName('44_fc');
+    elements0[0].style.display = "block";
 
     alert("ato ny mi-update fonction");
     init();
@@ -430,9 +497,10 @@ export const FonctionContent = () => {
 
     var elements2 = document.getElementsByClassName('11_fc');
     elements2[0].style.display = "block";
+
+    var elements2 = document.getElementsByClassName('44_fc');
+    elements2[0].style.display = "block";
   }
-
-
 
   function bigy(){
     var tabNiv = [];
@@ -513,7 +581,7 @@ export const FonctionContent = () => {
     updateNiveau();
   }
 
-  updateNiveau();
+  
 
   return (
     <>
@@ -569,9 +637,15 @@ export const FonctionContent = () => {
               
               <p>Rang de la fonction</p>
               <Input value={rangFonction} type="number"  onChange={e => setRangFonction(e.target.value)} />
-              
                 <button className='btn_fc 11_fc' style={{float: "right", display: "block"}} onClick={(e) => enregistrer(e)}>Enregistrer</button>
                 
+                <button className='btn_fc 44_fc' style={{float: "right", display: "block", backgroundColor: "grey", color: "white"}} onClick={(e) => supprimer(e)}>Supprimer</button>
+                
+                <button className='btn_fc 33_fc' style={{float: "right", width: "64px", display: "none", marginLeft: "20px"}}
+                onClick={(e) => oui2(e)}>Oui</button>
+                <button className='btn_fc 33_fc' style={{float: "right", width: "64px", display: "none", marginLeft: "20px"}}
+                onClick={(e) => non2(e)}>Non</button>
+
                 <p className='22_fc' style={{display: "none", color: "red"}}>Vous êtes sûre de vouloir modifier?</p>
                 <button className='btn_fc 22_fc' style={{float: "right", width: "64px", display: "none", marginLeft: "20px"}}
                 onClick={(e) => oui(e)}>Oui</button>

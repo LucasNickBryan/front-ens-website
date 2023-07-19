@@ -4,7 +4,7 @@ import { header } from "./Auth.services";
 
 class PersonnelServices {
     get(){
-        return axios.get(API_URL + "/personnels", header());
+        return axios.get(API_URL + "/staff", header());
     }
     post(data){
         return axios.post(API_URL + "/personnels", data, header("image"));
