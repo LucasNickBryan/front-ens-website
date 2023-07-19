@@ -23,19 +23,19 @@ const header = (content_type="")=>{
     return config;
 }
 
-class ContentServices {
+class PersonnelServices {
     get(){
-        return axios.get(API_URL + "/contents", header());
+        return axios.get(API_URL + "/personnels", header());
     }
     post(data){
-        return axios.post(API_URL + "/contents", data, header("image"));
+        return axios.post(API_URL + "/personnels", data, header("image"));
     }
     put(id, data){
-        return axios.put(API_URL + "/contents/" + id, data, header("image"));
+        return axios.put(API_URL + "/personnels/" + id, data, header("image"));
     }
     delete(id){
-        return axios.delete(API_URL + "/contents/" + id, header());
+        return axios.delete(API_URL + "/personnels/" + id, header());
     }
 }
 
-export default new ContentServices()
+export default new PersonnelServices()

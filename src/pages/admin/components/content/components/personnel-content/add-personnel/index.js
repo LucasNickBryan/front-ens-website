@@ -1,35 +1,132 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Input } from '../../../../../ui/input'
 import { ImageUploader } from '../../../../../ui/image-uploader'
-import { RequiredStar, UniqueImageText } from '../../../../../ui/texts'
+import { RequiredStar, RequiredText, UniqueImageText } from '../../../../../ui/texts'
 import SelectUi from '../../../../../ui/select'
+import { PersonnelContext } from '../../../../../../../contexts/PersonnelContext'
+import { useForm } from 'react-hook-form'
+import SaveIcon from '../../../../../../../assets/icons/save.png'
 
-export default function AddPersonnel() {
+export default function AddPersonnel(props) {
+  const { idToUpdate } = props
+  const { personnels, addPersonnel, updatePersonnel, deletePersonnel } = useContext(PersonnelContext)
+  const [image, setImage] = useState([])
+  const [currentImage, setCurrentImage] = useState(null)
+  const [isUpadte, setIsUpdate] = useState(false)
+
+  useEffect(() => {
+    const item = personnels.find(value => value.id == idToUpdate)
+    if (item) {
+      setValue('name', item.name)
+      setValue('description', item.description)
+      setValue('year', item.year)
+      setValue('functionId', item.functionId)
+      // setCurrentImage(IMAGE_PATH + "/pictures/images/" + item.avatar)
+      setCurrentImage(item.avatar)
+      setIsUpdate(true)
+    }
+  }, [idToUpdate])
+
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    getValues,
+    formState: { errors, isValid },
+  } = useForm({
+    defaultValues: {
+      nom: '',
+      description: '',
+      year: '',
+      functionId: '',
+    }
+  })
+
+  const confirmValues = (value) => {
+
+    const data = {
+      name: value.nom,
+      description: value.description,
+      year: value.year,
+      functionId: value.functionId,
+      avatar: image.length > 0 ? image[0].file : null,
+    }
+
+    console.log("DATA ", data);
+
+    // if (idToUpdate > 0) updatePersonnel(idToUpdate, data)
+    // else addPersonnel(data)
+
+  }
+
   return (
-    <div className='flex gap-5 lg:flex-col'>
-      <div className='w-1/2 lg:!w-full p-5'>
+    <div className='flex gap-5 justify-center'>
+      <form noValidate onSubmit={handleSubmit(confirmValues)} className='w-1/2 lg:!w-full p-5 shadow sm:shadow-none rounded-lg'>
 
         <div className='pb-5'>
-          <label className='uppercase'>photo {<RequiredStar/>}</label>
-          <ImageUploader text_box={<UniqueImageText/>}/>
+          <label className='uppercase'>photo</label>
+          {
+            isUpadte &&
+            <div>
+              <img src={currentImage} alt="illustration" className="max-w-[200px] mx-auto" />
+              <div className='flex justify-center'>
+                <button className='p-1 px-2 bg-white shadow-lg border border-1 border-amber-400 text-amber-400 hover:bg-amber-400 hover:text-white transition-all delay-100'
+                  onClick={() => setIsUpdate(prev => !prev)}>changer l'image</button>
+              </div>
+            </div>
+          }
+
+          {
+            !isUpadte &&
+            <div>
+              <ImageUploader text_box={<UniqueImageText />} updateImages={setImage} />
+              {
+                idToUpdate > 0 &&
+                <div className='flex justify-center mt-1'>
+                  <button className='p-1 px-2 bg-white shadow-lg border border-1 border-redcolor text-redcolor hover:bg-redcolor hover:text-white transition-all delay-100'
+                    onClick={() => { setIsUpdate(prev => !prev); setImage([]) }}>annuler</button>
+                </div>
+              }
+            </div>
+          }
         </div>
         <div className='pb-5'>
-          <label className='uppercase'>nom {<RequiredStar/>}</label>
-          <Input />
+          <label className='uppercase'>nom {<RequiredStar />}</label>
+          <Input
+            defaultValue={getValues('nom')}
+            {...register("nom", { required: true })}
+            onChange={(e) => setValue('nom', e.target.value)}
+          />
+          {errors.nom && <RequiredText />}
         </div>
         <div className='pb-5'>
-          <label className='uppercase'>descritpions {<RequiredStar/>}</label>
-          <textarea rows={2} className="w-full shadow-md border border-black-100 rounded p-1 mb-2 focus:shadow-greencolor"></textarea>
+          <label className='uppercase'>descritpions {<RequiredStar />}</label>
+          <textarea rows={2} className="w-full shadow-md border border-black-100 rounded p-1 mb-2 focus:shadow-greencolor"
+            defaultValue={getValues('description')}
+            {...register("description", { required: true })}
+          ></textarea>
+          {errors.description && <RequiredText />}
         </div>
         <div className='pb-5'>
-          <label className='uppercase'>année {<RequiredStar/>}</label>
-          <Input />
+          <label className='uppercase'>année {<RequiredStar />}</label>
+          <Input
+            defaultValue={getValues('year')}
+            {...register("year", { required: true })}
+            onChange={(e) => setValue('year', e.target.value)}
+          />
+          {errors.year && <RequiredText />}
         </div>
         <div className='pb-5'>
-          <label className='uppercase'>fonction {<RequiredStar/>}</label>
+          <label className='uppercase'>fonction {<RequiredStar />}</label>
           <SelectUi />
         </div>
-      </div>
+        <div className='p-5 w-full flex justify-center'>
+          <button type='submit' className="bg-greencolor p-2 text-white hover:bg-green-500 transition-all delay-100">
+            <img src={SaveIcon} alt='enregistrer' className='inline-block w-4' />
+            <span className='inline-block ml-1'>enregistrer</span>
+          </button>
+        </div>
+      </form>
 
     </div>
   )

@@ -1,14 +1,21 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Select from 'react-select';
 
-const options = [
-  { value: 'Président', label: 'Président' },
-  { value: 'Vice président', label: 'Vice président' },
-  { value: 'Délégué', label: 'Délégueé' },
+const OPTIONS = [
+  { value: 1, label: 'Président' },
+  { value: 2, label: 'Vice président' },
+  { value: 3, label: 'Délégué' },
 ];
 
-export default function SelectUi() {
+export default function SelectUi(props) {
+  const {options, defaultValue} = props
   const [selectedOption, setSelectedOption] = useState(null);
+
+  useEffect(()=>{
+      if(defaultValue){
+        setSelectedOption(defaultValue)
+      }
+  }, [])
 
   return (
     <div>
@@ -19,4 +26,9 @@ export default function SelectUi() {
       />
     </div>
   );
+}
+
+SelectUi.defaultProps={
+  options: OPTIONS,
+  defaultValue:null,
 }
