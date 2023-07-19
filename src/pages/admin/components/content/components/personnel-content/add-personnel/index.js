@@ -6,6 +6,7 @@ import SelectUi from '../../../../../ui/select'
 import { PersonnelContext } from '../../../../../../../contexts/PersonnelContext'
 import { useForm } from 'react-hook-form'
 import SaveIcon from '../../../../../../../assets/icons/save.png'
+import { IMAGE_PATH } from '../../../../../../../config/modules'
 
 export default function AddPersonnel(props) {
   const { idToUpdate } = props
@@ -17,12 +18,12 @@ export default function AddPersonnel(props) {
   useEffect(() => {
     const item = personnels.find(value => value.id == idToUpdate)
     if (item) {
-      setValue('name', item.name)
+      setValue('nom', item.name)
       setValue('description', item.description)
       setValue('year', item.year)
       setValue('functionId', item.functionId)
-      // setCurrentImage(IMAGE_PATH + "/pictures/images/" + item.avatar)
-      setCurrentImage(item.avatar)
+      setCurrentImage(IMAGE_PATH + "/staffs/images/" + item.avatar)
+      // setCurrentImage(item.avatar)
       setIsUpdate(true)
     }
   }, [idToUpdate])
