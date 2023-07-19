@@ -9,11 +9,11 @@ class FunctionServices {
     post(data){
         return axios.post(API_URL + "/occupation", data, header());
     }
-    put(id){
-        return axios.put(API_URL + "/galleries/" + id, header("json"));
+    put(id, data){
+        return axios.put(API_URL + "/occupation/" + id, data, header());
     }
     delete(id){
-        return axios.delete(API_URL + "/galleries/" + id, header());
+        return axios.delete(API_URL + "/occupation/" + id, header());
     }
 
 }
