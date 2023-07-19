@@ -4,7 +4,6 @@ import { NavLink } from "react-router-dom";
 import logo1 from "../../../../assets/images/imgs/logo.PNG";
 
 export default function MainNavbar() {
-  return <div className="NAVBAR_STYLES"></div>;
   function toggler(e) {
     // alert("toggle");
 

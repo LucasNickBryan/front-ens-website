@@ -60,8 +60,8 @@ export default function ListContent(props) {
                                 <tr key={content.id}>
                                     <td className='p-2'>
                                         <img src={content.Picture.image ?
-                                            // IMAGE_PATH + "/pictures/images/" + content.Picture.image
-                                            content.Picture.image
+                                            IMAGE_PATH + "/pictures/images/" + content.Picture.image
+                                            // content.Picture.image
                                             :
                                             DefautImage} className='w-24' />
                                     </td>
