@@ -1,10 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import image from "../../../../assets/images/images.png";
 import "./style.scss";
 import MainFooter from "../../layout/footer";
+import HistoryServices from "../../../../services/History.services";
 
 const History = () => {
+  // const [histories, setHistories] = useState([]);
+
+  // useEffect(() => {
+  //   HistoryServices.get().then((res) => {
+  //     setHistories(res.data.data);
+  //     // console.log("HISTORIES ", res.data.data);
+  //   });
+  // }, []);
   return (
     <div className="HISTORY_STYLES">
       <section id="about">
@@ -25,7 +34,8 @@ const History = () => {
                 nanamarina izy fa efa AENF no fiantso ny fikambanan'ny mpianatra
                 teto amin'ny ENS.
               </p>
-              <p>
+              <div>
+                {/* <p>
                 Nohamafisin'Andriamatoa RANDRIANARIVELO Chef Service de la
                 Scolarité ENS ihany koa izany araka ny antso nifanaovan'izy sy
                 Dr Roger tamin'ny Talata 02 Jolay 2019 tokony tamin'ny ray ora
@@ -58,7 +68,8 @@ const History = () => {
                 Napetraka izany mba hitondra filaminana ho an'ny fikambanana ka
                 napidiriny tamin'ny fandaharan'asany ary mipetraka eo anivon'ny
                 AENF sy ENS Fianarantsoa izany lalàna izany.
-              </p>
+              </p> */}
+              </div>
             </div>
           </div>
         </div>

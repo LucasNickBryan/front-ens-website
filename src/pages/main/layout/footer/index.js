@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import "./styles.scss";
 import "w3-css/w3.css";
 
@@ -6,18 +7,24 @@ export default function MainFooter() {
   return (
     <div className="FOOTER_STYLES">
       <section className="has-bg-img py-0">
-        <div className="container">
-          <div className="footer">
+        <div
+          className="container"
+          style={{ color: "black", fontWeight: "bolder" }}
+        >
+          <div
+            className="footer"
+            style={{ color: "black", fontWeight: "bolder" }}
+          >
             <div className="footer-lists">
               <ul className="list">
                 <li className="list-head">
                   <h6 className="font-weight-bold">ABOUT US</h6>
                 </li>
                 <li className="list-body">
-                  <a href="#" className="logo">
-                    <img src="assets/imgs/logo.png" />
+                  <NavLink className="logo">
+                    <img src="assets/imgs/logo.png" alt="" />
                     <h6>Creative Studio</h6>
-                  </a>
+                  </NavLink>
                   <p>
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                     Beatae nobis fugit maxime deleniti minus optio accusamus,
@@ -51,7 +58,7 @@ export default function MainFooter() {
                     <div className="col">
                       <a href="#team">Team</a>
                       <a href="#blog">Blog</a>
-                      <a href="#">Faq</a>
+                      <a href="#dsd">Faq</a>
                       <a href="#">Privacy Policy</a>
                     </div>
                   </div>

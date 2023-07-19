@@ -1,6 +1,9 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import MainFooter from "../../layout/footer";
-
+import image from "../../../../assets/images/Jonas.png";
+import image1 from "../../../../assets/images/andrea.jpg";
+import image2 from "../../../../assets/images/hicks.jpg";
 const Contact = () => {
   return (
     <div className="CONTACT_STYLES">
@@ -12,15 +15,15 @@ const Contact = () => {
           <div className="row">
             <div className="col-md-4">
               <div className="card blog-post my-4 my-sm-5 my-md-0">
-                <img src="assets/imgs/blog-1.jpg" />
+                <img alt="" src={image} />
                 <div className="card-body">
                   <div className="details mb-3">
-                    <a href="javascript:void(0)">
+                    <NavLink>
                       <i className="ti-comments"></i> 123
-                    </a>
-                    <a href="javascript:void(0)">
+                    </NavLink>
+                    <NavLink>
                       <i className="ti-eye"></i> 123
-                    </a>
+                    </NavLink>
                   </div>
                   <h5 className="card-title">Possimus aliquam veniam</h5>
                   <p>
@@ -28,23 +31,21 @@ const Contact = () => {
                     Repudiandae laudantium dolor nisi obcaecati, non laboriosam
                     asperiores doloremque tempora repellendus iure!
                   </p>
-                  <a href="javascript:void(0)" className="d-block mt-3">
-                    Read More...
-                  </a>
+                  <NavLink>Read More...</NavLink>
                 </div>
               </div>
             </div>
             <div className="col-md-4">
               <div className="card blog-post my-4 my-sm-5 my-md-0">
-                <img src="assets/imgs/blog-2.jpg" />
+                <img src={image1} alt="" />
                 <div className="card-body">
                   <div className="details mb-3">
-                    <a href="javascript:void(0)">
+                    <NavLink>
                       <i className="ti-comments"></i> 434
-                    </a>
-                    <a href="javascript:void(0)">
+                    </NavLink>
+                    <NavLink>
                       <i className="ti-eye"></i> 987
-                    </a>
+                    </NavLink>
                   </div>
                   <h5 className="card-title">Repudiandae laudantium</h5>
                   <p>
@@ -52,23 +53,21 @@ const Contact = () => {
                     Repudiandae laudantium dolor nisi obcaecati, non laboriosam
                     asperiores doloremque tempora repellendus iure!
                   </p>
-                  <a href="javascript:void(0)" className="d-block mt-3">
-                    Read More...
-                  </a>
+                  <NavLink>Read More...</NavLink>
                 </div>
               </div>
             </div>
             <div className="col-md-4">
               <div className="card blog-post my-4 my-sm-5 my-md-0">
-                <img src="assets/imgs/blog-3.jpg" />
+                <img src={image2} alt="" />
                 <div className="card-body">
                   <div className="details mb-3">
-                    <a href="javascript:void(0)">
+                    <NavLink>
                       <i className="ti-comments"></i> 164
-                    </a>
-                    <a href="javascript:void(0)">
+                    </NavLink>
+                    <NavLink>
                       <i className="ti-eye"></i> 425
-                    </a>
+                    </NavLink>
                   </div>
                   <h5 className="card-title">Laboriosam asperiores</h5>
                   <p>
@@ -76,9 +75,7 @@ const Contact = () => {
                     Repudiandae laudantium dolor nisi obcaecati, non laboriosam
                     asperiores doloremque tempora repellendus iure!
                   </p>
-                  <a href="javascript:void(0)" className="d-block mt-3">
-                    Read More...
-                  </a>
+                  <NavLink> Read More...</NavLink>
                 </div>
               </div>
             </div>
