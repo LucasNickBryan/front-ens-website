@@ -1,41 +1,50 @@
 import React, { useEffect, useState } from "react";
 
-import image from "../../../../assets/images/images.png";
+// import image from "../../../../assets/images/images.png";
 import "./style.scss";
 import MainFooter from "../../layout/footer";
 import HistoryServices from "../../../../services/History.services";
 
 const History = () => {
-  // const [histories, setHistories] = useState([]);
+  const [histories, setHistories] = useState([]);
 
-  // useEffect(() => {
-  //   HistoryServices.get().then((res) => {
-  //     setHistories(res.data.data);
-  //     // console.log("HISTORIES ", res.data.data);
-  //   });
-  // }, []);
+  useEffect(() => {
+    HistoryServices.get()
+      .then((res) => {
+        setHistories(res.data.data);
+        console.log("HISTORIES ", res.data.data);
+      })
+      .catch((er) => {
+        console.log(er);
+      });
+  }, []);
   return (
     <div className="HISTORY_STYLES">
       <section id="about">
         <div className="container">
-          <div className="row align-items-center">
-            <div className="col-md-5 col-lg-4">
-              <img src={image} alt="" className="w-100 img-thumbnail mb-3" />
-            </div>
+          {histories.map((item) => (
+            <div className="row align-items-center" key={item.id}>
+              <div className="col-md-5 col-lg-4">
+                <img
+                  src={item.image}
+                  alt=""
+                  className="w-100 img-thumbnail mb-3"
+                />
+              </div>
 
-            <div className="col-md-7 col-lg-8">
-              <h6 className="section-subtitle mb-0">AENF</h6>
-              <h6 className="section-title mb-3">Historique</h6>
-              <p>Association des Etudiants Normaliens Fianarantsoa (AENF).</p>
-              <p>_______________________________________________ </p>
-              <p>
-                Araka ny fanadihadiana izay natao tamin'Andriamatoa Dr
-                RATOVONJANAHARY Roger, Talen'ny ENS ny taona 2001-2007 dia
-                nanamarina izy fa efa AENF no fiantso ny fikambanan'ny mpianatra
-                teto amin'ny ENS.
-              </p>
-              <div>
+              <div className="col-md-7 col-lg-8">
+                <h4 className="section-subtitle mb-0">{item.title}</h4>
+                {/* <h6 className="section-title mb-3">Historique</h6> */}
+                <p> {item.description}</p>
+                <p>_______________________________________________ </p>
                 {/* <p>
+                  Araka ny fanadihadiana izay natao tamin'Andriamatoa Dr
+                  RATOVONJANAHARY Roger, Talen'ny ENS ny taona 2001-2007 dia
+                  nanamarina izy fa efa AENF no fiantso ny fikambanan'ny
+                  mpianatra teto amin'ny ENS.
+                </p> */}
+                <div>
+                  {/* <p>
                 Nohamafisin'Andriamatoa RANDRIANARIVELO Chef Service de la
                 Scolarité ENS ihany koa izany araka ny antso nifanaovan'izy sy
                 Dr Roger tamin'ny Talata 02 Jolay 2019 tokony tamin'ny ray ora
@@ -69,9 +78,10 @@ const History = () => {
                 napidiriny tamin'ny fandaharan'asany ary mipetraka eo anivon'ny
                 AENF sy ENS Fianarantsoa izany lalàna izany.
               </p> */}
+                </div>
               </div>
             </div>
-          </div>
+          ))}
         </div>
       </section>
       <MainFooter />

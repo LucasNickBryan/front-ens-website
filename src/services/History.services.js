@@ -15,7 +15,7 @@ const header = () => {
 
 class HistoryServices {
   get() {
-    return axios.get(API_URL + "/content/getAll", header());
+    return axios.get(API_URL + "/contents/getAll", header());
   }
 }
 
