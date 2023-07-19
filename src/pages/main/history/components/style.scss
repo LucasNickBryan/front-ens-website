@@ -1,60 +1,14 @@
 .HISTORY_STYLES {
-  .heading {
+  .title {
+    font-weight: bolder;
     text-align: center;
-    font-size: 3rem;
-    color: #333;
     padding: 1rem;
-    margin-top: 5rem;
   }
-  .heading span {
+  .title span {
     color: green;
   }
-  .histo .row {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    flex-wrap: wrap;
-    padding: 1rem 0;
-    padding-bottom: 3rem;
-  }
-  .histo .row .imageHisto {
-    flex: 1 1 40rem;
-    position: relative;
-  }
-  .histo .row .imageHisto img {
-    width: 95%;
-    border: 1.5rem solid #fff;
-    border-radius: 0.5rem;
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
-    height: 100%;
-    object-fit: cover;
-  }
-  .histo .row .imageHisto h3 {
+  .date {
     position: absolute;
-    top: 50%;
-    translate: (-50%);
-    font-size: 3rem;
-    color: #333;
-    background: #fff;
-    width: 100%;
-    padding: 1rem 2rem;
-    text-align: center;
-    mix-blend-mode: screen;
-  }
-  .histo .row .content {
-    flex: 1 1 30rem;
-  }
-  .histo .row .content h3 {
-    font-size: 3rem;
-    color: #333;
-  }
-  .histo .row .content p {
-    font-size: 1.5rem;
-    color: #999;
-    padding: 0.5rem 0;
-    padding-top: 0.5rem;
-    line-height: 1.5;
-    text-align: justify;
-    margin-right: 1rem;
+    right: 10px;
   }
 }

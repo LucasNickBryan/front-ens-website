@@ -10,18 +10,18 @@ import "w3-css/w3.css";
 import PersonnalServices from "../../../../services/Personnal.services";
 
 const Personnal = () => {
-  const [personnals, setPersonnals] = useState([]);
+  // const [personnals, setPersonnals] = useState([]);
 
-  useEffect(() => {
-    PersonnalServices.get()
-      .then((res) => {
-        setPersonnals(res.data.data);
-        console.log("Personnal ", res.data.data);
-      })
-      .catch((er) => {
-        console.log(er);
-      });
-  }, []);
+  // useEffect(() => {
+  //   PersonnalServices.get()
+  //     .then((res) => {
+  //       setPersonnals(res.data.data);
+  //       console.log("Personnal ", res.data.data);
+  //     })
+  //     .catch((er) => {
+  //       console.log(er);
+  //     });
+  // }, []);
   return (
     <div className="PERSO_STYLES">
       {/* About Section with bg */}

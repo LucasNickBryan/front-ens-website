@@ -3,6 +3,7 @@ import './style.scss';
 import './styleHierarchie.scss';
 import { Input } from '../../../../ui/input';
 import FunctionServices from '../../../../../../services/Function.services';
+import PersonnelServices from '../../../../../../services/Personnel.services';
 
 export const FonctionContent = () => {
 
@@ -112,15 +113,15 @@ export const FonctionContent = () => {
   ];
 
   //Peronnel + fonction
-  var data_ex1 = [
+  var data_ex10 = [
     {
       id: 1,
       name: "RASATAHARISOA Francky",
       avatar: "test",
       description: "test desc",
       year: "2022-2023",
-      functionId: "1",
-      function: {
+      occupationId: "1",
+      Occupation: {
         id: 1,
         name: "president",
         rank: "0",
@@ -132,8 +133,8 @@ export const FonctionContent = () => {
       avatar: "test",
       description: "test desc",
       year: "2022-2023",
-      functionId: "1",     
-      function: {
+      occupationId: "1",     
+      Occupation: {
         id: 1,
         name: "vice",
         rank: "0",
@@ -145,8 +146,8 @@ export const FonctionContent = () => {
       avatar: "test",
       description: "test desc",
       year: "2022-2023",
-      functionId: "2",
-      function: {
+      occupationId: "2",
+      Occupation: {
         id: 2,
         name: "vice",
         rank: "4",
@@ -158,8 +159,8 @@ export const FonctionContent = () => {
       avatar: "test",
       description: "test desc",
       year: "2022-2023",
-      functionId: "3",
-      function: {
+      occupationId: "3",
+      Occupation: {
         id: 3,
         name: "coordo",
         rank: "2",
@@ -171,8 +172,8 @@ export const FonctionContent = () => {
       avatar: "test",
       description: "test desc",
       year: "2022-2023",
-      functionId: "1",
-      function: {
+      occupationId: "1",
+      Occupation: {
         id: 1,
         name: "president",
         rank: "3",
@@ -184,8 +185,8 @@ export const FonctionContent = () => {
       avatar: "test",
       description: "test desc",
       year: "2022-2023",
-      functionId: "2",
-      function: {
+      occupationId: "2",
+      Occupation: {
         id: 1,
         name: "president",
         rank: "2",
@@ -197,8 +198,8 @@ export const FonctionContent = () => {
       avatar: "test",
       description: "test desc",
       year: "2022-2023",
-      functionId: "1",
-      function: {
+      occupationId: "1",
+      Occupation: {
         id: 1,
         name: "president",
         rank: "2",
@@ -210,8 +211,8 @@ export const FonctionContent = () => {
       avatar: "test",
       description: "test desc",
       year: "2022-2023",
-      functionId: "1",
-      function: {
+      occupationId: "1",
+      Occupation: {
         id: 1,
         name: "president",
         rank: "2",
@@ -228,20 +229,30 @@ export const FonctionContent = () => {
   const [isAdd, setIsAdd] = useState(false);
 
   const [data_ex2, setListFunction] = useState([]);
+  const [data_ex1, setListPerso] = useState([]);
+  
+  const [nbNiv1, setNbNiv1] = useState(0);
 
   var nbNiv = 0;
   var rankR = [];
 
   
   useEffect(() => {
-    updateNiveau();
-    alert(nbNiv)
-
-
+    
     FunctionServices.get().then(res =>{
       console.log(res.data)
       setListFunction(res.data)
+      updateNiveau();
+      // alert(nbNiv)
     })
+
+    PersonnelServices.get().then(res =>{
+      console.log(res.data)
+      setListPerso(res.data)
+      // updateNiveau();
+      // alert(nbNiv)
+    })
+
 
   }, []);
 
@@ -282,6 +293,7 @@ export const FonctionContent = () => {
     }
 
     nbNiv = isany;
+    setNbNiv1(nbNiv);
     rankR = efaVita;
     // console.log(Number(efaVita[0]));
     // console.log(efaVita)
@@ -361,14 +373,26 @@ export const FonctionContent = () => {
   }
 
   function perso(p){
-    var ls = <>
-        <div className='full_p_fc' id={"full"+p.id} onClick={(e) => modeSelec(e,""+p.id,""+p.function.id)}>
+    var ls = "";
+    try{
+    ls = <>
+        <div className='full_p_fc' id={"full"+p.id} onClick={(e) => modeSelec(e,""+p.id,""+p.Occupation.id)}>
           {p.name}
           <br></br>
-          {p.function.id}
+          {p.Occupation.id}
           
         </div>
       </>
+    }catch(e){
+    ls = <>
+      <div className='full_p_fc' id={"full"+p.id} onClick={(e) => modeSelec(e,""+p.id,0)}>
+        {p.name}
+        <br></br>
+        {0}
+        
+      </div>
+    </>
+    }
 
     return ls;
   }
@@ -456,7 +480,8 @@ export const FonctionContent = () => {
     var elements2 = document.getElementsByClassName('44_fc');
     elements2[0].style.display = "block";
 
-    alert("ato ny mi-supprimer");
+    FunctionServices.delete(idFonction);
+
     init();
   }
 
@@ -485,7 +510,12 @@ export const FonctionContent = () => {
     var elements0 = document.getElementsByClassName('44_fc');
     elements0[0].style.display = "block";
 
-    alert("ato ny mi-update fonction");
+    var formData = new FormData();
+    formData.append('name', nomFonction);
+    formData.append('rank', rangFonction);
+
+    FunctionServices.put(idFonction,formData);
+
     init();
   }
 
@@ -504,7 +534,7 @@ export const FonctionContent = () => {
 
   function bigy(){
     var tabNiv = [];
-    for (let i = 0; i < nbNiv; i++) {
+    for (let i = 0; i < nbNiv1; i++) {
         tabNiv[i] =
         <>
           <div className='level_fc'>
@@ -526,6 +556,9 @@ export const FonctionContent = () => {
           </div>
         </>;
     }
+
+    console.log(tabNiv);
+    // alert(nbNiv1)
 
     return tabNiv;
   }

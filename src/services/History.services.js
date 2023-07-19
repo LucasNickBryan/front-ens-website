@@ -4,7 +4,7 @@ import { API_URL } from "../config/modules";
 
 class HistoryServices {
   get() {
-    return axios.get(API_URL + "/content/getAll", header());
+    return axios.get(API_URL + "/contents/history", header());
   }
 }
 
