@@ -7,6 +7,7 @@ import { PersonnelContext } from '../../../../../../../contexts/PersonnelContext
 import { useForm } from 'react-hook-form'
 import SaveIcon from '../../../../../../../assets/icons/save.png'
 import { IMAGE_PATH } from '../../../../../../../config/modules'
+import FunctionServices from '../../../../../../../services/Function.services'
 
 export default function AddPersonnel(props) {
   const { idToUpdate } = props
@@ -14,6 +15,7 @@ export default function AddPersonnel(props) {
   const [image, setImage] = useState([])
   const [currentImage, setCurrentImage] = useState(null)
   const [isUpadte, setIsUpdate] = useState(false)
+  const [fonctions, setFonctions] =useState([])
 
   useEffect(() => {
     const item = personnels.find(value => value.id == idToUpdate)
@@ -27,6 +29,13 @@ export default function AddPersonnel(props) {
       setIsUpdate(true)
     }
   }, [idToUpdate])
+
+  useEffect(()=>{
+    FunctionServices.get()
+    .get(res=>{
+      
+    })
+  },[])
 
   const {
     register,
