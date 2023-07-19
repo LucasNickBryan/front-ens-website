@@ -7,13 +7,13 @@ class PersonnelServices {
         return axios.get(API_URL + "/staff", header());
     }
     post(data){
-        return axios.post(API_URL + "/personnels", data, header("image"));
+        return axios.post(API_URL + "/staff", data, header("image"));
     }
     put(id, data){
-        return axios.put(API_URL + "/personnels/" + id, data, header("image"));
+        return axios.put(API_URL + "/staff/" + id, data, header("image"));
     }
     delete(id){
-        return axios.delete(API_URL + "/personnels/" + id, header());
+        return axios.delete(API_URL + "/staff/" + id, header());
     }
 }
 

@@ -34,7 +34,7 @@ export const PersonnelProvider = ({ children }) => {
     const addPersonnel = (credential) => {
         service.post(credential)
             .then((res) => {
-                console.log("SUCCESS ", res.data.data);
+                console.log("SUCCESS ", res.data);
                 fetchPersonnel()
             },
                 err => { console.log("FAILED OPERATION", err.message); }
@@ -44,7 +44,7 @@ export const PersonnelProvider = ({ children }) => {
     const updatePersonnel = (id, credential) => {
         service.put(id, credential)
             .then((res) => {
-                console.log("SUCCESS ", res.data.data);
+                console.log("SUCCESS ", res.data);
                 fetchPersonnel()
             },
                 err => { console.log("FAILED OPERATION", err.message); }
@@ -54,7 +54,7 @@ export const PersonnelProvider = ({ children }) => {
     const deletePersonnel = (id) => {
         service.delete(id)
             .then((res) => {
-                console.log("SUCCESS ", res.data.data);
+                console.log("SUCCESS ", res.data);
                 fetchPersonnel()
             },
                 err => { console.log("FAILED OPERATION", err.message); }
