@@ -53,6 +53,7 @@ const History = () => {
                 </h3>
                 <hr style={{ fontSize: "20px" }} />
                 <div
+                  style={{ textAlign: "justify" }}
                   dangerouslySetInnerHTML={{ __html: item.Content.description }}
                 />
                 <p className="link"> {item.Content.link}</p>

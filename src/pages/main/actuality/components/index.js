@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { IMAGE_PATH } from "../../../../config/modules";
 import MainNavbar from "../../layout/header";
 import MainFooter from "../../layout/footer";
 import image2 from "../../../../assets/images/vadil.jpg";
@@ -7,36 +8,55 @@ import image5 from "../../../../assets/images/andrea.jpg";
 
 import "./styles.scss";
 import "w3-css/w3.css";
+import ActualityServices from "../../../../services/Actuality.services";
 
 const Actuality = () => {
+  const [actualities, setActualities] = useState([]);
+
+  useEffect(() => {
+    ActualityServices.get()
+      .then((res) => {
+        setActualities(res.data.data);
+        console.log("Actualités ", res.data.data);
+      })
+      .catch((er) => {
+        console.log(er);
+      });
+  }, []);
   return (
     <div className="ACTU_STYLES">
       {/* Fatcs Section */}
-      <section className="has-bg-img bg-img-2">
-        <div className="container text-center">
-          <h6 className="section-subtitle">We Are Awesome</h6>
-          <h6 className="section-title mb-6">Some Fun Fucts</h6>
-          <div className="widget-2">
-            <div className="widget-item">
-              <i className="ti-cup"></i>
-              <h6 className="title">100+</h6>
-              <div className="subtitle">Awards Won</div>
-            </div>
-            <div className="widget-item">
-              <i className="ti-face-smile"></i>
-              <h6 className="title">100+</h6>
-              <div className="subtitle">Happy Clients</div>
-            </div>
-            <div className="widget-item">
-              <i className="ti-blackboard"></i>
-              <h6 className="title">845+</h6>
-              <div className="subtitle">Project Completed</div>
-            </div>
-            <div className="widget-item">
-              <i className="ti-comments-smiley"></i>
-              <h6 className="title">15K+</h6>
-              <div className="subtitle">Comments</div>
-            </div>
+      <section id="team">
+        <div className="container">
+          <h4 className="section-title mb-5 text-center">
+            <strong>
+              <span style={{ color: "green" }}>Actu</span>alité
+            </strong>
+          </h4>
+
+          <div className="row">
+            {actualities.map((item) => (
+              <div className="col-sm-6 col-md-4" key={item.id}>
+                <div className="card text-center mb-4">
+                  <img
+                    alt=""
+                    className="card-img-top inset"
+                    src={
+                      item.Picture.image
+                        ? IMAGE_PATH + "/pictures/images/" + item.Picture.image
+                        : image2
+                    }
+                  />
+                  <div className="card-body">
+                    <h6 className="small text-primary font-weight-bold">
+                      {item.Content.title}
+                    </h6>
+                    <p className="date"> {item.Content.date}</p>
+                    <p className="link"> {item.Content.link}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
