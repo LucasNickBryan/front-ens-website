@@ -23,6 +23,14 @@ const History = () => {
   return (
     <div className="HISTORY_STYLES">
       <MainNavbar />
+      <div className="banner">
+        <div className="linear">
+          <div className="banner-text">
+            <h1>Assiciation des Étudiant Normaliens de Fianarantsoa</h1>
+            <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit</h3>
+          </div>
+        </div>
+      </div>
       <section id="about">
         <div className="container">
           {histories.map((item) => (

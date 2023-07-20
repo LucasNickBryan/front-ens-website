@@ -1,11 +1,12 @@
 .NAVBAR_STYLES {
+  @import "~bootstrap/scss/bootstrap";
   // .top_nv{
   //   background-color: red;
   //   height: 100%;
   //   width: 100%;
   // }
-  
-  .navbt_nb{
+
+  .navbt_nb {
     // transition: 0.5s;
     // height: 100%;
     // width: 100%;
@@ -16,31 +17,33 @@
     transition: 0.5s;
   }
 
-  .toggle_nb{
+  .toggle_nb {
     height: 0;
     overflow: hidden;
   }
-
+  .btn {
+    font-weight: bolder;
+  }
 
   @media (max-width: 991.98px) {
-    .top_nv{
+    .top_nv {
       // background-color: red;
       height: 100%;
       width: 100%;
       display: block;
 
-      .navbar-toggler{
+      .navbar-toggler {
         float: right;
       }
     }
 
-    .navbt_nb{
+    .navbt_nb {
       height: 0;
       overflow: hidden;
       // width: 100%;
     }
 
-    .nav-item{
+    .nav-item {
       background-color: rgb(221, 221, 221);
       // border: "1px solid white";
       width: 100vw;
@@ -48,7 +51,7 @@
       transition: 0.2s;
     }
 
-    .nav-item:hover{
+    .nav-item:hover {
       background-color: rgb(255, 255, 255);
       // border: "1px solid white";
       width: 100vw;
@@ -57,11 +60,8 @@
   }
 
   @media (min-width: 991.98px) {
-
-    .navbt_nb{
+    .navbt_nb {
       height: 100%;
     }
   }
 }
-
-
