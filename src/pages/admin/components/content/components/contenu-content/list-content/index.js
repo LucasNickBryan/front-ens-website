@@ -62,10 +62,10 @@ export default function ListContent(props) {
                     src={
                       content.Picture.image
                         ? IMAGE_PATH +
-                          "/pictures/images/" +
-                          content.Picture.image
+                        "/pictures/images/" +
+                        content.Picture.image
                         : // content.Picture.image
-                          DefautImage
+                        DefautImage
                     }
                     className="w-24"
                     alt=""
@@ -73,7 +73,9 @@ export default function ListContent(props) {
                 </td>
                 <td>{content.Content.title}</td>
                 <td>{content.Content.date}</td>
-                <td>{content.Content.description}</td>
+                <td>
+                  <div dangerouslySetInnerHTML={{ __html: content.Content.description }} />
+                </td>
                 <td>{content.Content.link ?? ""}</td>
                 <td>{content.Content.isActuality ? "Actu" : "Historique"}</td>
                 <td className="table-cell align-middle">
