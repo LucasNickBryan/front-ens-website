@@ -8,20 +8,20 @@ const OPTIONS = [
 ];
 
 export default function SelectUi(props) {
-  const {options, defaultValue} = props
+  const {options, defaultValue, onChangeSelect} = props
   const [selectedOption, setSelectedOption] = useState(null);
 
   useEffect(()=>{
       if(defaultValue){
         setSelectedOption(defaultValue)
       }
-  }, [])
+  }, [defaultValue])
 
   return (
     <div>
       <Select
-        defaultValue={selectedOption}
-        onChange={setSelectedOption}
+        defaultValue={defaultValue}
+        onChange={onChangeSelect}
         options={options}
       />
     </div>

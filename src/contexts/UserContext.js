@@ -1,26 +1,21 @@
 import { createContext, useState } from "react";
-import PersonnelServices from "../services/Personnel.services";
+import UserServices from "../services/User.services";
 import DefaultImage from '../assets/icons/image.png'
 
-export const PersonnelContext = createContext(null)
+export const UserContext = createContext(null)
 
-export const PersonnelProvider = ({ children }) => {
+export const UserProvider = ({ children }) => {
     const [data, setData] = useState([
-        // {
-        //     id: 1,
-        //     name: "John Doe",
-        //     avatar: DefaultImage,
-        //     description: "Lorem upsum",
-        //     year: "2023-2024",
-        //     occupationId: 2,
-        //     Occupation:{
-        //         name:"Président",
-        //     }
-        // },
+        {
+            id: 1,
+            username: "John Doe",
+            avatar: null,
+            role: "administrateur",
+        },
     ])
-    let service = PersonnelServices
+    let service = UserServices
 
-    const fetchPersonnel = () => {
+    const fetchUser = () => {
         service.get()
             .then((res) => {
                 setData(res.data)
@@ -31,39 +26,39 @@ export const PersonnelProvider = ({ children }) => {
             )
     }
 
-    const addPersonnel = (credential) => {
+    const addUser = (credential) => {
         service.post(credential)
             .then((res) => {
                 console.log("SUCCESS ", res.data);
-                fetchPersonnel()
+                fetchUser()
             },
                 err => { console.log("FAILED OPERATION", err.message); }
             )
     }
 
-    const updatePersonnel = (id, credential) => {
+    const updateUser = (id, credential) => {
         service.put(id, credential)
             .then((res) => {
                 console.log("SUCCESS ", res.data);
-                fetchPersonnel()
+                fetchUser()
             },
                 err => { console.log("FAILED OPERATION", err.message); }
             )
     }
 
-    const deletePersonnel = (id) => {
+    const deleteUser = (id) => {
         service.delete(id)
             .then((res) => {
                 console.log("SUCCESS ", res.data);
-                fetchPersonnel()
+                fetchUser()
             },
                 err => { console.log("FAILED OPERATION", err.message); }
             )
     }
 
     return (
-        <PersonnelContext.Provider value={{ personnels: data, fetchPersonnel, addPersonnel, updatePersonnel, deletePersonnel }} >
+        <UserContext.Provider value={{ users: data, fetchUser, addUser, updateUser, deleteUser }} >
             {children}
-        </PersonnelContext.Provider>
+        </UserContext.Provider>
     )
 }

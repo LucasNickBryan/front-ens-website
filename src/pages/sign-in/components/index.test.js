@@ -1,7 +1,7 @@
 import React from "react";
 import "./styles.scss";
 // import image from "../../../assets/images/ludovic.jpg";
-import "w3-css/w3.css";
+// import "w3-css/w3.css";
 
 export const SignInPage = () => {
   return (

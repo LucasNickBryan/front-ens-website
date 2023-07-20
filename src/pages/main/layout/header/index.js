@@ -42,8 +42,8 @@ export default function MainNavbar() {
         </div>
         <div className="container">
           <div className="top_nv">
-            <a className="navbar-brand" href="#">
-              <img src={logo1} />
+            <a className="navbar-brand" href="#qsdds">
+              <img src={logo1} alt="" />
             </a>
 
             <button
@@ -63,42 +63,47 @@ export default function MainNavbar() {
           <div className="navbt_nb" id="navbarSupportedContent">
             <ul className="navbar-nav ml-auto">
               <li className="nav-item">
-                <a className="nav-link" href="#home">
-                  Accueil
-                </a>
+                <NavLink to="/">
+                  <span className="nav-link">Accueil </span>
+                </NavLink>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#about">
-                  Historique
-                </a>
+                <NavLink to="/history">
+                  <span className="nav-link">Historique </span>
+                </NavLink>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#service">
-                  Club AENF{" "}
-                </a>
+                <NavLink to="/club">
+                  <span className="nav-link">Club ANF </span>
+                </NavLink>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#portfolio">
-                  A propos
-                </a>
+                <NavLink to="/actuality">
+                  <span className="nav-link">Actualité </span>
+                </NavLink>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#team">
-                  Partenaires
-                </a>
+                <NavLink to="/personnal">
+                  <span className="nav-link">Personnel </span>
+                </NavLink>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#testimonial">
-                  Actualités
-                </a>
+                <NavLink to="/portfolio">
+                  <span className="nav-link">Portfolio </span>
+                </NavLink>
               </li>
 
               <li className="nav-item">
-                <a className="nav-link" href="#contact">
-                  Nos contact
-                </a>
+                <NavLink to="/contact">
+                  <span className="nav-link">Contact </span>
+                </NavLink>
               </li>
             </ul>
+          </div>
+          <div className="btn">
+            <button className="btn btn-primary">
+              <strong>Se connecter</strong>
+            </button>
           </div>
         </div>
       </nav>

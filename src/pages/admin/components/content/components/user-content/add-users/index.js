@@ -1,34 +1,210 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Input } from '../../../../../ui/input'
 import { ImageUploader } from '../../../../../ui/image-uploader'
-import { RequiredStar, UniqueImageText } from '../../../../../ui/texts'
+import { RequiredStar, RequiredText, UniqueImageText } from '../../../../../ui/texts'
 import SelectUi from '../../../../../ui/select'
-export default function AddUser() {
+import { UserContext } from '../../../../../../../contexts/UserContext'
+import { Controller, useForm } from 'react-hook-form'
+import { IMAGE_PATH } from '../../../../../../../config/modules'
+import SaveIcon from '../../../../../../../assets/icons/save.png'
+import DatabaseIcon from '../../../../../../../assets/icons/database.png'
+import InputPassword from '../../../../../ui/password-button'
+
+const OPTIONS = [
+  { value: "administrateur", label: 'administrateur' },
+  { value: "utilisateur", label: 'utilisateur' },
+];
+
+export default function AddUser(props) {
+  const { idToUpdate } = props
+  const { users, addUser, UpdateUser, deleteUser } = useContext(UserContext)
+  const [image, setImage] = useState([])
+  const [currentImage, setCurrentImage] = useState(null)
+  const [isUpadte, setIsUpdate] = useState(false)
+  const [role, setRole] = useState(null)
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const [isValidPassword, setIsValidPassword] = useState(true)
+
+  useEffect(() => {
+    const item = users.find(value => value.id == idToUpdate)
+    if (item) {
+      setValue('username', item.username)
+      setValue('role', item.role)
+      setCurrentImage(item.avatar ? IMAGE_PATH + "/users/images/" + item.avatar : null)
+      setRole({ value: item.role, label: item.role })
+      setIsUpdate(true)
+    }
+  }, [idToUpdate])
+
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    getValues,
+    control,
+    formState: { errors },
+  } = useForm(
+    {
+      defaultValues: {
+        username: '',
+        role: '',
+      }
+    }
+  )
+
+
+  const onChangeSelect = (value) => {
+    setRole(value)
+    setValue('role', value.value)
+  }
+
+  const confirmValues = (value) => {
+    let valid = true;
+    if( (idToUpdate == 0 )&& value.confirm_password !==value.password){
+      valid=false;
+      setIsValidPassword(false)
+    }
+
+    if(valid){
+      const data = {
+        username: value.username,
+        password: value.password,
+        confirm_password: value.confirm_password,
+        role: value.role,
+        avatar: image.length > 0 ? image[0].file : currentImage,
+      }
+  
+      if (idToUpdate > 0) UpdateUser(idToUpdate, data)
+      else addUser(data)
+    }
+    
+    
+  }
+
+  function togglePasswordVisibility() {
+    setIsPasswordVisible((prevState) => !prevState);
+  }
+
   return (
-    <div className='flex gap-5 lg:flex-col'>
-      <div className='w-1/2 lg:!w-full p-5'>
+    <div className='flex gap-5 justify-center'>
+      <form noValidate onSubmit={handleSubmit(confirmValues)} className='w-1/2 lg:!w-full p-5 shadow sm:shadow-none border rounded-lg'>
 
         <div className='pb-5'>
           <label className='uppercase'>photo</label>
-          <ImageUploader text_box={<UniqueImageText />} />
+          {
+            isUpadte &&
+            <div>
+              <img src={currentImage} alt="illustration" className="max-w-[200px] mx-auto" />
+              <div className='flex justify-center'>
+                <button className='p-1 px-2 bg-white shadow-lg border border-1 border-amber-400 text-amber-400 hover:bg-amber-400 hover:text-white transition-all delay-100'
+                  onClick={() => setIsUpdate(prev => !prev)}>changer l'image</button>
+              </div>
+            </div>
+          }
+
+          {
+            !isUpadte &&
+            <div>
+              <ImageUploader text_box={<UniqueImageText />} updateImages={setImage} />
+              {
+                idToUpdate > 0 &&
+                <div className='flex justify-center mt-1'>
+                  <button className='p-1 px-2 bg-white shadow-lg border border-1 border-redcolor text-redcolor hover:bg-redcolor hover:text-white transition-all delay-100'
+                    onClick={() => { setIsUpdate(prev => !prev); setImage([]) }}>annuler</button>
+                </div>
+              }
+            </div>
+          }
         </div>
         <div className='pb-5'>
           <label className='uppercase'>nom d'utilisateur {<RequiredStar />}</label>
-          <Input />
+          <Input
+            defaultValue={getValues('username')}
+            {...register("username", { required: true })}
+            onChange={(e) => setValue('username', e.target.value)}
+          />
+          {errors.username && <RequiredText />}
         </div>
         <div className='pb-5'>
           <label className='uppercase'>rôle {<RequiredStar />}</label>
-          <SelectUi />
+          <Controller
+            control={control}
+            rules={{
+              required: true,
+            }}
+            render={({ field: { onChange, value } }) => (
+              <SelectUi value={value} options={OPTIONS} defaultValue={role} onChange={onChange} onChangeSelect={onChangeSelect} />
+
+            )}
+            name="role"
+          />
+          {errors.role && <RequiredText />}
         </div>
-        <div className='pb-5'>
-          <label className='uppercase'>mot de passe {<RequiredStar />}</label>
-          <Input />
+
+        {
+          !idToUpdate > 0 &&
+          <>
+            <div className='pb-5'>
+              <label className='uppercase'>mot de passe {<RequiredStar />}</label>
+              <Controller
+                control={control}
+                rules={{
+                  required: true,
+                }}
+                render={({ field: { onChange, value } }) => (
+                  <InputPassword
+                    onChange={onChange}
+                    value={value}
+                    isPasswordVisible={isPasswordVisible}
+                    togglePasswordVisibility={togglePasswordVisibility} />
+                )}
+                name="password"
+              />
+              {errors.password && <RequiredText />}
+            </div>
+
+            <div className='pb-5'>
+              <label className='uppercase'>mot de passe {<RequiredStar />}</label>
+              <Controller
+                control={control}
+                rules={{
+                  required: true,
+                }}
+                render={({ field: { onChange, value } }) => (
+                  <InputPassword
+                    onChange={onChange}
+                    value={value}
+                    isPasswordVisible={isPasswordVisible}
+                    togglePasswordVisibility={togglePasswordVisibility} />
+                )}
+                name="confirm_password"
+              />
+              {errors.confirm_password && <RequiredText />}
+            </div>
+
+            <div>
+              {
+                !isValidPassword && <RequiredText text={"Les mots de passe ne sont pas identiques !"} />
+              }
+              
+            </div>
+          </>
+        }
+        <div className='p-5 w-full flex justify-center'>
+          {
+            idToUpdate > 0 ?
+              <button type='submit' className="bg-amber-500 p-2 text-white hover:bg-amber-300 transition-all delay-100">
+                <img src={DatabaseIcon} alt='modifier' className='inline-block w-4' />
+                <span className='inline-block ml-1'>modifier</span>
+              </button>
+              :
+              <button type='submit' className="bg-greencolor p-2 text-white hover:bg-green-500 transition-all delay-100">
+                <img src={SaveIcon} alt='enregistrer' className='inline-block w-4' />
+                <span className='inline-block ml-1'>enregistrer</span>
+              </button>
+          }
         </div>
-        <div className='pb-5'>
-          <label className='uppercase'>confirmer mot de passe {<RequiredStar />}</label>
-          <Input />
-        </div>
-      </div>
+      </form>
     </div>
   )
 }

@@ -57,7 +57,7 @@ export default function ListPersonnel(props) {
                                 <tr key={staff.id}>
                                     <td className='p-2'>
                                         <img src={ staff.avatar ?
-                                        IMAGE_PATH +  "/staffs/images/" :
+                                        IMAGE_PATH +  "/staffs/images/" + staff.avatar :
                                          DefautImage} className='w-24' />
                                     </td>
                                     <td>{staff.name}</td>

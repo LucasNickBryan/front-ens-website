@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-// import image from "../../../../assets/images/images.png";
+import image from "../../../../assets/images/images.png";
 import "./style.scss";
 import MainFooter from "../../layout/footer";
 import HistoryServices from "../../../../services/History.services";
@@ -23,6 +23,14 @@ const History = () => {
   return (
     <div className="HISTORY_STYLES">
       <MainNavbar />
+      <div className="banner">
+        <div className="linear">
+          <div className="banner-text">
+            <h1>Assiciation des Étudiant Normaliens de Fianarantsoa</h1>
+            <h3>Lorem ipsum dolor sit amet consectetur adipisicing elit</h3>
+          </div>
+        </div>
+      </div>
       <section id="about">
         <div className="container">
           {histories.map((item) => (
@@ -32,7 +40,7 @@ const History = () => {
                   src={
                     item.Picture.image
                       ? IMAGE_PATH + "/pictures/images/" + item.Picture.image
-                      : ""
+                      : image
                   }
                   alt=""
                   className="w-100 img-thumbnail mb-3"
@@ -40,10 +48,14 @@ const History = () => {
               </div>
 
               <div className="col-md-7 col-lg-8">
-                <h4 className="title">
+                <h3 className="title">
                   <span>{item.Content.title}</span>
-                </h4>
-                <p> {item.Content.description}</p>
+                </h3>
+                <hr style={{ fontSize: "20px" }} />
+                <div
+                  style={{ textAlign: "justify" }}
+                  dangerouslySetInnerHTML={{ __html: item.Content.description }}
+                />
                 <p className="link"> {item.Content.link}</p>
                 <p className="date"> {item.Content.date}</p>
                 <div></div>

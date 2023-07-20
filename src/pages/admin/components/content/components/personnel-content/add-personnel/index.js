@@ -6,16 +6,35 @@ import SelectUi from '../../../../../ui/select'
 import { PersonnelContext } from '../../../../../../../contexts/PersonnelContext'
 import { useForm } from 'react-hook-form'
 import SaveIcon from '../../../../../../../assets/icons/save.png'
+import DatabaseIcon from '../../../../../../../assets/icons/database.png'
 import { IMAGE_PATH } from '../../../../../../../config/modules'
 import FunctionServices from '../../../../../../../services/Function.services'
 
 export default function AddPersonnel(props) {
   const { idToUpdate } = props
-  const { personnels, addPersonnel, updatePersonnel, deletePersonnel } = useContext(PersonnelContext)
+  const { personnels, addPersonnel, updatePersonnel } = useContext(PersonnelContext)
   const [image, setImage] = useState([])
   const [currentImage, setCurrentImage] = useState(null)
   const [isUpadte, setIsUpdate] = useState(false)
-  const [fonctions, setFonctions] =useState([])
+  const [fonctions, setFonctions] = useState([])
+  const [fonctionId, setFonctionId] = useState(null)
+
+  useEffect(() => {
+    FunctionServices.get()
+      .then(res => {
+        const formated_functions = []
+        res.data.forEach(item => {
+          const value = {
+            value: item.id,
+            label: item.name
+          }
+          formated_functions.push(value)
+        });
+        setFonctions(formated_functions)
+      },
+        err => { console.log("ERROR"); }
+      )
+  }, [])
 
   useEffect(() => {
     const item = personnels.find(value => value.id == idToUpdate)
@@ -23,19 +42,14 @@ export default function AddPersonnel(props) {
       setValue('nom', item.name)
       setValue('description', item.description)
       setValue('year', item.year)
-      setValue('functionId', item.functionId)
+      setValue('functionId', item.occupationId)
       setCurrentImage(IMAGE_PATH + "/staffs/images/" + item.avatar)
       // setCurrentImage(item.avatar)
+      setFonctionId({ value: item.Occupation.id, label: item.Occupation.name })
       setIsUpdate(true)
     }
   }, [idToUpdate])
 
-  useEffect(()=>{
-    FunctionServices.get()
-    .get(res=>{
-      
-    })
-  },[])
 
   const {
     register,
@@ -53,19 +67,16 @@ export default function AddPersonnel(props) {
   })
 
   const confirmValues = (value) => {
-
     const data = {
       name: value.nom,
       description: value.description,
       year: value.year,
-      functionId: value.functionId,
+      occupation: fonctionId.value,
       avatar: image.length > 0 ? image[0].file : null,
     }
 
-    console.log("DATA ", data);
-
-    // if (idToUpdate > 0) updatePersonnel(idToUpdate, data)
-    // else addPersonnel(data)
+    if (idToUpdate > 0) updatePersonnel(idToUpdate, data)
+    else addPersonnel(data)
 
   }
 
@@ -128,13 +139,21 @@ export default function AddPersonnel(props) {
         </div>
         <div className='pb-5'>
           <label className='uppercase'>fonction {<RequiredStar />}</label>
-          <SelectUi />
+          <SelectUi options={fonctions} onChangeSelect={setFonctionId} defaultValue={fonctionId} />
         </div>
         <div className='p-5 w-full flex justify-center'>
-          <button type='submit' className="bg-greencolor p-2 text-white hover:bg-green-500 transition-all delay-100">
-            <img src={SaveIcon} alt='enregistrer' className='inline-block w-4' />
-            <span className='inline-block ml-1'>enregistrer</span>
-          </button>
+          {
+            idToUpdate > 0 ?
+              <button type='submit' className="bg-amber-500 p-2 text-white hover:bg-amber-300 transition-all delay-100">
+                <img src={DatabaseIcon} alt='modifier' className='inline-block w-4' />
+                <span className='inline-block ml-1'>modifier</span>
+              </button>
+              :
+              <button type='submit' className="bg-greencolor p-2 text-white hover:bg-green-500 transition-all delay-100">
+                <img src={SaveIcon} alt='enregistrer' className='inline-block w-4' />
+                <span className='inline-block ml-1'>enregistrer</span>
+              </button>
+          }
         </div>
       </form>
 

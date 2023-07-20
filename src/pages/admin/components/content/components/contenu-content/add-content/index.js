@@ -10,6 +10,7 @@ import '/node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import { useForm } from 'react-hook-form';
 import { ContentContext } from '../../../../../../../contexts/ContentContext';
 import { IMAGE_PATH } from '../../../../../../../config/modules';
+import DatabaseIcon from '../../../../../../../assets/icons/database.png'
 
 function AddContent(props) {
   const { idToUpdate } = props
@@ -84,7 +85,7 @@ function AddContent(props) {
   }
 
   return (
-    <form noValidate onSubmit={handleSubmit(confirmValues)} className='ADD_CONTENT_STYLES'>
+    <form noValidate onSubmit={handleSubmit(confirmValues)} className='ADD_CONTENT_STYLES shadow sm:shadow-none'>
       <div className='flex gap-5 lg:flex-col'>
         <div className='w-1/2 lg:!w-full p-5'>
 
@@ -191,10 +192,18 @@ function AddContent(props) {
         </div>
       </div>
       <div className='p-5 w-full flex justify-center'>
-        <button type='submit' className="bg-greencolor p-2 text-white hover:bg-green-500 transition-all delay-100">
-          <img src={SaveIcon} alt='enregistrer' className='inline-block w-4' />
-          <span className='inline-block ml-1'>enregistrer</span>
-        </button>
+      {
+            idToUpdate > 0 ?
+              <button type='submit' className="bg-amber-500 p-2 text-white hover:bg-amber-300 transition-all delay-100">
+                <img src={DatabaseIcon} alt='modifier' className='inline-block w-4' />
+                <span className='inline-block ml-1'>modifier</span>
+              </button>
+              :
+              <button type='submit' className="bg-greencolor p-2 text-white hover:bg-green-500 transition-all delay-100">
+                <img src={SaveIcon} alt='enregistrer' className='inline-block w-4' />
+                <span className='inline-block ml-1'>enregistrer</span>
+              </button>
+          }
       </div>
     </form>
   )
