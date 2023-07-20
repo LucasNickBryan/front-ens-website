@@ -30,9 +30,7 @@ const Actuality = () => {
       <section id="team">
         <div className="container">
           <h4 className="section-title mb-5 text-center">
-            <strong>
-              <span style={{ color: "green" }}>Actu</span>alité
-            </strong>
+            <strong>Actualité</strong>
           </h4>
 
           <div className="row">
@@ -55,8 +53,9 @@ const Actuality = () => {
                     </h6>
                     <p className="date"> {item.Content.date}</p>
                     <NavLink>
-                      {item.Content.link}
-                      <span className="link"></span>
+                      <span className="" style={{ color: "blue" }}>
+                        {item.Content.link}
+                      </span>
                     </NavLink>
                   </div>
                 </div>
