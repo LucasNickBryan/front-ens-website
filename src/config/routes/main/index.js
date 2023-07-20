@@ -9,7 +9,6 @@ import Personnal from "../../../pages/main/personnal/component";
 import Club from "../../../pages/main/club/components";
 import Portfolio from "../../../pages/main/portfolio/components";
 import Contact from "../../../pages/main/contact/components";
-
 export const MainRoutes = () => {
   return (
     <Routes>
