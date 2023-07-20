@@ -68,6 +68,7 @@ export default function ListContent(props) {
                           DefautImage
                     }
                     className="w-24"
+                    alt=""
                   />
                 </td>
                 <td>{content.Content.title}</td>
