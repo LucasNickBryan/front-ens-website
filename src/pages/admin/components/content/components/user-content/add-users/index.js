@@ -17,7 +17,7 @@ const OPTIONS = [
 
 export default function AddUser(props) {
   const { idToUpdate } = props
-  const { users, addUser, UpdateUser, deleteUser } = useContext(UserContext)
+  const { users, addUser, UpdateUser, signUpUser, deleteUser } = useContext(UserContext)
   const [image, setImage] = useState([])
   const [currentImage, setCurrentImage] = useState(null)
   const [isUpadte, setIsUpdate] = useState(false)
@@ -30,6 +30,7 @@ export default function AddUser(props) {
     if (item) {
       setValue('username', item.username)
       setValue('role', item.role)
+      setValue('email', item.email)
       setCurrentImage(item.avatar ? IMAGE_PATH + "/users/images/" + item.avatar : null)
       setRole({ value: item.role, label: item.role })
       setIsUpdate(true)
@@ -47,6 +48,7 @@ export default function AddUser(props) {
     {
       defaultValues: {
         username: '',
+        email: '',
         role: '',
       }
     }
@@ -60,25 +62,26 @@ export default function AddUser(props) {
 
   const confirmValues = (value) => {
     let valid = true;
-    if( (idToUpdate == 0 )&& value.confirm_password !==value.password){
-      valid=false;
+    if ((idToUpdate == 0) && value.confirm_password !== value.password) {
+      valid = false;
       setIsValidPassword(false)
     }
 
-    if(valid){
+    if (valid) {
       const data = {
         username: value.username,
         password: value.password,
-        confirm_password: value.confirm_password,
+        email: value.email,
         role: value.role,
         avatar: image.length > 0 ? image[0].file : currentImage,
       }
-  
+
+      // console.log("DATA ", data);
       if (idToUpdate > 0) UpdateUser(idToUpdate, data)
-      else addUser(data)
+      else signUpUser(data)
     }
-    
-    
+
+
   }
 
   function togglePasswordVisibility() {
@@ -124,6 +127,16 @@ export default function AddUser(props) {
             onChange={(e) => setValue('username', e.target.value)}
           />
           {errors.username && <RequiredText />}
+        </div>
+        <div className='pb-5'>
+          <label className='uppercase'>email {<RequiredStar />}</label>
+          <Input
+            type="email"
+            defaultValue={getValues('email')}
+            {...register("email", { required: true, pattern: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g })}
+            onChange={(e) => setValue('email', e.target.value)}
+          />
+          {errors.email && <RequiredText />}
         </div>
         <div className='pb-5'>
           <label className='uppercase'>rôle {<RequiredStar />}</label>
@@ -186,7 +199,7 @@ export default function AddUser(props) {
               {
                 !isValidPassword && <RequiredText text={"Les mots de passe ne sont pas identiques !"} />
               }
-              
+
             </div>
           </>
         }
