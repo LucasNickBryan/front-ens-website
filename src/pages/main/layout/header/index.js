@@ -101,7 +101,7 @@ export default function MainNavbar() {
             </ul>
           </div>
           <div className="btn">
-            <button className="btn btn-success">
+            <button className="btn btn-primary">
               <strong>Se connecter</strong>
             </button>
           </div>

@@ -232,38 +232,40 @@ export const FonctionContent = () => {
   const [data_ex1, setListPerso] = useState([]);
   
   const [nbNiv1, setNbNiv1] = useState(0);
+  const [rankR1, setRankR1] = useState([]);
 
   var nbNiv = 0;
   var rankR = [];
 
+  var data2 = [];
+
   
   useEffect(() => {
-    
+   getListes();
+  }, []);
+
+  function getListes(){
     FunctionServices.get().then(res =>{
-      console.log(res.data)
-      setListFunction(res.data)
+      setListFunction(res.data);
+      data2 = res.data;
       updateNiveau();
-      // alert(nbNiv)
     })
 
     PersonnelServices.get().then(res =>{
-      console.log(res.data)
       setListPerso(res.data)
-      // updateNiveau();
-      // alert(nbNiv)
     })
-
-
-  }, []);
+  }
 
   function updateNiveau(){
     var isany = 0;
     var efaVita = [];
     var efa = false;
 
-    for (let i = 0; i < data_ex2.length; i++) {
+    console.log(data2)
+
+    for (let i = 0; i < data2.length; i++) {
       for (let j = 0; j < efaVita.length; j++) {
-        if(data_ex2[i].rank === efaVita[j]){
+        if(data2[i].rank === efaVita[j]){
           efa = true;
           break;
         }else{
@@ -272,7 +274,7 @@ export const FonctionContent = () => {
       }
 
       if(efa === false){
-        efaVita[isany] = data_ex2[i].rank;
+        efaVita[isany] = data2[i].rank;
         isany++;
       }
 
@@ -295,8 +297,7 @@ export const FonctionContent = () => {
     nbNiv = isany;
     setNbNiv1(nbNiv);
     rankR = efaVita;
-    // console.log(Number(efaVita[0]));
-    // console.log(efaVita)
+    setRankR1(efaVita);
   }
 
 
@@ -422,7 +423,7 @@ export const FonctionContent = () => {
           </div>
           <div className='card_footer_fc'>
             <div className='name_card_fc'>{p.name}</div>
-            <div className='name_card_fc'>{p.function.name}</div>
+            <div className='name_card_fc'>{p.Occupation.name}</div>
             
           </div>
         
@@ -436,11 +437,13 @@ export const FonctionContent = () => {
   function enregistrer(e){
 
     if(isAdd === true){
+      //ato ny add
       var formData = new FormData();
       formData.append('name', nomFonction);
       formData.append('rank', rangFonction);
 
       FunctionServices.post(formData);
+      getListes();
       init();
     }else{
       var elements = document.getElementsByClassName('22_fc');
@@ -472,6 +475,7 @@ export const FonctionContent = () => {
   }
 
   function oui2(e){
+    //ato ny supprimer
     var elements = document.getElementsByClassName('33_fc');
     for (var i = 0; i < elements.length; i++) { 
       elements[i].style.display = "none";
@@ -482,6 +486,7 @@ export const FonctionContent = () => {
 
     FunctionServices.delete(idFonction);
 
+    getListes();
     init();
   }
 
@@ -499,6 +504,7 @@ export const FonctionContent = () => {
   }
 
   function oui(e){
+    //ato ny update
     var elements = document.getElementsByClassName('22_fc');
     for (var i = 0; i < elements.length; i++) { 
       elements[i].style.display = "none";
@@ -516,6 +522,7 @@ export const FonctionContent = () => {
 
     FunctionServices.put(idFonction,formData);
 
+    getListes();
     init();
   }
 
@@ -539,13 +546,13 @@ export const FonctionContent = () => {
         <>
           <div className='level_fc'>
             <div className='title_level_fc'>
-              Niveau {rankR[i]}
+              Niveau {rankR1[i]}
             </div>
               
             <div className='reste_level_fc'>
               {
                 data_ex1.map((ind) => {
-                  if(Number(ind.function.rank) === Number(rankR[i])){
+                  if(Number(ind.Occupation.rank) === Number(rankR1[i])){
                     {return persoFonction(ind)}
                   }
                   
@@ -610,8 +617,6 @@ export const FonctionContent = () => {
     }
     non(e);
 
-
-    updateNiveau();
   }
 
   
@@ -663,7 +668,7 @@ export const FonctionContent = () => {
           <div className='form_fc desactive_form_fc' id='form_fc'>
               <div className='inside_fc'>
               <button onClick={(e) => openM(e)} style={{border: "2px solid grey", paddingLeft: "10px", paddingRight: "10px"}}>X</button>
-         
+              
               <h3><b>Formulaire fonction</b></h3><br></br>
               <p>Nom de la fonction</p>
               <Input value={nomFonction}  onChange={e => setNomFonction(e.target.value)} />
