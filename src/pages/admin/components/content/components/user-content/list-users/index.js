@@ -56,7 +56,7 @@ export default function ListUser(props) {
                                 <tr>
                                     <td className='p-2'>
                                         <img src={user.avatar ?
-                                            IMAGE_PATH + "/users/images/" + user.avatar :
+                                            IMAGE_PATH + "/staffs/images/" + user.avatar :
                                             DefautImage} className='w-24' />
                                     </td>
                                     <td>{user.username}</td>

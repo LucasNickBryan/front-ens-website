@@ -9,6 +9,7 @@ export const UserProvider = ({ children }) => {
         {
             id: 1,
             username: "John Doe",
+            email: "john@gmail.com",
             avatar: null,
             role: "administrateur",
         },
@@ -23,6 +24,16 @@ export const UserProvider = ({ children }) => {
                 err => {
                     console.log("ERROR ", err.message);
                 }
+            )
+    }
+
+    const signUpUser = (credential) => {
+        service.signup(credential)
+            .then((res) => {
+                console.log("SUCCESS ", res.data);
+                fetchUser()
+            },
+                err => { console.log("FAILED OPERATION", err.message); }
             )
     }
 
@@ -57,7 +68,7 @@ export const UserProvider = ({ children }) => {
     }
 
     return (
-        <UserContext.Provider value={{ users: data, fetchUser, addUser, updateUser, deleteUser }} >
+        <UserContext.Provider value={{ users: data, fetchUser, addUser, signUpUser, updateUser, deleteUser }} >
             {children}
         </UserContext.Provider>
     )
