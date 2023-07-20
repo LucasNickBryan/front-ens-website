@@ -6,6 +6,7 @@ import "./styles.scss";
 
 import MainNavbar from "../../layout/header";
 import MainFooter from "../../layout/footer";
+import Actuality from "../../actuality/components";
 
 export const HomePage = () => {
   return (
@@ -28,7 +29,9 @@ export const HomePage = () => {
             </div>
           </div>
         </header>
+        <Actuality />
       </body>
+
       <MainFooter />
     </div>
   );

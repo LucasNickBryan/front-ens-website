@@ -52,7 +52,9 @@ const History = () => {
                   <span>{item.Content.title}</span>
                 </h3>
                 <hr style={{ fontSize: "20px" }} />
-                <div dangerouslySetInnerHTML={{ __html: item.Content.description }} />
+                <div
+                  dangerouslySetInnerHTML={{ __html: item.Content.description }}
+                />
                 <p className="link"> {item.Content.link}</p>
                 <p className="date"> {item.Content.date}</p>
                 <div></div>
