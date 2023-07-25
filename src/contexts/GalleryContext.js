@@ -43,7 +43,7 @@ export const GalleryProvider = ({ children }) => {
     const addGallery = (credential) => {
         service.post(credential)
             .then((res) => {
-                console.log("SUCCESS ", res.data.data);
+                console.log("SUCCESS ", res.data);
                 fetchGallery()
             },
                 err => { console.log("FAILED OPERATION", err.message); }

@@ -25,8 +25,9 @@ export const header = (content_type="")=>{
 
 
 class AuthService {
-    login(user_data){
-        return axios.post(API_URL + "/login", user_data);
+    
+    signin(user_data){
+        return axios.post(API_URL + "/user/signin", user_data);
     }
     
     logout(){

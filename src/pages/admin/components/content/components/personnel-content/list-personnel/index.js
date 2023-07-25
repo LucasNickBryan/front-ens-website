@@ -63,7 +63,7 @@ export default function ListPersonnel(props) {
                                     <td>{staff.name}</td>
                                     <td>{staff.description}</td>
                                     <td>{staff.year}</td>
-                                    <td>{staff.Occupation.name}</td>
+                                    <td>{staff.Occupation?.name}</td>
                                     <td className='table-cell align-middle'>
                                         <div className='m-auto grid grid-cols-2'>
                                             <img src={PencilIcon} alt="edit" className='w-7 cursor-pointer' onClick={() => onUpdate(staff.id)} />

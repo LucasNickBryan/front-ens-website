@@ -6,6 +6,9 @@ class UserServices {
     signup(data){
         return axios.post(API_URL + "/user/signup", data, header("image"));
     }
+    signin(data){
+        return axios.post(API_URL + "/user/signin", data, header());
+    }
     get(){
         return axios.get(API_URL + "/user", header());
     }

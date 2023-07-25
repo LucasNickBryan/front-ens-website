@@ -37,6 +37,16 @@ export const UserProvider = ({ children }) => {
             )
     }
 
+    const signInUser = (credential) => {
+        service.signin(credential)
+            .then((res) => {
+                console.log("SUCCESS ", res.data);
+                fetchUser()
+            },
+                err => { console.log("FAILED OPERATION", err.message); }
+            )
+    }
+
     const addUser = (credential) => {
         service.post(credential)
             .then((res) => {
@@ -68,7 +78,7 @@ export const UserProvider = ({ children }) => {
     }
 
     return (
-        <UserContext.Provider value={{ users: data, fetchUser, addUser, signUpUser, updateUser, deleteUser }} >
+        <UserContext.Provider value={{ users: data, fetchUser, addUser, signUpUser, signInUser, updateUser, deleteUser }} >
             {children}
         </UserContext.Provider>
     )

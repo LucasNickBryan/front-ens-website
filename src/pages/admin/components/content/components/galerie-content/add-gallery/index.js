@@ -14,6 +14,7 @@ export default function AddGallery() {
         image:images[i].file,
         isPrincipal: checkedImages.includes(i) ? true : false,
       }
+      gallery_images.push(img)
     }
     addGallery(gallery_images)
   }
