@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
 import { IMAGE_PATH } from "../../../../config/modules";
 import MainNavbar from "../../layout/header";
 import MainFooter from "../../layout/footer";
@@ -29,9 +30,7 @@ const Actuality = () => {
       <section id="team">
         <div className="container">
           <h4 className="section-title mb-5 text-center">
-            <strong>
-              <span style={{ color: "green" }}>Actu</span>alité
-            </strong>
+            <strong>Actualité</strong>
           </h4>
 
           <div className="row">
@@ -46,13 +45,18 @@ const Actuality = () => {
                         ? IMAGE_PATH + "/pictures/images/" + item.Picture.image
                         : image2
                     }
+                    style={{ height: "300px" }}
                   />
                   <div className="card-body">
-                    <h6 className="small text-primary font-weight-bold">
+                    <h6 className="font-weight-bold display-8">
                       {item.Content.title}
                     </h6>
                     <p className="date"> {item.Content.date}</p>
-                    <p className="link"> {item.Content.link}</p>
+                    <NavLink>
+                      <span className="" style={{ color: "blue" }}>
+                        {item.Content.link}
+                      </span>
+                    </NavLink>
                   </div>
                 </div>
               </div>

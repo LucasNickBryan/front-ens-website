@@ -4,6 +4,8 @@ import './styleHierarchie.scss';
 import { Input } from '../../../../ui/input';
 import FunctionServices from '../../../../../../services/Function.services';
 import PersonnelServices from '../../../../../../services/Personnel.services';
+import DefautImage from "../../../../../../assets/icons/image.png";
+import { IMAGE_PATH } from '../../../../../../config/modules';
 
 export const FonctionContent = () => {
 
@@ -83,7 +85,7 @@ export const FonctionContent = () => {
     },
   ];
 
-  //fonction
+  //fonction data_ex20
   var data_ex20 = [
     {
       id: 1,
@@ -238,10 +240,11 @@ export const FonctionContent = () => {
   var rankR = [];
 
   var data2 = [];
+  var data1 = [];
 
   
   useEffect(() => {
-   getListes();
+    getListes();
   }, []);
 
   function getListes(){
@@ -249,19 +252,27 @@ export const FonctionContent = () => {
       setListFunction(res.data);
       data2 = res.data;
       updateNiveau();
-    })
+    }, 
+      err => {
+          console.log("ERROR ", err.message);
+      }
+    )
 
     PersonnelServices.get().then(res =>{
-      setListPerso(res.data)
-    })
+      setListPerso(res.data);
+      data1 = res.data;
+      // console.log(res.data)
+    }, 
+      err => {
+          console.log("ERROR ", err.message);
+      }
+    )
   }
 
   function updateNiveau(){
     var isany = 0;
     var efaVita = [];
     var efa = false;
-
-    console.log(data2)
 
     for (let i = 0; i < data2.length; i++) {
       for (let j = 0; j < efaVita.length; j++) {
@@ -419,17 +430,29 @@ export const FonctionContent = () => {
     var ls = <>
         <div className='card_fc' id={"card"+p.id} >
           <div className='card_sary_fc'>
-            photo
+                <img
+                    src={
+                      p.avatar
+                        ? IMAGE_PATH +
+                        "/staffs/images/" +
+                        p.avatar
+                        : // content.Picture.image
+                        DefautImage
+                    }
+                    className=""
+                    alt=""
+                  />
           </div>
           <div className='card_footer_fc'>
+            <div className='fun_card_fc'><b>{p.Occupation.name}</b></div>
             <div className='name_card_fc'>{p.name}</div>
-            <div className='name_card_fc'>{p.Occupation.name}</div>
-            
+            <div className='des_card_fc'>{p.description}</div>
+           
           </div>
-        
-          
         </div>
-      </>
+      </>;
+
+
 
     return ls;
   }
@@ -564,7 +587,6 @@ export const FonctionContent = () => {
         </>;
     }
 
-    console.log(tabNiv);
     // alert(nbNiv1)
 
     return tabNiv;
