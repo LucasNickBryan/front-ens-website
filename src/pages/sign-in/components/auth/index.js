@@ -4,12 +4,17 @@ import Bg from '../../../../assets/brand/bg.svg'
 import Avatar from '../../../../assets/brand/avatar.svg'
 import { useForm } from 'react-hook-form';
 import { UserContext } from '../../../../contexts/UserContext';
+import { useNavigate } from 'react-router-dom';
 
 export default function AuthPage() {
     const { signInUser } = useContext(UserContext)
-
+    let navigate = useNavigate()
+    
     // INPUT FUNCTIONS
     useEffect(() => {
+
+        localStorage.getItem("user_token") && navigate("/admin");
+
         const inputs = document.querySelectorAll(".input");
         function addcl() {
             let parent = this.parentNode.parentNode;
@@ -36,7 +41,7 @@ export default function AuthPage() {
     } = useForm(
         {
             defaultValues: {
-                username: '',
+                email: '',
                 password: '',
             }
         }
@@ -44,10 +49,9 @@ export default function AuthPage() {
 
     const confirmValues = (value) => {
         const data = {
-            username: value.username,
+            email: value.email,
             password: value.password,
         }
-        console.log("DATA ", data);
         signInUser(data);
     }
 
@@ -68,8 +72,8 @@ export default function AuthPage() {
                                 <i className="fas fa-user"></i>
                             </div>
                             <div className="div">
-                                <h5>Nom d'utilisateur</h5>
-                                <input type="text" className="input" {...register("username", { required: true })} />
+                                <h5>Email</h5>
+                                <input type="email" className="input" {...register("email", { required: true })} />
                             </div>
                         </div>
                         <div className="input-div pass">

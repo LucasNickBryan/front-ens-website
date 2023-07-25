@@ -9,11 +9,14 @@ class UserServices {
     signin(data){
         return axios.post(API_URL + "/user/signin", data, header());
     }
+    // logout(){
+    //     return axios.get(API_URL + "/user/logout", header());
+    // }
     get(){
         return axios.get(API_URL + "/user", header());
     }
     disable(id){
-        return axios.put(API_URL + "/user/disable/" + id, header());
+        return axios.put(API_URL + "/user/disable/" + id, [], header());
     }
     post(data){
         return axios.post(API_URL + "/user", data, header("image"));
