@@ -6,13 +6,14 @@ export const UserContext = createContext(null)
 
 export const UserProvider = ({ children }) => {
     const [data, setData] = useState([
-        {
-            id: 1,
-            username: "John Doe",
-            email: "john@gmail.com",
-            avatar: null,
-            role: "administrateur",
-        },
+        // {
+        //     id: 1,
+        //     username: "John Doe",
+        //     email: "john@gmail.com",
+        //     avatar: null,
+        //     isActive: true,
+        //     role: "administrateur",
+        // },
     ])
     let service = UserServices
 
@@ -20,6 +21,18 @@ export const UserProvider = ({ children }) => {
         service.get()
             .then((res) => {
                 setData(res.data)
+            },
+                err => {
+                    console.log("ERROR ", err.message);
+                }
+            )
+    }
+
+    const disableUser = (id) => {
+        service.disable(id)
+            .then((res) => {
+                console.log("SUCCESS ", res.data);
+                fetchUser()
             },
                 err => {
                     console.log("ERROR ", err.message);
@@ -78,7 +91,7 @@ export const UserProvider = ({ children }) => {
     }
 
     return (
-        <UserContext.Provider value={{ users: data, fetchUser, addUser, signUpUser, signInUser, updateUser, deleteUser }} >
+        <UserContext.Provider value={{ users: data, fetchUser, disableUser, addUser, signUpUser, signInUser, updateUser, deleteUser }} >
             {children}
         </UserContext.Provider>
     )
