@@ -1,5 +1,4 @@
 import React from "react";
-import MainFooter from "../../layout/footer";
 
 const Club = () => {
   return (
@@ -105,7 +104,6 @@ const Club = () => {
           </div>
         </div>
       </section>
-      <MainFooter />
     </div>
   );
 };

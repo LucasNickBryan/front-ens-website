@@ -2,10 +2,8 @@ import React, { useEffect, useState } from "react";
 
 import image from "../../../../assets/images/images.png";
 import "./style.scss";
-import MainFooter from "../../layout/footer";
 import HistoryServices from "../../../../services/History.services";
 import { IMAGE_PATH } from "../../../../config/modules";
-import MainNavbar from "../../layout/header";
 
 const History = () => {
   const [histories, setHistories] = useState([]);
@@ -22,7 +20,6 @@ const History = () => {
   }, []);
   return (
     <div className="HISTORY_STYLES">
-      <MainNavbar />
       <div className="banner">
         <div className="linear">
           <div className="banner-text">
@@ -64,7 +61,6 @@ const History = () => {
           ))}
         </div>
       </section>
-      <MainFooter />
     </div>
   );
 };

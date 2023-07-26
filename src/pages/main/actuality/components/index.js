@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { IMAGE_PATH } from "../../../../config/modules";
-import MainNavbar from "../../layout/header";
-import MainFooter from "../../layout/footer";
 import image2 from "../../../../assets/images/vadil.jpg";
 import image3 from "../../../../assets/images/darya.jpg";
 import image5 from "../../../../assets/images/andrea.jpg";
@@ -10,6 +8,7 @@ import image5 from "../../../../assets/images/andrea.jpg";
 import "./styles.scss";
 import "w3-css/w3.css";
 import ActualityServices from "../../../../services/Actuality.services";
+import CarouselUI from "../../ui/carousel";
 
 const Actuality = () => {
   const [actualities, setActualities] = useState([]);
@@ -30,10 +29,14 @@ const Actuality = () => {
       <section id="team">
         <div className="container">
           <h4 className="section-title mb-5 text-center">
-            <strong>Actualité</strong>
+            <strong>Actualités</strong>
           </h4>
 
-          <div className="row">
+          <div className="max-w-4xl flex mx-auto">
+            <CarouselUI />
+          </div>
+
+          {/* <div className="row">
             {actualities.map((item) => (
               <div className="col-sm-6 col-md-4" key={item.id}>
                 <div className="card text-center mb-4">
@@ -61,11 +64,9 @@ const Actuality = () => {
                 </div>
               </div>
             ))}
-          </div>
+          </div> */}
         </div>
       </section>
-
-      <MainFooter />
     </div>
   );
 };

@@ -1,5 +1,4 @@
 import React from "react";
-import MainFooter from "../../layout/footer";
 
 const Portfolio = () => {
   return (
@@ -104,7 +103,6 @@ const Portfolio = () => {
         </div>
       </section>
       {/* End of portfolio section */}
-      <MainFooter />
     </div>
   );
 };
