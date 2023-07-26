@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 // import MainNavbar from "../../layout/header";
-import MainFooter from "../../layout/footer";
 // import image2 from "../../../../assets/images/Jonas.png";
 // import image3 from "../../../../assets/images/hicks.jpg";
 // import image5 from "../../../../assets/images/andrea.jpg";
@@ -255,7 +254,6 @@ const Personnal = () => {
         </div>
       </section>
       {/* End of Team Sectoin */}
-      <MainFooter />
     </div>
   );
 };

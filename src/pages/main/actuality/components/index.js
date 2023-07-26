@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { IMAGE_PATH } from "../../../../config/modules";
-import MainNavbar from "../../layout/header";
-import MainFooter from "../../layout/footer";
 import image2 from "../../../../assets/images/vadil.jpg";
 import image3 from "../../../../assets/images/darya.jpg";
 import image5 from "../../../../assets/images/andrea.jpg";
@@ -64,8 +62,6 @@ const Actuality = () => {
           </div>
         </div>
       </section>
-
-      <MainFooter />
     </div>
   );
 };

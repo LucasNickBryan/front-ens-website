@@ -12,7 +12,7 @@ export const HomePage = () => {
   return (
     <div>
       <body id="home">
-        <MainNavbar />
+        {/* <MainNavbar /> */}
         <header className="header">
           <div className="overlay">
             <h2>Université de Fianarantsoa</h2>
@@ -32,7 +32,7 @@ export const HomePage = () => {
         <Actuality />
       </body>
 
-      <MainFooter />
+      {/* <MainFooter /> */}
     </div>
   );
 };

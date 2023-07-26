@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import { Outlet } from "react-router";
 import "./styles.scss";
 import { useNavigate } from "react-router-dom";
+import MainNavbar from "./layout/header";
+import MainFooter from "./layout/footer";
 
 function Main() {
   let navigate = useNavigate()
@@ -11,7 +13,9 @@ function Main() {
 
   return (
     <div className="MAIN_STYLES">
+      <MainNavbar />
       <Outlet />
+      <MainFooter />
     </div>
   );
 }

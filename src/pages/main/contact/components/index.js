@@ -1,9 +1,9 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import MainFooter from "../../layout/footer";
 import image from "../../../../assets/images/Jonas.png";
 import image1 from "../../../../assets/images/andrea.jpg";
 import image2 from "../../../../assets/images/hicks.jpg";
+
 const Contact = () => {
   return (
     <div className="CONTACT_STYLES">
@@ -164,7 +164,6 @@ const Contact = () => {
         </div>
       </section>
       {/* Contact Section */}
-      <MainFooter />
     </div>
   );
 };
