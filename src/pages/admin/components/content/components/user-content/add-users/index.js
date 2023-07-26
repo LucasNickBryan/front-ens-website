@@ -31,7 +31,7 @@ export default function AddUser(props) {
       setValue('username', item.username)
       setValue('role', item.role)
       setValue('email', item.email)
-      setCurrentImage(item.avatar ? IMAGE_PATH + "/users/images/" + item.avatar : null)
+      setCurrentImage(item.avatar ? IMAGE_PATH + "/staffs/images/" + item.avatar : null)
       setRole({ value: item.role, label: item.role })
       setIsUpdate(true)
     }
