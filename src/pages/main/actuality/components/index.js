@@ -1,14 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
-import { IMAGE_PATH } from "../../../../config/modules";
-import image2 from "../../../../assets/images/vadil.jpg";
-import image3 from "../../../../assets/images/darya.jpg";
-import image5 from "../../../../assets/images/andrea.jpg";
-
 import "./styles.scss";
-import "w3-css/w3.css";
 import ActualityServices from "../../../../services/Actuality.services";
 import CarouselUI from "../../ui/carousel";
+import DefaultImage from '../../../../assets/images/pexells.jpg'
 
 const Actuality = () => {
   const [actualities, setActualities] = useState([]);
@@ -23,50 +17,69 @@ const Actuality = () => {
         console.log(er);
       });
   }, []);
+
   return (
     <div className="ACTU_STYLES">
-      {/* Fatcs Section */}
-      <section id="team">
-        <div className="container">
-          <h4 className="section-title mb-5 text-center">
-            <strong>Actualités</strong>
-          </h4>
+      {/* CHECKED GALLERY */}
+      <div className=" relative">
+        <div className="max-w-4xl flex mx-auto !my-20">
+          <CarouselUI />
+        </div>
+        <div className="bg-greencolor h-2/3 w-3/5 left-[20%] absolute top-[17%] sm:!hidden"></div>
 
-          <div className="max-w-4xl flex mx-auto">
-            <CarouselUI />
+      </div>
+
+      {/* ACTIVITY CONTENT */}
+      <section className="!px-16">
+        <div className="grid grid-cols-2 md:grid-cols-1 !mb-32">
+          <div>
+            <img src={DefaultImage} alt="..." className="rounded object-cover h-full" />
           </div>
 
-          {/* <div className="row">
-            {actualities.map((item) => (
-              <div className="col-sm-6 col-md-4" key={item.id}>
-                <div className="card text-center mb-4">
-                  <img
-                    alt=""
-                    className="card-img-top inset"
-                    src={
-                      item.Picture.image
-                        ? IMAGE_PATH + "/pictures/images/" + item.Picture.image
-                        : image2
-                    }
-                    style={{ height: "300px" }}
-                  />
-                  <div className="card-body">
-                    <h6 className="font-weight-bold display-8">
-                      {item.Content.title}
-                    </h6>
-                    <p className="date"> {item.Content.date}</p>
-                    <NavLink>
-                      <span className="" style={{ color: "blue" }}>
-                        {item.Content.link}
-                      </span>
-                    </NavLink>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div> */}
+          <div className="relative pl-5 text-side shadow">
+            <div className="text-center pr-5">
+              <h2 className="border-b-2 border-redcolor uppercase text-redcolor">titre de l'actualité</h2>
+            </div>
+            <div className="my-4 !pb-11">
+              lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum
+              lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum
+              lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum
+              lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum
+              lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum
+              lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum
+            </div>
+            <div className="absolute bottom-0 left-0 flex justify-between sm:flex-col px-5 w-full">
+              <a className="!text-greencolor" target="_blanck" href="">www.facebook.com/aeens</a>
+              <span className="font-bold">jeudi 08 juin 2023</span>
+            </div>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-2 md:grid-cols-1">
+          <div>
+            <img src={DefaultImage} alt="..." className="rounded object-cover h-full" />
+          </div>
+
+          <div className="relative pl-5 text-side shadow">
+            <div className="text-center pr-5">
+              <h2 className="border-b-2 border-redcolor uppercase text-redcolor">titre de l'actualité</h2>
+            </div>
+            <div className="my-4 !pb-11">
+              lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum
+              lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum
+              lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum
+              lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum
+              lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum
+              lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum
+            </div>
+            <div className="absolute bottom-0 left-0 flex justify-between sm:flex-col px-5 w-full">
+              <a className="!text-greencolor" target="_blanck" href="">www.facebook.com/aeens</a>
+              <span className="font-bold">jeudi 08 juin 2023</span>
+            </div>
+          </div>
         </div>
       </section>
+
     </div>
   );
 };
