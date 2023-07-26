@@ -22,6 +22,8 @@ const Personnal = () => {
   //       console.log(er);
   //     });
   // }, []);
+
+  
   return (
     <div className="PERSO_STYLES">
       {/* About Section with bg */}
@@ -56,203 +58,18 @@ const Personnal = () => {
       {/* End Of About Sectoin */}
       {/* Team Section */}
       <section id="team">
-        <div className="container">
-          <h6 className="section-subtitle text-center">Meet With</h6>
-          <h6 className="section-title mb-5 text-center">Our Angels</h6>
-          <div className="row">
-            <div className="col-sm-6 col-md-4">
-              <div className="card text-center mb-4">
-                <img
-                  alt=""
-                  className="card-img-top inset"
-                  src="assets/imgs/avatar.jpg"
-                />
-                <div className="card-body">
-                  <h6 className="small text-primary font-weight-bold">
-                    FOUNDER
-                  </h6>
-                  <h5 className="card-title">Matthew Davis</h5>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Magni quos esse tenetur illo qui, nostrum.
-                  </p>
-                  <div className="socials">
-                    <a href="javascript:void(0)">
-                      <i className="ti-facebook"></i>{" "}
-                    </a>
-                    <a href="javascript:void(0)">
-                      <i className="ti-github"></i>
-                    </a>
-                    <a href="javascript:void(0)">
-                      <i className="ti-dropbox"></i>
-                    </a>
-                    <a href="javascript:void(0)">
-                      <i className="ti-twitter"></i>
-                    </a>
-                  </div>
-                </div>
-              </div>
+          {/* <div className='space_work_fc'>
+
+
+          <button className='btn_fc' onClick={(e) => openM(e)}> + Ajouter une fonction</button>
+            <div className='hierarchie'>
+              {
+                bigy()
+              }
             </div>
-            <div className="col-sm-6 col-md-4">
-              <div className="card text-center mb-4">
-                <img
-                  className="card-img-top inset"
-                  src="assets/imgs/avatar-1.jpg"
-                />
-                <div className="card-body">
-                  <h6 className="small text-primary font-weight-bold">CEO</h6>
-                  <h5 className="card-title">Barbara Ross</h5>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Magni quos esse tenetur illo qui, nostrum.
-                  </p>
-                  <div className="socials">
-                    <a href="javascript:void(0)">
-                      <i className="ti-facebook"></i>{" "}
-                    </a>
-                    <a href="javascript:void(0)">
-                      <i className="ti-github"></i>
-                    </a>
-                    <a href="javascript:void(0)">
-                      <i className="ti-dropbox"></i>
-                    </a>
-                    <a href="javascript:void(0)">
-                      <i className="ti-twitter"></i>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col-sm-6 col-md-4">
-              <div className="card text-center mb-4">
-                <img
-                  className="card-img-top inset"
-                  src="assets/imgs/avatar-2.jpg"
-                />
-                <div className="card-body">
-                  <h6 className="small text-primary font-weight-bold">
-                    Designer
-                  </h6>
-                  <h5 className="card-title">Karen Perry</h5>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Magni quos esse tenetur illo qui, nostrum.
-                  </p>
-                  <div className="socials">
-                    <a href="javascript:void(0)">
-                      <i className="ti-facebook"></i>{" "}
-                    </a>
-                    <a href="javascript:void(0)">
-                      <i className="ti-github"></i>
-                    </a>
-                    <a href="javascript:void(0)">
-                      <i className="ti-dropbox"></i>
-                    </a>
-                    <a href="javascript:void(0)">
-                      <i className="ti-twitter"></i>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col-sm-6 col-md-4">
-              <div className="card text-center mb-4">
-                <img
-                  className="card-img-top inset"
-                  src="assets/imgs/avatar-3.jpg"
-                />
-                <div className="card-body">
-                  <h6 className="small text-primary font-weight-bold">
-                    App Designer
-                  </h6>
-                  <h5 className="card-title">Ashley Diaz</h5>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Magni quos esse tenetur illo qui, nostrum.
-                  </p>
-                  <div className="socials">
-                    <a href="javascript:void(0)">
-                      <i className="ti-facebook"></i>{" "}
-                    </a>
-                    <a href="javascript:void(0)">
-                      <i className="ti-github"></i>
-                    </a>
-                    <a href="javascript:void(0)">
-                      <i className="ti-dropbox"></i>
-                    </a>
-                    <a href="javascript:void(0)">
-                      <i className="ti-twitter"></i>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col-sm-6 col-md-4">
-              <div className="card text-center mb-4">
-                <img
-                  className="card-img-top inset"
-                  src="assets/imgs/avatar-4.jpg"
-                />
-                <div className="card-body">
-                  <h6 className="small text-primary font-weight-bold">
-                    Developer
-                  </h6>
-                  <h5 className="card-title">Edward Harris</h5>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Magni quos esse tenetur illo qui, nostrum.
-                  </p>
-                  <div className="socials">
-                    <a href="javascript:void(0)">
-                      <i className="ti-facebook"></i>{" "}
-                    </a>
-                    <a href="javascript:void(0)">
-                      <i className="ti-github"></i>
-                    </a>
-                    <a href="javascript:void(0)">
-                      <i className="ti-dropbox"></i>
-                    </a>
-                    <a href="javascript:void(0)">
-                      <i className="ti-twitter"></i>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="col-sm-6 col-md-4">
-              <div className="card text-center mb-4">
-                <img
-                  className="card-img-top inset"
-                  src="assets/imgs/avatar-5.jpg"
-                />
-                <div className="card-body">
-                  <h6 className="small text-primary font-weight-bold">
-                    photographer
-                  </h6>
-                  <h5 className="card-title">Brian Scott</h5>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Magni quos esse tenetur illo qui, nostrum.
-                  </p>
-                  <div className="socials">
-                    <a href="javascript:void(0)">
-                      <i className="ti-facebook"></i>{" "}
-                    </a>
-                    <a href="javascript:void(0)">
-                      <i className="ti-github"></i>
-                    </a>
-                    <a href="javascript:void(0)">
-                      <i className="ti-dropbox"></i>
-                    </a>
-                    <a href="javascript:void(0)">
-                      <i className="ti-twitter"></i>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+           
+        
+        </div> */}
       </section>
       {/* End of Team Sectoin */}
       <MainFooter />
