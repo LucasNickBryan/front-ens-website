@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./styles.scss";
 import { NavLink } from "react-router-dom";
 import logo1 from "../../../../assets/images/imgs/logo.PNG";
+import $ from 'jquery';
 
 export default function MainNavbar() {
   function toggler(e) {
@@ -17,32 +18,21 @@ export default function MainNavbar() {
     }
   }
 
-  const [isScrolled, setIsScrolled] = useState(false);
-
   useEffect(() => {
-    const handleScroll = () => {
-      const scrollTop =
-        window.pageYOffset || document.documentElement.scrollTop;
-      const scrolled = scrollTop !== 0;
-      setIsScrolled(scrolled);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
+    $(window).scroll( () =>{
+      if ($(document).scrollTop() > 100) {
+        $('.custom-navbar').addClass('affix');
+      } else {
+        $('.custom-navbar').removeClass('affix');
+      }
+    });
+  }, [])
   return (
     <div className="NAVBAR_STYLES">
-      <nav className="navbar custom-navbar navbar-expand-lg navbar-dark affix">
-        <div className={isScrolled ? "scrolled" : "not-scrolled"}>
-          {/* Contenu de votre application */}
-        </div>
+      <nav className="navbar custom-navbar navbar-expand-lg">
         <div className="container">
           <div className="top_nv">
-            <a className="navbar-brand" href="#qsdds">
+            <a className="navbar-brand" href="#">
               <img src={logo1} alt="" />
             </a>
 
@@ -83,16 +73,15 @@ export default function MainNavbar() {
                 </NavLink>
               </li>
               <li className="nav-item">
+                <NavLink to="">
+                  <span className="nav-link">Galerie </span>
+                </NavLink>
+              </li>
+              <li className="nav-item">
                 <NavLink to="/staff">
                   <span className="nav-link">Personnel </span>
                 </NavLink>
               </li>
-              {/* <li className="nav-item">
-                <NavLink to="/portfolio">
-                  <span className="nav-link">Portfolio </span>
-                </NavLink>
-              </li> */}
-
               <li className="nav-item">
                 <NavLink to="/contact">
                   <span className="nav-link">Contact </span>
