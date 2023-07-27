@@ -1,8 +1,18 @@
 import React from "react";
+import Header from "../layout/header";
+import BackgroundUrl from '../../../assets/images/imgs/header.JPG'
 
 const Club = () => {
   return (
     <div className="CLUB_STYLES">
+      <Header BackgroundUrl={BackgroundUrl}>
+        <div className="overlay">
+          <div className="border p-3 title">
+            <h1>Nos clubs</h1>
+          </div>
+        </div>
+      </Header>
+
       <section id="service">
         <div className="container">
           <h6 className="section-subtitle text-center">

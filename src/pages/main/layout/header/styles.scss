@@ -1,67 +1,57 @@
-.NAVBAR_STYLES {
-  @import "~bootstrap/scss/bootstrap";
-  // .top_nv{
-  //   background-color: red;
-  //   height: 100%;
-  //   width: 100%;
-  // }
-
-  .navbt_nb {
-    // transition: 0.5s;
-    // height: 100%;
-    // width: 100%;
-    // background-color: red;
-    // float: left;
-    display: flex;
-    align-items: center;
-    transition: 0.5s;
-  }
-
-  .toggle_nb {
-    height: 0;
-    overflow: hidden;
-  }
-  .btn {
-    font-weight: bolder;
-  }
-
-  @media (max-width: 991.98px) {
-    .top_nv {
-      // background-color: red;
-      height: 100%;
-      width: 100%;
-      display: block;
-
-      .navbar-toggler {
-        float: right;
+.HEADER_STYLES{
+    .header {
+        height: 100vh;
+        // min-height: 600px;
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-attachment: fixed;
+        background-size: cover;
+        /* z-index: -1; */
+        position: relative
       }
-    }
-
-    .navbt_nb {
-      height: 0;
-      overflow: hidden;
-      // width: 100%;
-    }
-
-    .nav-item {
-      background-color: rgb(221, 221, 221);
-      // border: "1px solid white";
-      width: 100vw;
-      height: 32px;
-      transition: 0.2s;
-    }
-
-    .nav-item:hover {
-      background-color: rgb(255, 255, 255);
-      // border: "1px solid white";
-      width: 100vw;
-      height: 32px;
-    }
-  }
-
-  @media (min-width: 991.98px) {
-    .navbt_nb {
-      height: 100%;
-    }
-  }
+    
+      .header .overlay {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.45);
+        color: #fff;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -webkit-align-items: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        -webkit-box-pack: center;
+        -webkit-justify-content: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+    
+      }
+    
+      .header .overlay .subtitle {
+        margin-top: -20px;
+        font-size: calc(20px + (30 - 20) * ((100vw - 320px) / (1200 - 320)));
+        font-weight: 300;
+      }
+    
+      .header .overlay .title {
+        font-size: calc(40px + (90 - 40) * ((100vw - 320px) / (1200 - 320)));
+        margin-bottom: 40px;
+      }
+    
+      @media (max-width: 767.98px) {
+        .header .overlay .subtitle {
+          margin-top: 0;
+        }
+      }
 }

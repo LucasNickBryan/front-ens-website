@@ -1,32 +1,22 @@
 import React, { useEffect, useState } from "react";
-// import MainNavbar from "../../layout/header";
-// import image2 from "../../../../assets/images/Jonas.png";
-// import image3 from "../../../../assets/images/hicks.jpg";
-// import image5 from "../../../../assets/images/andrea.jpg";
-
 import "./styles.scss";
-import "w3-css/w3.css";
-import PersonnalServices from "../../../../services/Personnal.services";
+import Header from "../layout/header";
+import BackgroundUrl from '../../../assets/images/imgs/header.JPG'
 
-const Personnal = () => {
-  // const [personnals, setPersonnals] = useState([]);
-
-  // useEffect(() => {
-  //   PersonnalServices.get()
-  //     .then((res) => {
-  //       setPersonnals(res.data.data);
-  //       console.log("Personnal ", res.data.data);
-  //     })
-  //     .catch((er) => {
-  //       console.log(er);
-  //     });
-  // }, []);
-
+export default function Staff(){
   
   return (
     <div className="PERSO_STYLES">
+      <Header BackgroundUrl={BackgroundUrl}>
+        <div className="overlay">
+          <div className="border p-3 title">
+            <h1>Personnels</h1>
+          </div>
+        </div>
+      </Header>
+
       {/* About Section with bg */}
-      <section className="has-bg-img py-md">
+      {/* <section className="has-bg-img py-md">
         <div className="back-ny">
           <div className="container text-center">
             <h6 className="section-subtitle">
@@ -53,26 +43,13 @@ const Personnal = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
       {/* End Of About Sectoin */}
       {/* Team Section */}
-      <section id="team">
-          {/* <div className='space_work_fc'>
-
-
-          <button className='btn_fc' onClick={(e) => openM(e)}> + Ajouter une fonction</button>
-            <div className='hierarchie'>
-              {
-                bigy()
-              }
-            </div>
-           
-        
-        </div> */}
+      <section>
+        HELLO WORLD
       </section>
       {/* End of Team Sectoin */}
     </div>
   );
 };
-
-export default Personnal;
