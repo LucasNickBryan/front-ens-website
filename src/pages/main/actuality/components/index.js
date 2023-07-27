@@ -3,6 +3,8 @@ import "./styles.scss";
 import ActualityServices from "../../../../services/Actuality.services";
 import CarouselUI from "../../ui/carousel";
 import DefaultImage from '../../../../assets/images/pexells.jpg'
+import { SectionTitle } from "../../ui/texts";
+import { Card } from "../../ui/cards";
 
 const Actuality = () => {
   const [actualities, setActualities] = useState([]);
@@ -19,20 +21,20 @@ const Actuality = () => {
   }, []);
 
   return (
-    <div className="ACTU_STYLES">
+    <div className="ACTU_STYLES !pb-8">
       {/* CHECKED GALLERY */}
-      <div className=" relative">
-        <div className="max-w-4xl flex mx-auto !my-20">
+      <div>
+        <SectionTitle title="Nos moments forts" />
+        <div className="!mb-20">
           <CarouselUI />
         </div>
-        <div className="bg-greencolor h-2/3 w-3/5 left-[20%] absolute top-[17%] sm:!hidden"></div>
-
       </div>
 
       {/* ACTIVITY CONTENT */}
       <section className="!px-16">
+        <SectionTitle title="Actualités" mt={"50px"} />
         <div className="grid grid-cols-2 md:grid-cols-1 !mb-32">
-          <div>
+          <div className="opacity-90 hover:opacity-100">
             <img src={DefaultImage} alt="..." className="rounded object-cover h-full" />
           </div>
 
@@ -79,7 +81,9 @@ const Actuality = () => {
           </div>
         </div>
       </section>
-
+      <div className="flex justify-center">
+        <Card />
+      </div>
     </div>
   );
 };

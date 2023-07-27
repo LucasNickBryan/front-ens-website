@@ -1,29 +1,53 @@
 import DefaultImage from '../../../assets/images/vadil.jpg'
-import DefaultImage2 from '../../../assets/images/imgs/logo.PNG'
+import DefaultImage2 from '../../../assets/images/vasily.jpg'
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
+import { useState } from 'react';
 
-function CarouselUI() {
+const IMAGES = [
+  {
+    image: DefaultImage,
+  },
+  {
+    image: DefaultImage2,
+  },
+  {
+    image: DefaultImage,
+  },
+];
+function CarouselUI(props) {
+  const { images } = props;
+  const [currentImage, setCurrentImage] = useState(IMAGES[0])
+
   const handleChange = (selectedIndex) => {
     // Faites quelque chose avec l'image actuelle
+    setCurrentImage(IMAGES[selectedIndex]);
     console.log('Image actuelle :', selectedIndex);
   };
 
   return (
-    <div className='shadow z-10'>
-      <Carousel onChange={handleChange} autoPlay={true} showStatus={false} showThumbs={false} infiniteLoop={true}>
-        <div>
-          <img className='max-h-[500px] w-full object-cover' src={DefaultImage} />
-        </div>
-        <div>
-          <img className='max-h-[500px] w-full object-cover' src={DefaultImage2} />
-        </div>
-        <div>
-          <img className='max-h-[500px] w-full object-cover' src={DefaultImage} />
-        </div>
-      </Carousel>
+    <div className='relative'>
+      <div className='shadow !z-50 max-w-4xl mx-auto '>
+        <Carousel onChange={handleChange} autoPlay={true} showStatus={false} showThumbs={false} infiniteLoop={true}>
+          {
+            images.map((img, index) => (
+              <div key={index}>
+                <img className='max-h-[500px] w-full object-cover' src={img.image} />
+                <span className="legend shadow !w-32 font-bold cursor-pointer">voir la galerie</span>
+              </div>
+            ))
+          }
+        </Carousel>
+      </div>
+      <div className="h-2/3 w-3/5 md:w-2/3 left-[20%] absolute top-[17%] sm:!hidden z-[-1]">
+        <img src={currentImage.image} className='h-full w-full object-cover blur-[3px] rounded-xl' />
+      </div>
     </div>
   );
 }
 
 export default CarouselUI;
+
+CarouselUI.defaultProps = {
+  images: IMAGES,
+}
