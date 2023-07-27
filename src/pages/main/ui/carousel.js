@@ -33,7 +33,7 @@ function CarouselUI(props) {
             images.map((img, index) => (
               <div key={index}>
                 <img className='max-h-[500px] w-full object-cover' src={img.image} />
-                <span className="legend shadow !w-32 font-bold cursor-pointer">voir la galerie</span>
+                {/* <span className="legend shadow !w-32 font-bold cursor-pointer">voir la galerie</span> */}
               </div>
             ))
           }
