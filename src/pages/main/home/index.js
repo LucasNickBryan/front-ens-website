@@ -1,6 +1,6 @@
 import React from "react";
 import "./styles.scss";
-import { SectionTitle } from "../ui/texts";
+import { SectionTitle } from "../ui/texts/texts";
 import CarouselUI from "../ui/carousel";
 import { SectionContentUI } from "../ui/section/SectionUI";
 import { Card } from "../ui/cards";
@@ -36,17 +36,17 @@ export const HomePage = () => {
         </div>
 
         <section className="!px-16">
-          <SectionTitle title="Actualités" mt={"50px"} />
+          <SectionTitle title="Actualités" mt={"50px"} url={"/actuality"} />
           <SectionContentUI />
         </section>
 
         <section className="!px-16">
-          <SectionTitle title="Historique" mt={"0px"} />
+          <SectionTitle title="Historique" mt={"0px"} url={"/history"} />
           <SectionContentUI isActuality={false} />
         </section>
 
         <section className="!px-16">
-          <SectionTitle title="Personnel" mt={"0px"} />
+          <SectionTitle title="Personnel" mt={"0px"} url={"/staff"} />
           <div className="flex justify-center">
             <Card />
           </div>
