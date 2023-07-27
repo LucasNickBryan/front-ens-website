@@ -29,7 +29,7 @@ export const HomePage = () => {
 
         {/* CHECKED GALLERY */}
         <div className="!mt-32">
-          <SectionTitle title="Nos moments forts" />
+          <SectionTitle title="Nos moments forts" url={"/gallery"} />
           <div className="!mb-20">
             <CarouselUI />
           </div>

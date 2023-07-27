@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./styles.scss";
 import { NavLink } from "react-router-dom";
-import logo1 from "../../../../assets/images/imgs/logo.PNG";
+import logo from "../../../../assets//brand/logo.png";
 import $ from 'jquery';
 
 export default function MainNavbar() {
@@ -33,7 +33,7 @@ export default function MainNavbar() {
         <div className="container">
           <div className="top_nv">
             <a className="navbar-brand" href="#">
-              <img src={logo1} alt="" />
+              <img src={logo} alt="" />
             </a>
 
             <button
@@ -73,7 +73,7 @@ export default function MainNavbar() {
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink to="">
+                <NavLink to="/gallery">
                   <span className="nav-link">Galerie </span>
                 </NavLink>
               </li>
@@ -89,11 +89,12 @@ export default function MainNavbar() {
               </li>
             </ul>
           </div>
-          <div className="btn">
+          <div></div>
+          {/* <div className="btn">
             <button className="btn btn-primary">
               <strong>Se connecter</strong>
             </button>
-          </div>
+          </div> */}
         </div>
       </nav>
     </div>
