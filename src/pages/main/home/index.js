@@ -28,7 +28,7 @@ export const HomePage = () => {
         </Header>
 
         {/* CHECKED GALLERY */}
-        <div>
+        <div className="!mt-32">
           <SectionTitle title="Nos moments forts" />
           <div className="!mb-20">
             <CarouselUI />

@@ -1,6 +1,8 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import "./styles.scss";
+import FacebookIcon from '../../../../assets/icons/facebook.png'
+import WebsiteIcon from '../../../../assets/icons/globe.png'
 
 export default function MainFooter() {
   return (
@@ -44,14 +46,18 @@ export default function MainFooter() {
 
               <ul className="list">
                 <li className="list-head">
-                  <h6 className="font-weight-bold">LIENS UTILS</h6>
+                  <h6 className="font-weight-bold">LIENS UTILES</h6>
                 </li>
                 <li className="list-body">
-                  <div className="row">
-                    <div className="col">
-                      <a href="#about">facebook</a>
-                      <a href="#service">website</a>
-                    </div>
+                  <div className="flex flex-col gap-4">
+                    <a href="#about">
+                      <img src={FacebookIcon} alt="facebook" className="w-8 inline mr-2" />
+                      nous rejoindre sur facebook
+                    </a>
+                    <Link to="/">
+                      <img src={WebsiteIcon} alt="website" className="w-8 inline mr-2" />
+                      visiter le site web
+                    </Link>
                   </div>
                 </li>
               </ul>
