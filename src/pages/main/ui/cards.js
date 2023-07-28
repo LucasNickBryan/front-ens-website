@@ -7,9 +7,9 @@ export const Card = (props) => {
   return (
     <div className="max-w-sm rounded overflow-hidden shadow-lg img-wrapper">
       <div className=''>
-        <img className="w-full" src={image} alt="profile" />
+        <img className="w-full" src={image} alt="profile" style={{objectFit: "cover", width: "300px",height:"300px"}}/>
         <div className="!px-6 !py-4">
-          <div className="font-bold text-xl mb-2">{name}</div>
+          <div className="font-bold text-xl mb-2" >{name}</div>
         </div>
       </div>
       <div className="overlay">
