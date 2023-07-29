@@ -1,29 +1,29 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import "./styles.scss";
-import "w3-css/w3.css";
+import FacebookIcon from '../../../../assets/icons/facebook.png'
+import WebsiteIcon from '../../../../assets/icons/globe.png'
 
 export default function MainFooter() {
   return (
-    <div className="FOOTER_STYLES">
-      <section className="has-bg-img py-0">
+    <footer className="FOOTER_STYLES">
+      <section className="py-0">
         <div
-          className="container"
-          style={{ color: "black", fontWeight: "bolder" }}
+          className="!px-24"
         >
           <div
             className="footer"
-            style={{ color: "black", fontWeight: "bolder" }}
+            style={{ fontWeight: "bolder" }}
           >
             <div className="footer-lists">
               <ul className="list">
                 <li className="list-head">
-                  <h6 className="font-weight-bold">ABOUT US</h6>
+                  <h6 className="font-weight-bold">A PROPOS</h6>
                 </li>
                 <li className="list-body">
                   <NavLink className="logo">
                     <img src="assets/imgs/logo.png" alt="" />
-                    <h6>Creative Studio</h6>
+                    <h6>AEENS Fianarantsoa</h6>
                   </NavLink>
                   <p>
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit.
@@ -35,67 +35,29 @@ export default function MainFooter() {
                     <script>document.write(new Date().getFullYear())</script>{" "}
                     &copy;{" "}
                     <a
-                      className="d-inline text-primary"
+                      className="d-inline !text-redcolor"
                       href="http://www.devcrud.com"
                     >
-                      DevCRUD
+                      Tout droit réservé
                     </a>
                   </p>
                 </li>
               </ul>
+
               <ul className="list">
                 <li className="list-head">
-                  <h6 className="font-weight-bold">USEFUL LINKS</h6>
+                  <h6 className="font-weight-bold">LIENS UTILES</h6>
                 </li>
                 <li className="list-body">
-                  <div className="row">
-                    <div className="col">
-                      <a href="#about">About</a>
-                      <a href="#service">Service</a>
-                      <a href="#portfolio">Portfolio</a>
-                      <a href="#testmonail">Testimonial</a>
-                    </div>
-                    <div className="col">
-                      <a href="#team">Team</a>
-                      <a href="#blog">Blog</a>
-                      <a href="#dsd">Faq</a>
-                      <a href="#">Privacy Policy</a>
-                    </div>
-                  </div>
-                </li>
-              </ul>
-              <ul className="list">
-                <li className="list-head">
-                  <h6 className="font-weight-bold">CONTACT INFO</h6>
-                </li>
-                <li className="list-body">
-                  <p>Contact us and we'll get back to you within 24 hours.</p>
-                  <p>
-                    <i className="ti-location-pin"></i> 12345 Fake ST NoWhere AB
-                    Country
-                  </p>
-                  <p>
-                    <i className="ti-email"></i> info@website.com
-                  </p>
-                  <div className="social-links">
-                    <a href="javascript:void(0)" className="link">
-                      <i className="ti-facebook"></i>
+                  <div className="flex flex-col gap-4">
+                    <a href="#about">
+                      <img src={FacebookIcon} alt="facebook" className="w-8 inline mr-2" />
+                      nous rejoindre sur facebook
                     </a>
-                    <a href="javascript:void(0)" className="link">
-                      <i className="ti-twitter-alt"></i>
-                    </a>
-                    <a href="javascript:void(0)" className="link">
-                      <i className="ti-google"></i>
-                    </a>
-                    <a href="javascript:void(0)" className="link">
-                      <i className="ti-pinterest-alt"></i>
-                    </a>
-                    <a href="javascript:void(0)" className="link">
-                      <i className="ti-instagram"></i>
-                    </a>
-                    <a href="javascript:void(0)" className="link">
-                      <i className="ti-rss"></i>
-                    </a>
+                    <Link to="/">
+                      <img src={WebsiteIcon} alt="website" className="w-8 inline mr-2" />
+                      visiter le site web
+                    </Link>
                   </div>
                 </li>
               </ul>
@@ -103,8 +65,6 @@ export default function MainFooter() {
           </div>
         </div>
       </section>
-    </div>
+    </footer>
   );
 }
-
-// export default Index;

@@ -4,6 +4,8 @@ import './styleHierarchie.scss';
 import { Input } from '../../../../ui/input';
 import FunctionServices from '../../../../../../services/Function.services';
 import PersonnelServices from '../../../../../../services/Personnel.services';
+import DefautImage from "../../../../../../assets/icons/image.png";
+import { IMAGE_PATH } from '../../../../../../config/modules';
 
 export const FonctionContent = () => {
 
@@ -83,7 +85,7 @@ export const FonctionContent = () => {
     },
   ];
 
-  //fonction
+  //fonction data_ex20
   var data_ex20 = [
     {
       id: 1,
@@ -221,6 +223,8 @@ export const FonctionContent = () => {
   ];
 
   const [recherche, setRecherche] = useState('');
+  const [recherche2, setRecherche2] = useState('');
+
   const [modeSelection, setModeSelection] = useState(false);
 
   const [idFonction, setIdFonction] = useState(-1);
@@ -234,34 +238,48 @@ export const FonctionContent = () => {
   const [nbNiv1, setNbNiv1] = useState(0);
   const [rankR1, setRankR1] = useState([]);
 
+  const [check, setCheck] = useState(true);
+
   var nbNiv = 0;
   var rankR = [];
 
   var data2 = [];
+  var data1 = [];
 
   
   useEffect(() => {
-   getListes();
-  }, []);
+    getListes();
+  }, [setListFunction, setListPerso]);
 
   function getListes(){
     FunctionServices.get().then(res =>{
       setListFunction(res.data);
       data2 = res.data;
       updateNiveau();
-    })
+      console.log(data2);
+      setCheck(false);
+    }, 
+      err => {
+          console.log("ERROR ", err.message);
+      }
+    )
 
     PersonnelServices.get().then(res =>{
-      setListPerso(res.data)
-    })
+      setListPerso(res.data);
+      data1 = res.data;
+      setCheck(true);
+      // console.log(res.data)
+    }, 
+      err => {
+          console.log("ERROR ", err.message);
+      }
+    )
   }
 
   function updateNiveau(){
     var isany = 0;
     var efaVita = [];
     var efa = false;
-
-    console.log(data2)
 
     for (let i = 0; i < data2.length; i++) {
       for (let j = 0; j < efaVita.length; j++) {
@@ -302,6 +320,7 @@ export const FonctionContent = () => {
 
 
   function modeSelec(e, id_html, id_fun){
+    try{
     var elements = document.getElementsByClassName('full_p_fc');
     for (var i = 0; i < elements.length; i++) { 
       elements[i].className = "full_p_fc";
@@ -342,6 +361,9 @@ export const FonctionContent = () => {
     document.getElementById("cha"+id_fun).style.height = "0";
 
     // console.log(c.querySelectorAll('.childClass'));
+    }catch(e){
+
+    }
   }
 
   function openM(e){
@@ -380,7 +402,7 @@ export const FonctionContent = () => {
         <div className='full_p_fc' id={"full"+p.id} onClick={(e) => modeSelec(e,""+p.id,""+p.Occupation.id)}>
           {p.name}
           <br></br>
-          {p.Occupation.id}
+          {/* {p.Occupation.id} */}
           
         </div>
       </>
@@ -398,9 +420,13 @@ export const FonctionContent = () => {
     return ls;
   }
 
-  function fonction(p){
+  function fonction(p, is_visible){
+    var vv = "";
+    if(is_visible === false){
+      vv = "tsy hita"
+    }
     var ls = <>
-        <div className='fun_p_fc' id={"fun"+p.id} onClick={(e) => setForm(e,p.name,p.rank,p.id)}>
+        <div className={'fun_p_fc '+vv} id={"fun"+p.id} onClick={(e) => setForm(e,p.name,p.rank,p.id)}>
           <div className='head_fc'> {p.name}
           <br></br>
           Niveau: {p.rank}
@@ -419,17 +445,29 @@ export const FonctionContent = () => {
     var ls = <>
         <div className='card_fc' id={"card"+p.id} >
           <div className='card_sary_fc'>
-            photo
+                <img
+                    src={
+                      p.avatar
+                        ? IMAGE_PATH +
+                        "/staffs/images/" +
+                        p.avatar
+                        : // content.Picture.image
+                        DefautImage
+                    }
+                    className=""
+                    alt=""
+                  />
           </div>
           <div className='card_footer_fc'>
+            <div className='fun_card_fc'><b>{p.Occupation.name}</b></div>
             <div className='name_card_fc'>{p.name}</div>
-            <div className='name_card_fc'>{p.Occupation.name}</div>
-            
+            <div className='des_card_fc'>{p.description}</div>
+           
           </div>
-        
-          
         </div>
-      </>
+      </>;
+
+
 
     return ls;
   }
@@ -564,7 +602,6 @@ export const FonctionContent = () => {
         </>;
     }
 
-    console.log(tabNiv);
     // alert(nbNiv1)
 
     return tabNiv;
@@ -602,6 +639,9 @@ export const FonctionContent = () => {
       elements4[i].style.animation = "clignoter 1s infinite";
     }
 
+    var elements2 = document.getElementsByClassName('11_fc');
+    elements2[0].style.display = "block";
+
 
     // console.log(c.querySelectorAll('.childClass'));
   }
@@ -626,42 +666,55 @@ export const FonctionContent = () => {
       {/* <div>FonctionContent</div> */}
 
       <div className='main_fc'>
-        
-        <div className='liste_personel_fc'>
-          <div>Personnel</div>
-          <div className='search_p_fc'>
-            <div>
-              <Input value={recherche}  onChange={e => setRecherche(e.target.value)} />
-            </div>
-            {/* <div>Liste personnel:</div> */}
 
-          </div>
-          <div className='data_p_fc'>
-            {
-              data_ex1.map((ind) => {
-                {return perso(ind)}
-              })
-            }
-          </div>
-        </div>
-
-        <div className='liste_fonction_fc'>
+        <div className='liste_left'>
+          <div className='liste_fonction_fc'>
           <div>Fonction</div>
-          <div className='search_p_fc'>
-            <div>
-              <Input value={recherche}  onChange={e => setRecherche(e.target.value)} />
-            </div>
-            {/* <div>Liste personnel:</div> */}
+            <div className='search_p_fc'>
+              <div>
+                <Input value={recherche2}  onChange={e => setRecherche2(e.target.value)} />
+              </div>
+              {/* <div>Liste personnel:</div> */}
 
+            </div>
+            <div className='data_p_fc'>
+              {
+                data_ex2.map((ind) => {
+                  var rr = recherche2.toUpperCase();
+                  var ra = "";
+                  ra = ind.name.toString().toUpperCase();
+
+                  if(ra.includes(rr))
+                  {return fonction(ind, true)}
+                })
+              }
+            </div>
           </div>
-          <div className='data_p_fc'>
-            {
-              data_ex2.map((ind) => {
-                {return fonction(ind)}
-              })
-            }
-          </div>
+
+          {/* <div className='liste_personel_fc'>
+            <div>Personnel</div>
+            <div className='search_p_fc'>
+              <div>
+                <Input value={recherche}  onChange={e => setRecherche(e.target.value)} />
+              </div>
+
+            </div>
+            <div className='data_p_fc'>
+              {
+                data_ex1.map((ind) => {
+                  var rr = recherche.toUpperCase();
+                  var ra = "";
+                  ra = ind.name.toString().toUpperCase();
+
+                  if(ra.includes(rr))
+                    {return perso(ind)}
+                })
+              }
+            </div>
+          </div> */}
+
         </div>
+        
 
 
         <div className='space_work_fc'>

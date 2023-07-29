@@ -1,5 +1,5 @@
 import React from "react";
-import MainFooter from "../../layout/footer";
+import DefaultImage from "../../../../assets/images/andrea.jpg";
 
 const Portfolio = () => {
   return (
@@ -13,15 +13,10 @@ const Portfolio = () => {
             <div className="col-sm-4">
               <div className="img-wrapper">
                 <img src="assets/imgs/folio-1.jpg" alt="" />
+                <img src={DefaultImage} />
                 <div className="overlay">
                   <div className="overlay-infos">
                     <h5>Project Title</h5>
-                    <a href="javascript:void(0)">
-                      <i className="ti-zoom-in"></i>
-                    </a>
-                    <a href="javascript:void(0)">
-                      <i className="ti-link"></i>
-                    </a>
                   </div>
                 </div>
               </div>
@@ -104,7 +99,6 @@ const Portfolio = () => {
         </div>
       </section>
       {/* End of portfolio section */}
-      <MainFooter />
     </div>
   );
 };

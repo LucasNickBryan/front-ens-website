@@ -15,7 +15,7 @@ export const header = (content_type="")=>{
     const user_token = localStorage.getItem('user_token')?localStorage.getItem('user_token'):'';
     const config = {
         headers: {
-            Authorization: `Bearer ${user_token}`,
+            Authorization: user_token,
             'Content-Type': content,
             "Access-Control-Allow-Origin": "*",
         }
@@ -25,8 +25,9 @@ export const header = (content_type="")=>{
 
 
 class AuthService {
-    login(user_data){
-        return axios.post(API_URL + "/login", user_data);
+    
+    signin(user_data){
+        return axios.post(API_URL + "/user/signin", user_data, header());
     }
     
     logout(){

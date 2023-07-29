@@ -1,11 +1,13 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
 import userDefaultImage from './../../../../assets/icons/User.ico'
+import { UserContext } from '../../../../contexts/UserContext'
 
 export const NavbarAdmin = (props) => {
   const [isMenuShown, setIsMenuShown] = useState(false)
 
   const { pageLocation, newLocation } = props
+  const { logout } = useContext(UserContext)
 
   const toggleDropdownMenu = () => {
     setIsMenuShown(!isMenuShown)
@@ -52,9 +54,9 @@ export const NavbarAdmin = (props) => {
                 <span><i className='fa fa-users'></i> utilisateur(s)</span>
               </Link>
               <hr className='mt-3' />
-              <Link to="#" className="text-gray-700 block px-4 py-2 text-sm dropdownmenu" onClick={toggleDropdownMenu}>
+              <div className="text-gray-700 block px-4 py-2 text-sm dropdownmenu" onClick={logout}>
                 <span className='text-redcolor'><i className='fa fa-sign-out-alt'></i> se déconnecter</span>
-              </Link>
+              </div>
             </div>
           </div>
         }

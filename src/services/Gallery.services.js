@@ -9,7 +9,7 @@ class GalleryServices {
         return axios.post(API_URL + "/pictures", data, header("image"));
     }
     put(id){
-        return axios.put(API_URL + "/pictures/" + id, header("json"));
+        return axios.put(API_URL + "/pictures/" + id, [], header());
     }
     delete(id){
         return axios.delete(API_URL + "/pictures/" + id, header());
