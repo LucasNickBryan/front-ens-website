@@ -11,26 +11,24 @@ import Actuality from "../../actuality/components";
 export const HomePage = () => {
   return (
     <div>
-      <body id="home">
-        <MainNavbar />
-        <header className="header">
-          <div className="overlay">
-            <h2>Université de Fianarantsoa</h2>
-            <h3 className="title"> ENS Fianarantsoa</h3>
-            <h4 className="subtitle">
-              Association des Etudiants Normaliens Fianarantsoa{" "}
-            </h4>
+      <MainNavbar />
+      <header className="header">
+        <div className="overlay">
+          <h2>Université de Fianarantsoa</h2>
+          <h3 className="title"> ENS Fianarantsoa</h3>
+          <h4 className="subtitle">
+            Association des Etudiants Normaliens Fianarantsoa{" "}
+          </h4>
 
-            <div className="buttons text-center">
-              <a href="#service" className="btn btn-primary rounded w-lg btn">
-                Contactez nous
-              </a>
-              {/* <a href="#contact" className="btn btn-outline-light rounded w-lg btn-lg my-1">Contactez nous</a> */}
-            </div>
+          <div className="buttons text-center">
+            <a href="#service" className="btn btn-primary rounded w-lg btn">
+              Contactez nous
+            </a>
+            {/* <a href="#contact" className="btn btn-outline-light rounded w-lg btn-lg my-1">Contactez nous</a> */}
           </div>
-        </header>
-        <Actuality />
-      </body>
+        </div>
+      </header>
+      <Actuality />
 
       <MainFooter />
     </div>

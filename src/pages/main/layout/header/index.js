@@ -78,11 +78,6 @@ export default function MainNavbar() {
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink to="/actuality">
-                  <span className="nav-link">Actualité </span>
-                </NavLink>
-              </li>
-              <li className="nav-item">
                 <NavLink to="/personnal">
                   <span className="nav-link">Personnel </span>
                 </NavLink>
@@ -101,8 +96,8 @@ export default function MainNavbar() {
             </ul>
           </div>
           <div className="btn">
-            <button className="btn btn-primary">
-              <strong>Se connecter</strong>
+            <button className="btn btn-outline-info">
+              <strong style={{ color: "black" }}>Se connecter</strong>
             </button>
           </div>
         </div>

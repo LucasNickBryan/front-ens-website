@@ -1,9 +1,11 @@
 import React from "react";
 import MainFooter from "../../layout/footer";
+import MainNavbar from "../../layout/header";
 
 const Club = () => {
   return (
     <div className="CLUB_STYLES">
+      <MainNavbar />
       <section id="service">
         <div className="container">
           <h6 className="section-subtitle text-center">

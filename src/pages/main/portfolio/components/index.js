@@ -12,7 +12,7 @@ const Portfolio = () => {
           <div className="row">
             <div className="col-sm-4">
               <div className="img-wrapper">
-                <img src="assets/imgs/folio-1.jpg" />
+                <img src="assets/imgs/folio-1.jpg" alt="" />
                 <div className="overlay">
                   <div className="overlay-infos">
                     <h5>Project Title</h5>

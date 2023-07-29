@@ -7,24 +7,12 @@ import MainFooter from "../../layout/footer";
 
 import "./styles.scss";
 import "w3-css/w3.css";
-import PersonnalServices from "../../../../services/Personnal.services";
+import MainNavbar from "../../layout/header";
 
 const Personnal = () => {
-  // const [personnals, setPersonnals] = useState([]);
-
-  // useEffect(() => {
-  //   PersonnalServices.get()
-  //     .then((res) => {
-  //       setPersonnals(res.data.data);
-  //       console.log("Personnal ", res.data.data);
-  //     })
-  //     .catch((er) => {
-  //       console.log(er);
-  //     });
-  // }, []);
   return (
     <div className="PERSO_STYLES">
-      {/* About Section with bg */}
+      <MainNavbar />
       <section className="has-bg-img py-md">
         <div className="back-ny">
           <div className="container text-center">
@@ -53,8 +41,6 @@ const Personnal = () => {
           </div>
         </div>
       </section>
-      {/* End Of About Sectoin */}
-      {/* Team Section */}
       <section id="team">
         <div className="container">
           <h6 className="section-subtitle text-center">Meet With</h6>
@@ -254,7 +240,6 @@ const Personnal = () => {
           </div>
         </div>
       </section>
-      {/* End of Team Sectoin */}
       <MainFooter />
     </div>
   );
