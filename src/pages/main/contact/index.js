@@ -123,7 +123,8 @@ const Contact = () => {
                     type="submit"
                     className="mt-3 p-2  w-full text-greencolor !border border-greencolor rounded hover:bg-greencolor hover:text-white transition-all delay-100"
                   >
-                    Envoie
+                    <i className="fa fa-paper-plane"></i>
+                    <span className="ml-1">Envoi</span>
                   </button>
                 </form>
               </div>

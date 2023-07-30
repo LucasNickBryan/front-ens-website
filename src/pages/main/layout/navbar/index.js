@@ -4,22 +4,20 @@ import { NavLink } from "react-router-dom";
 import logo from "../../../../assets//brand/logo.png";
 import $ from 'jquery';
 
-export default function MainNavbar() {
-  function toggler(e) {
-    // alert("toggle");
+const NavItem = (props) => {
+  return <span className="nav-link">{props.children} </span>
+}
 
-    var me = document.getElementById("navbarSupportedContent");
-    if (me.className === "navbt_nb") {
-      me.className = "navbt_nb toggle_nb";
-      me.style.height = "0";
-    } else {
-      me.className = "navbt_nb";
-      me.style.height = "auto";
-    }
+export default function MainNavbar() {
+
+  const onToggle = () => {
+    const menutoggle = document.querySelector('.toggle');
+    menutoggle.classList.toggle('active')
+    $('.submenu').fadeToggle(200);
   }
 
   useEffect(() => {
-    $(window).scroll( () =>{
+    $(window).scroll(() => {
       if ($(document).scrollTop() > 100) {
         $('.custom-navbar').addClass('affix');
       } else {
@@ -36,65 +34,78 @@ export default function MainNavbar() {
               <img src={logo} alt="" />
             </a>
 
-            <button
-              className="navbar-toggler"
-              type="button"
-              data-toggle="collapse"
-              data-target="#navbarSupportedContent"
-              aria-controls="navbarSupportedContent"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-              onClick={(e) => toggler(e)}
-            >
+            <div className="toggle" onClick={onToggle}>
               <span></span>
-            </button>
+              <span></span>
+              <span></span>
+            </div>
           </div>
 
-          <div className="navbt_nb" id="navbarSupportedContent">
-            <ul className="navbar-nav ml-auto">
-              <li className="nav-item">
+          <div className="menu">
+            <ul className="flex pt-3 ml-auto">
+              <li className="">
                 <NavLink to="/">
-                  <span className="nav-link">Accueil </span>
+                  <NavItem>Accueil</NavItem>
                 </NavLink>
               </li>
-              <li className="nav-item">
+              <li className="">
                 <NavLink to="/actuality">
-                  <span className="nav-link">Actualité </span>
+                  <NavItem>Actualité</NavItem>
                 </NavLink>
               </li>
-              <li className="nav-item">
+              <li className="">
                 <NavLink to="/history">
-                  <span className="nav-link">Historique </span>
+                  <NavItem>Historique</NavItem>
                 </NavLink>
               </li>
-              <li className="nav-item">
+              <li className="">
                 <NavLink to="/club">
-                  <span className="nav-link">Club ANF </span>
+                  <NavItem>Club ANF</NavItem>
                 </NavLink>
               </li>
-              <li className="nav-item">
+              <li className="">
                 <NavLink to="/gallery">
-                  <span className="nav-link">Galerie </span>
+                  <NavItem>Galerie</NavItem>
                 </NavLink>
               </li>
-              <li className="nav-item">
+              <li className="">
                 <NavLink to="/staff">
-                  <span className="nav-link">Personnel </span>
+                  <NavItem>Personnel</NavItem>
                 </NavLink>
               </li>
-              <li className="nav-item">
+              <li className="">
                 <NavLink to="/contact">
-                  <span className="nav-link">Contact </span>
+                  <NavItem>Contact</NavItem>
                 </NavLink>
               </li>
             </ul>
           </div>
+          <div className="submenu">
+            <ul>
+              <NavLink to="/">
+                <li onClick={onToggle}>Accueil</li>
+              </NavLink>
+              <NavLink to="/actuality">
+                <li onClick={onToggle}>Actualité</li>
+              </NavLink>
+              <NavLink to="/history">
+                <li onClick={onToggle}>Historique</li>
+              </NavLink>
+              <NavLink to="/club">
+                <li onClick={onToggle}>Club ANF</li>
+              </NavLink>
+              <NavLink to="/gallery">
+                <li onClick={onToggle}>Galerie</li>
+              </NavLink>
+              <NavLink to="/staff">
+                <li onClick={onToggle}>Personnel</li>
+              </NavLink>
+              <NavLink to="/contact">
+                <li onClick={onToggle}>Contact</li>
+              </NavLink>
+            </ul>
+          </div>
           <div></div>
-          {/* <div className="btn">
-            <button className="btn btn-primary">
-              <strong>Se connecter</strong>
-            </button>
-          </div> */}
         </div>
       </nav>
     </div>

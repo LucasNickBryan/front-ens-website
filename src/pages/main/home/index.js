@@ -27,11 +27,11 @@ export const HomePage = () => {
               Association des Etudiants Normaliens Fianarantsoa
             </h4>
 
-            <div className="buttons text-center">
+            {/* <div className="buttons text-center">
               <a href="#service" className="btn btn-primary rounded w-lg btn">
                 Contactez nous
               </a>
-            </div>
+            </div> */}
           </div>
         </Header>
 
