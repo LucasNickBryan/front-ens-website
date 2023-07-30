@@ -6,6 +6,7 @@ import { SectionContentUI } from "../ui/section/SectionUI";
 import { Card } from "../ui/cards";
 import BackgroundUrl from '../../../assets/images/imgs/header.JPG'
 import Header from "../layout/header";
+import Animation from "../../ui/Animation";
 
 export const HomePage = () => {
   return (
@@ -29,26 +30,44 @@ export const HomePage = () => {
 
         {/* CHECKED GALLERY */}
         <div className="!mt-32">
-          <SectionTitle title="Nos moments forts" url={"/gallery"} />
-          <div className="!mb-20">
-            <CarouselUI />
-          </div>
+          <Animation animate="fade-down" duration="4000">
+            <SectionTitle title="Nos moments forts" url={"/gallery"} />
+          </Animation>
+          <Animation animate="fade-up" duration="3000">
+            <div className="!mb-20">
+              <CarouselUI />
+            </div>
+          </Animation>
         </div>
 
         <section className="!px-16">
-          <SectionTitle title="Actualités" mt={"50px"} url={"/actuality"} />
+          <Animation animate="fade-down">
+            <SectionTitle title="Actualités" mt={"50px"} url={"/actuality"} />
+          </Animation>
           <SectionContentUI />
         </section>
 
         <section className="!px-16">
-          <SectionTitle title="Historique" mt={"0px"} url={"/history"} />
+          <Animation animate="fade-down">
+            <SectionTitle title="Historiques" mt={"0px"} url={"/history"} />
+          </Animation>
           <SectionContentUI isActuality={false} />
         </section>
 
         <section className="!px-16">
-          <SectionTitle title="Personnel" mt={"0px"} url={"/staff"} />
-          <div className="flex justify-center">
-            <Card />
+          <Animation animate="fade-down">
+            <SectionTitle title="Personnels" mt={"0px"} url={"/staff"} />
+          </Animation>
+          <div className="flex md:flex-col lg:flex-row justify-center gap-5">
+            <Animation animate="flip-right" duration="1000">
+              <Card />
+            </Animation>
+            <Animation animate="flip-left" duration="2000">
+              <Card />
+            </Animation>
+            <Animation animate="flip-right" duration="3000">
+              <Card />
+            </Animation>
           </div>
         </section>
       </div>

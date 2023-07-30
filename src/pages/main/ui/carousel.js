@@ -22,7 +22,6 @@ function CarouselUI(props) {
   const handleChange = (selectedIndex) => {
     // Faites quelque chose avec l'image actuelle
     setCurrentImage(IMAGES[selectedIndex]);
-    console.log('Image actuelle :', selectedIndex);
   };
 
   return (

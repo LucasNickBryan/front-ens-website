@@ -5,6 +5,7 @@ import './styles.scss';
 import DefautlImage from '../../../assets/images/vasily.jpg';
 import ZoomIcon from '../../../assets/icons/search-plus.png';
 import CloseIcon from '../../../assets/icons/window-close.png';
+import Animation from '../../ui/Animation';
 
 const GALLERIES = [
     { image: DefautlImage }, { image: DefautlImage }, { image: DefautlImage }, { image: DefautlImage }, { image: DefautlImage }, { image: DefautlImage },
@@ -31,14 +32,16 @@ export default function Gallery() {
                     {
                         GALLERIES.map((img, index) => (
                             <div key={index} className='max-w-sm relative cursor-pointer image-container'>
-                                <img src={img.image} alt='...' className='w-full rounded-lg' />
-                                <div className='absolute box-overlay'>
-                                    <div className='relative h-full'>
-                                        <div className='absolute top-[47%] left-[47%] sm:top-[40%] sm:left-[40%] md:top-[40%] md:left-[40%]'>
-                                            <img src={ZoomIcon} alt='zoom' className='w-10 sm:w-6 hover:scale-110 transition-all delay-150' onClick={() => zoomImage(img.image)} />
+                                <Animation random={true}>
+                                    <img src={img.image} alt='...' className='w-full rounded-lg' />
+                                    <div className='absolute box-overlay'>
+                                        <div className='relative h-full'>
+                                            <div className='absolute top-[47%] left-[47%] sm:top-[40%] sm:left-[40%] md:top-[40%] md:left-[40%]'>
+                                                <img src={ZoomIcon} alt='zoom' className='w-10 sm:w-6 hover:scale-110 transition-all delay-150' onClick={() => zoomImage(img.image)} />
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                </Animation>
                             </div>
                         ))
                     }
@@ -51,12 +54,14 @@ export default function Gallery() {
                         <div className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
                         <div className="fixed inset-0 z-10 overflow-y-auto">
                             <div className="flex min-h-full items-end justify-center p-4 text-center items-center p-0">
-                                <div className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all my-8 w-full h-full max-h-[80vh] object-contain">
-                                    <img src={currentImage} alt='...' />
-                                    <div className='absolute top-2 right-2'>
-                                        <img src={CloseIcon} alt='...' className='w-8 hover:scale-110 cursor-pointer' onClick={()=>setCurrentImage([])} />
+                                <Animation animate="zoom-in" duration="500">
+                                    <div className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all my-8 w-full h-full max-h-[80vh] object-contain">
+                                        <img src={currentImage} alt='...' />
+                                        <div className='absolute top-2 right-2'>
+                                            <img src={CloseIcon} alt='...' className='w-8 hover:scale-110 cursor-pointer' onClick={() => setCurrentImage([])} />
+                                        </div>
                                     </div>
-                                </div>
+                                </Animation>
                             </div>
                         </div>
                     </div>
