@@ -24,13 +24,13 @@ export const AdminPage = () => {
     }
   }
 
-  useEffect(() => {
-    !localStorage.getItem("user_token") && navigate("/sign-in");
-  }, [])
+  // useEffect(() => {
+  //   !localStorage.getItem("user_token") && navigate("/sign-in");
+  // }, [])
 
   return (
     <div className="flex w-full h-screen bg-gradient-to-b from-white from-95% to-red-200">
-      <div className='w-80 p-3'>
+      <div className='w-80 p-3 md:hidden'>
         <SidebarAdmin newLocation={setPageLocation} onChangeActive={onChangeActive} />
       </div>
 
