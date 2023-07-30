@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./styles.scss";
 import { SectionTitle } from "../ui/texts/texts";
 import CarouselUI from "../ui/carousel";
@@ -9,6 +9,13 @@ import Header from "../layout/header";
 import Animation from "../../ui/Animation";
 
 export const HomePage = () => {
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
+  }, [])
   return (
     <div className="HOME_STYLES">
       <div className="">

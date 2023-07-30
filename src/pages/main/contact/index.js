@@ -1,12 +1,17 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
-import image from "../../../assets/images/Jonas.png";
-import image1 from "../../../assets/images/andrea.jpg";
-import image2 from "../../../assets/images/hicks.jpg";
+import React, { useEffect } from "react";
 import Header from "../layout/header";
 import BackgroundUrl from '../../../assets/images/imgs/header.JPG'
 
 const Contact = () => {
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
+  }, [])
+
   return (
     <div className="CONTACT_STYLES">
       <Header BackgroundUrl={BackgroundUrl}>

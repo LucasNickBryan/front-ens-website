@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import BackgroundUrl from '../../../assets/images/imgs/header.JPG';
 import Header from "../layout/header";
 import './styles.scss';
@@ -14,6 +14,14 @@ const GALLERIES = [
 
 export default function Gallery() {
     const [currentImage, setCurrentImage] = useState([])
+
+    useEffect(() => {
+        window.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: "smooth",
+        });
+    }, [])
 
     const zoomImage = (image) => {
         setCurrentImage([image])
