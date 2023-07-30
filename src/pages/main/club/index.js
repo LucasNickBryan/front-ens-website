@@ -1,13 +1,10 @@
 import React from "react";
-import MainFooter from "../../layout/footer";
-import MainNavbar from "../../layout/header";
 import Header from "../layout/header";
 import BackgroundUrl from "../../../assets/images/imgs/header.JPG";
 
 const Club = () => {
   return (
     <div className="CLUB_STYLES">
-      <MainNavbar />
       <Header BackgroundUrl={BackgroundUrl}>
         <div className="overlay">
           <div className="border p-3 title">
