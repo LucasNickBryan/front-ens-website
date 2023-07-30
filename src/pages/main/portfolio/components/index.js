@@ -1,5 +1,5 @@
 import React from "react";
-import DefaultImage from '../../../../assets/images/andrea.jpg'
+import DefaultImage from "../../../../assets/images/andrea.jpg";
 
 const Portfolio = () => {
   return (
@@ -12,6 +12,7 @@ const Portfolio = () => {
           <div className="row">
             <div className="col-sm-4">
               <div className="img-wrapper">
+                <img src="assets/imgs/folio-1.jpg" alt="" />
                 <img src={DefaultImage} />
                 <div className="overlay">
                   <div className="overlay-infos">
