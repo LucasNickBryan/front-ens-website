@@ -2,11 +2,13 @@ import { createContext, useState } from "react";
 import UserServices from "../services/User.services";
 import DefaultImage from '../assets/icons/image.png'
 import { useNavigate } from "react-router-dom";
+import Notification, { notify } from "../pages/ui/Notification";
 
 export const UserContext = createContext(null)
 
 export const UserProvider = ({ children }) => {
     let navigate = useNavigate()
+    const [isLoading, setIsLoading] = useState(true)
     const [data, setData] = useState([
         // {
         //     id: 1,
@@ -51,17 +53,17 @@ export const UserProvider = ({ children }) => {
                 err => { console.log("FAILED OPERATION", err.message); }
             )
     }
-
     const signInUser = (credential) => {
-        service.signin(credential)
-            .then((res) => {
-                console.log("SUCCESS ", res.data);
-                localStorage.setItem("user_token", res.data);
-                navigate("/admin/");
-            },
-                err => { console.log("FAILED OPERATION", err.message); }
-            )
+        notify(
+            service.signin(credential)
+                .then((res) => {
+                    console.log("SUCCESS ", res.data);
+                    localStorage.setItem("user_token", res.data);
+                    navigate("/admin/");
+                }),
+        )
     }
+
     const logout = () => {
         localStorage.removeItem("user_token");
         navigate("/sign-in");
@@ -107,6 +109,7 @@ export const UserProvider = ({ children }) => {
     return (
         <UserContext.Provider value={{ users: data, fetchUser, disableUser, addUser, signUpUser, signInUser, updateUser, logout, deleteUser }} >
             {children}
+            <Notification />
         </UserContext.Provider>
     )
 }

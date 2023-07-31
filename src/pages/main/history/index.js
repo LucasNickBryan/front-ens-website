@@ -30,6 +30,12 @@ const History = () => {
       .catch((er) => {
         console.log(er);
       });
+
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
   }, []);
 
   return (

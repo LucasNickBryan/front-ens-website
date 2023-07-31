@@ -2,19 +2,31 @@ import React, { useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
 import userDefaultImage from './../../../../assets/icons/User.ico'
 import { UserContext } from '../../../../contexts/UserContext'
+import $ from 'jquery';
+import './styles.scss'
 
 export const NavbarAdmin = (props) => {
   const [isMenuShown, setIsMenuShown] = useState(false)
+  const [isSetting, setIsSetting] = useState(false)
 
   const { pageLocation, newLocation } = props
   const { logout } = useContext(UserContext)
 
+  const toggleDropdownSetting = () => {
+    setIsSetting(prev => !prev)
+  }
   const toggleDropdownMenu = () => {
-    setIsMenuShown(!isMenuShown)
+    setIsMenuShown(prev => !prev)
+  }
+
+  const onToggle = () => {
+    const menutoggle = document.querySelector('.toggle');
+    menutoggle.classList.toggle('activate')
+    toggleDropdownMenu()
   }
 
   const onHandleClick = (path) => {
-    toggleDropdownMenu()
+    isSetting ?  toggleDropdownSetting() : onToggle()
     newLocation(path)
 
     const elements = document.querySelectorAll('.to-active');
@@ -25,7 +37,40 @@ export const NavbarAdmin = (props) => {
   }
 
   return (
-    <div className="w-full p-2 drop-shadow-lg bg-gradient-to-r from-white to-green-200 rounded flex justify-between px-10">
+    <div className="w-full p-2 drop-shadow-lg bg-gradient-to-r from-white to-green-200 rounded flex justify-between px-10 ADMIN_NAVBAR_STYLES">
+      {/* DROPDOWN Menu */}
+      <div className="relative inline-block text-left pt-1.5 md:block hidden cursor-pointer">
+        <div className="toggle" onClick={onToggle}>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        {/* Dropdown Menu */}
+        {
+          isMenuShown &&
+          <div className="absolute right-[-100px] dropdownmenubox mt-2 w-40 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5"
+            role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+            <div className="py-1" role="none">
+              <Link to="content" className="text-gray-700 block px-4 py-2 text-sm dropdownmenu" onClick={() => onHandleClick('contenu')}>
+                <span><i className='fa fa-toolbox'></i> contenu</span>
+              </Link>
+              <hr className='mt-3' />
+              <Link to="gallery" className="text-gray-700 block px-4 py-2 text-sm dropdownmenu" onClick={() => onHandleClick('galerie')}>
+                <span><i className='fa fa-images'></i> galerie</span>
+              </Link>
+              <hr className='mt-3' />
+              <Link to="function" className="text-gray-700 block px-4 py-2 text-sm dropdownmenu" onClick={() => onHandleClick('fonction')}>
+                <span><i className='fa fa-people-arrows'></i> fonction</span>
+              </Link>
+              <hr className='mt-3' />
+              <Link to="personnel" className="text-gray-700 block px-4 py-2 text-sm dropdownmenu" onClick={() => onHandleClick('personnel')}>
+                <span><i className='fa fa-user-tie'></i> personnel</span>
+              </Link>
+            </div>
+          </div>
+        }
+      </div>
+      {/* <div className='pt-1.5 md:block hidden cursor-pointer'><span className=''>menu</span></div> */}
       <div className='pt-1.5'>page: <span className='underline underline-offset-4'>{pageLocation}</span></div>
 
       <div className='sm:hidden md:block'>
@@ -33,23 +78,20 @@ export const NavbarAdmin = (props) => {
         <span>John Doe</span>
       </div>
 
-      {/* DROPDOWN */}
+      {/* DROPDOWN SETTINGS */}
       <div className="relative inline-block text-left pt-1.5">
         <div>
-          <button type="button" onClick={toggleDropdownMenu}
+          <button type="button" onClick={toggleDropdownSetting}
             className="inline-flex w-full justify-center text-2xl " id="menu-button" aria-expanded="true" aria-haspopup="true">
             <i className="fa fa-cog hover:text-white hover:animate-spin"></i>
           </button>
         </div>
-        {/* Dropdown menu */}
+        {/* Dropdown setting */}
         {
-          isMenuShown &&
+          isSetting &&
           <div className="absolute right-0 z-10 dropdownmenubox mt-2 w-40 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5"
             role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
             <div className="py-1" role="none">
-              {/* <Link to="account" className="text-gray-700 block px-4 py-2 text-sm dropdownmenu" onClick={() => onHandleClick('mon compte')}>
-                <span><i className='fa fa-user-edit'></i> mon compte</span>
-              </Link> */}
               <Link to="users" className="text-gray-700 block px-4 py-2 text-sm dropdownmenu" onClick={() => onHandleClick('utilisateur(s)')}>
                 <span><i className='fa fa-users'></i> utilisateur(s)</span>
               </Link>

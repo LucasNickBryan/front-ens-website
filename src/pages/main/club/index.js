@@ -1,8 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Header from "../layout/header";
-import BackgroundUrl from '../../../assets/images/imgs/header.JPG'
+import BackgroundUrl from "../../../assets/images/imgs/header.JPG";
 
 const Club = () => {
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
+  }, [])
+  
   return (
     <div className="CLUB_STYLES">
       <Header BackgroundUrl={BackgroundUrl}>

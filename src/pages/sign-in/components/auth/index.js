@@ -5,11 +5,13 @@ import Avatar from '../../../../assets/brand/avatar.svg'
 import { useForm } from 'react-hook-form';
 import { UserContext } from '../../../../contexts/UserContext';
 import { useNavigate } from 'react-router-dom';
+import { pattern } from '../..';
+import { toast } from 'react-toastify';
 
 export default function AuthPage() {
     const { signInUser } = useContext(UserContext)
     let navigate = useNavigate()
-    
+
     // INPUT FUNCTIONS
     useEffect(() => {
 
@@ -35,9 +37,8 @@ export default function AuthPage() {
 
     const {
         register,
-        handleSubmit,
-        control,
-        formState: { errors },
+        getValues,
+        formState: { isValid },
     } = useForm(
         {
             defaultValues: {
@@ -47,12 +48,20 @@ export default function AuthPage() {
         }
     )
 
-    const confirmValues = (value) => {
-        const data = {
-            email: value.email,
-            password: value.password,
+    const onHandleSubmit = (e) => {
+        e.preventDefault()
+        if (isValid) {
+            const data = {
+                email: getValues('email'),
+                password: getValues('password'),
+            }
+            signInUser(data);
         }
-        signInUser(data);
+        else {
+            toast.error("Email ou mot de passe invalide!", {
+                theme: "colored"
+            });
+        }
     }
 
     return (
@@ -62,7 +71,7 @@ export default function AuthPage() {
                     <img src={Bg} />
                 </div>
                 <div className="login-content">
-                    <form noValidate className='shadow bg-white rounded-lg !p-4 !h-[500px] !w-[400px] xs:!w-full' onSubmit={handleSubmit(confirmValues)}>
+                    <form noValidate className='shadow bg-white rounded-lg !p-4 !h-[500px] !w-[400px] xs:!w-full' onSubmit={onHandleSubmit}>
                         <div className='flex flex-col !mb-8'>
                             <img src={Avatar} />
                             <h3 className="title">CONNEXION</h3>
@@ -73,7 +82,7 @@ export default function AuthPage() {
                             </div>
                             <div className="div">
                                 <h5>Email</h5>
-                                <input type="email" className="input" {...register("email", { required: true })} />
+                                <input type="email" className="input" {...register("email", { required: true, pattern: pattern })} />
                             </div>
                         </div>
                         <div className="input-div pass">

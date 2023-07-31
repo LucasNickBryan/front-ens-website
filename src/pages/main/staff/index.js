@@ -92,16 +92,46 @@ export default function Staff(){
         name: "president",
         rank: "0",
       },
-      {
+    
+    {
+      id: 2,
+      name: "vin rouge",
+      avatar: "test",
+      description: "test desc",
+      year: "2022-2023",
+      occupationId: "1",
+      Occupation: {
+        id: 1,
+        name: "vice",
+        rank: "0",
+      },
+    },
+    {
+      id: 3,
+      name: "vintsika",
+      avatar: "test",
+      description: "test desc",
+      year: "2022-2023",
+      occupationId: "2",
+      Occupation: {
         id: 2,
-        name: "vice-president",
+        name: "vice",
         rank: "4",
       },
-      {
+    },
+    {
+      id: 4,
+      name: "vin blanc",
+      avatar: "test",
+      description: "test desc",
+      year: "2022-2023",
+      occupationId: "3",
+      Occupation: {
         id: 3,
-        name: "delegue",
+        name: "coordo",
         rank: "2",
       },
+    },
       {
         id: 4,
         name: "coordo",
@@ -118,109 +148,49 @@ export default function Staff(){
     var data_ex10 = [
       {
         id: 1,
-        name: "RASATAHARISOA Francky",
-        avatar: "test",
-        description: "test desc",
-        year: "2022-2023",
-        occupationId: "1",
-        Occupation: {
-          id: 1,
-          name: "president",
-          rank: "0",
-        },
+        name: "president",
+        rank: "3",
       },
-      {
-        id: 2,
-        name: "vin rouge",
-        avatar: "test",
-        description: "test desc",
-        year: "2022-2023",
-        occupationId: "1",     
-        Occupation: {
-          id: 1,
-          name: "vice",
-          rank: "0",
-        },
+    {
+      id: 6,
+      name: "vintsika",
+      avatar: "test",
+      description: "test desc",
+      year: "2022-2023",
+      occupationId: "2",
+      Occupation: {
+        id: 1,
+        name: "president",
+        rank: "2",
       },
-      {
-        id: 3,
-        name: "vintsika",
-        avatar: "test",
-        description: "test desc",
-        year: "2022-2023",
-        occupationId: "2",
-        Occupation: {
-          id: 2,
-          name: "vice",
-          rank: "4",
-        },
+    },
+    {
+      id: 7,
+      name: "vin blanc",
+      avatar: "test",
+      description: "test desc",
+      year: "2022-2023",
+      occupationId: "1",
+      Occupation: {
+        id: 1,
+        name: "president",
+        rank: "2",
       },
-      {
-        id: 4,
-        name: "vin blanc",
-        avatar: "test",
-        description: "test desc",
-        year: "2022-2023",
-        occupationId: "3",
-        Occupation: {
-          id: 3,
-          name: "coordo",
-          rank: "2",
-        },
+    },
+    {
+      id: 8,
+      name: "vin rouge",
+      avatar: "test",
+      description: "test desc",
+      year: "2022-2023",
+      occupationId: "1",
+      Occupation: {
+        id: 1,
+        name: "president",
+        rank: "2",
       },
-      {
-        id: 5,
-        name: "vin rouge",
-        avatar: "test",
-        description: "test desc",
-        year: "2022-2023",
-        occupationId: "1",
-        Occupation: {
-          id: 1,
-          name: "president",
-          rank: "3",
-        },
-      },
-      {
-        id: 6,
-        name: "vintsika",
-        avatar: "test",
-        description: "test desc",
-        year: "2022-2023",
-        occupationId: "2",
-        Occupation: {
-          id: 1,
-          name: "president",
-          rank: "2",
-        },
-      },
-      {
-        id: 7,
-        name: "vin blanc",
-        avatar: "test",
-        description: "test desc",
-        year: "2022-2023",
-        occupationId: "1",
-        Occupation: {
-          id: 1,
-          name: "president",
-          rank: "2",
-        },
-      },
-      {
-        id: 8,
-        name: "vin rouge",
-        avatar: "test",
-        description: "test desc",
-        year: "2022-2023",
-        occupationId: "1",
-        Occupation: {
-          id: 1,
-          name: "president",
-          rank: "2",
-        },
-      },
-    ];
+    },
+  ];
 
     // const [data_ex2, setListFunction] = useState([]);
     // const [data_ex1, setListPerso] = useState([]);
@@ -231,18 +201,23 @@ export default function Staff(){
     const [nbNiv1, setNbNiv1] = useState(0);
     const [rankR1, setRankR1] = useState([]);
 
-    const [check, setCheck] = useState(true);
+  const [check, setCheck] = useState(true);
 
-    var nbNiv = 0;
-    var rankR = [];
-  
-    var data2 = [];
-    var data1 = [];
+  var nbNiv = 0;
+  var rankR = [];
+
+  var data2 = [];
+  var data1 = [];
 
 
-    useEffect(() => {
-      getListes();
-    }, []);
+  useEffect(() => {
+    getListes();
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
+  }, []);
 
     function getListes(){
       // FunctionServices.get().then(res =>{
@@ -298,56 +273,61 @@ export default function Staff(){
   
        efa = false;      
       }
-  
-      //Classement par ordre de rang
-      var c = 0; var tmp = 0;
-      while(c<isany){
-        for (let i = 0; i < isany; i++) {
-          if(Number(efaVita[i])>Number(efaVita[c])){
-            tmp = efaVita[i]
-            efaVita[i] = efaVita[c];
-            efaVita[c] = tmp;
-          }
+    
+      console.log(isany)
+    // PersonnelServices.get().then(res => {
+    //   setListPerso(res.data);
+    //   data1 = res.data;
+    //   setCheck(true);
+    //   // console.log(res.data)
+    // },
+    //   err => {
+    //     console.log("ERROR ", err.message);
+    //   }
+    // )
+  }
+
+  function updateNiveau(){
+    var isany = 0;
+    var efaVita = [];
+    var efa = false;
+
+    for (let i = 0; i < data2.length; i++) {
+      for (let j = 0; j < efaVita.length; j++) {
+        if(data2[i].rank === efaVita[j]){
+          efa = true;
+          break;
+        }else{
+
         }
-        c++;
       }
-  
-      nbNiv = isany;
-      setNbNiv1(nbNiv);
-      rankR = efaVita;
-      setRankR1(efaVita);
+
+      if(efa === false){
+        efaVita[isany] = data2[i].rank;
+        isany++;
+      }
+
+     efa = false;      
     }
 
-    function persoFonction(p){
-      var ls = <>
-          <div className='card_fc' id={"card"+p.id} >
-            <div className='card_sary_fc'>
-                  <img
-                      src={
-                        p.avatar
-                          ? IMAGE_PATH +
-                          "/staffs/images/" +
-                          p.avatar
-                          : // content.Picture.image
-                          DefautImage
-                      }
-                      className=""
-                      alt=""
-                    />
-            </div>
-            <div className='card_footer_fc'>
-              <div className='fun_card_fc'><b>{p.Occupation.name}</b></div>
-              <div className='name_card_fc'>{p.name}</div>
-              <div className='des_card_fc'>{p.description}</div>
-             
-            </div>
-          </div>
-        </>;
-  
-  
-  
-      return ls;
+    //Classement par ordre de rang
+    var c = 0; var tmp = 0;
+    while(c<isany){
+      for (let i = 0; i < isany; i++) {
+        if(Number(efaVita[i])>Number(efaVita[c])){
+          tmp = efaVita[i]
+          efaVita[i] = efaVita[c];
+          efaVita[c] = tmp;
+        }
+      }
+      c++;
     }
+
+    nbNiv = isany;
+    setNbNiv1(nbNiv);
+    rankR = efaVita;
+    setRankR1(efaVita);
+  }
 
     function bigy(){
       var tabNiv = [];
@@ -373,7 +353,7 @@ export default function Staff(){
                         ind.avatar
                         : // content.Picture.image
                         DefautImage}
-                        
+
                         name={ind.name}
                         
                         occupation={ind.Occupation.name}/>
@@ -384,14 +364,14 @@ export default function Staff(){
               </div>
   
             </div>
-          </>;
-      }
-  
-      // alert(nbNiv1)
-  
-      return tabNiv;
+        </>;
     }
-    
+
+    // alert(nbNiv1)
+
+    return tabNiv;
+  }
+
   return (
     <div className="PERSO_STYLES">
       <Header BackgroundUrl={BackgroundUrl}>
@@ -402,7 +382,7 @@ export default function Staff(){
         </div>
       </Header>
 
-   
+
       <section>
       <div className="STAFF"> 
 
