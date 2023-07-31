@@ -53,7 +53,7 @@
   main,
   nav,
   section {
-    display: block;
+    display: block
   }
 
   body {
@@ -12627,6 +12627,7 @@
 
   section {
     padding: 100px 0;
+    overflow: hidden;
   }
 
   section:nth-child(odd) {
