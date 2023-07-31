@@ -9,7 +9,7 @@ import DefautImage from "../../../assets/images/images.png";
 import { Card } from "../ui/cards";
 
 export default function Staff(){
-    //personnel
+    //personnel 😘😘
     var data_ex3 = [
       {
         id: 1,
@@ -85,7 +85,7 @@ export default function Staff(){
       },
     ];
   
-    //fonction data_ex20
+    //fonction data_ex20 😍😍
     var data_ex20 = [
       {
         id: 1,
@@ -114,7 +114,7 @@ export default function Staff(){
       },
     ];
   
-    //Peronnel + fonction
+    //Peronnel + fonction 🤣🤣
     var data_ex10 = [
       {
         id: 1,
@@ -222,8 +222,11 @@ export default function Staff(){
       },
     ];
 
-    const [data_ex2, setListFunction] = useState([]);
-    const [data_ex1, setListPerso] = useState([]);
+    // const [data_ex2, setListFunction] = useState([]);
+    // const [data_ex1, setListPerso] = useState([]);
+
+    const [data_ex2, setListFunction] = useState(data_ex20);
+    const [data_ex1, setListPerso] = useState(data_ex10);
     
     const [nbNiv1, setNbNiv1] = useState(0);
     const [rankR1, setRankR1] = useState([]);
@@ -242,28 +245,35 @@ export default function Staff(){
     }, []);
 
     function getListes(){
-      FunctionServices.get().then(res =>{
-        setListFunction(res.data);
-        data2 = res.data;
-        updateNiveau();
-        console.log(data2);
-        setCheck(false);
-      }, 
-        err => {
-            console.log("ERROR ", err.message);
-        }
-      )
+      // FunctionServices.get().then(res =>{
+      //   setListFunction(res.data);
+      //   data2 = res.data;
+      //   updateNiveau();
+      //   console.log(data2);
+      //   setCheck(false);
+      // }, 
+      //   err => {
+      //       console.log("ERROR ", err.message);
+      //   }
+      // )
   
-      PersonnelServices.get().then(res =>{
-        setListPerso(res.data);
-        data1 = res.data;
-        setCheck(true);
-        // console.log(res.data)
-      }, 
-        err => {
-            console.log("ERROR ", err.message);
-        }
-      )
+      // PersonnelServices.get().then(res =>{
+      //   setListPerso(res.data);
+      //   data1 = res.data;
+      //   setCheck(true);
+      // }, 
+      //   err => {
+      //       console.log("ERROR ", err.message);
+      //   }
+      // )
+
+      setListFunction(data_ex20);
+      data2 = data_ex20;
+      setListPerso(data_ex10);
+      data1 = data_ex10;
+
+      updateNiveau();
+      // console.log(data_ex1);
     }
 
     function updateNiveau(){
@@ -346,13 +356,14 @@ export default function Staff(){
           <>
             <div className='level_fc'>
               <div className='title_level_fc'>
-                Niveau {rankR1[i]}
+                {/* Niveau {rankR1[i]} */}
+                Niveau {i}
               </div>
                 
               <div className='reste_level_fc'>
                 {
                   data_ex1.map((ind,index)=>(
-                    <div key={index}>
+                    <div key={index} style={{}}>
                       {
                        ( Number(ind.Occupation.rank) === Number(rankR1[i])) &&
                        
@@ -365,7 +376,7 @@ export default function Staff(){
                         
                         name={ind.name}
                         
-                        occupation={ind.Occupation.name} />
+                        occupation={ind.Occupation.name}/>
                       }
                     </div>
                   ))
@@ -393,11 +404,16 @@ export default function Staff(){
 
    
       <section>
-            <div className='hierarchie'>
-              {
-                bigy()
-              }
-            </div>
+      <div className="STAFF"> 
+
+       
+      <div className='hierarchie'>
+        {
+          bigy()
+        }
+      </div>
+
+      </div>
 
       </section>
     </div>
