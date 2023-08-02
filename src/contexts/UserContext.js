@@ -23,7 +23,7 @@ export const UserProvider = ({ children }) => {
 
     useEffect(()=>{
         service.getUser()
-        .then((res)=>{ console.log(res.data);setUser(res.data)})
+        .then((res)=>setUser(res.data))
         .catch(err=>console.log("ERROR ", err))
     },[])
 
@@ -55,6 +55,12 @@ export const UserProvider = ({ children }) => {
                     fetchUser()
                 },
                 )
+        )
+    }
+
+    const updatePassword = (credential) => {
+        notify(
+            service.updatePassword(credential)
         )
     }
     const signInUser = (credential) => {
@@ -111,7 +117,7 @@ export const UserProvider = ({ children }) => {
     }
 
     return (
-        <UserContext.Provider value={{ users: data, user, fetchUser, disableUser, addUser, signUpUser, signInUser, updateUser, logout, deleteUser }} >
+        <UserContext.Provider value={{ users: data, user, fetchUser, disableUser, addUser, signUpUser, signInUser, updateUser, updatePassword, logout, deleteUser }} >
             {children}
         </UserContext.Provider>
     )
