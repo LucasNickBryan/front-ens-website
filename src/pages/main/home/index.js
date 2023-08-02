@@ -32,9 +32,9 @@ export const HomePage = () => {
         const formated_galleries = []
         res.data.data.forEach(img => {
           formated_galleries.push({ image: IMAGE_PATH + "/pictures/images/" + img.image })
-        },
-          err => { console.log("ERROR ", err); }
-        );
+        })
+        .catch(err => { console.log("ERROR ", err); })
+
         setGallery(formated_galleries)
       }))
 
@@ -42,18 +42,15 @@ export const HomePage = () => {
     ContentServices.getHistory()
       .then(res => {
         setHistories(res.data.data)
-      },
-        err => { console.log("ERROR ", err); }
-      )
+      })
+      .catch(err => { console.log("ERROR ", err); })
 
     // load actualities
     ContentServices.getActuality()
       .then(res => {
         setActualities(res.data.data)
-
-      },
-        err => { console.log("ERROR ", err); }
-      )
+      })
+      .catch(err => { console.log("ERROR ", err); })
 
     // load personnels
     PersonnelServices.get()
@@ -72,9 +69,8 @@ export const HomePage = () => {
         }
         setPersonnels(staff_list)
 
-      },
-        err => { console.log("ERROR ", err); }
-      )
+      })
+      .catch(err => { console.log("ERROR ", err); })
 
 
   }, [])

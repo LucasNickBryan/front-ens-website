@@ -41,10 +41,10 @@ export default function MainFooter() {
                       <script>document.write(new Date().getFullYear())</script>{" "}
                       &copy;{" "}
                       <a
-                        className="d-inline !text-redcolor"
-                        href="http://www.devcrud.com"
+                        className="d-inline !text-white font-bold"
+                        href="#"
                       >
-                        Tout droit réservé
+                        Tout droit réservé EMITECH-2023
                       </a>
                     </p>
                   </li>
