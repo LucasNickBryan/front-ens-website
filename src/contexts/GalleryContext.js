@@ -34,8 +34,8 @@ export const GalleryProvider = ({ children }) => {
         service.get()
             .then((res) => {
                 setData(res.data.data)
-            },
-            )
+            })
+            .catch(err=>console.log("ERROR ", err))
     }
 
     const addGallery = (credential) => {

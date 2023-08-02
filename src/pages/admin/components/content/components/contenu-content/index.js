@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import AddContent from './add-content'
 import ListContent from './list-content'
 import { ContentProvider } from '../../../../../../contexts/ContentContext'
+import { ButtonUI } from '../../../../ui/buttons'
 
 export const ContenuContent = () => {
   const [state, setState] = useState(true) // true: ListContent
@@ -14,7 +15,7 @@ export const ContenuContent = () => {
     !state && setIdToUpdate(0)
   }
 
-  const onUpdate = (id)=>{
+  const onUpdate = (id) => {
     setTextState('retour')
     setIdToUpdate(id)
     setState(false)
@@ -23,7 +24,7 @@ export const ContenuContent = () => {
   return (
     <ContentProvider>
       <div className='h-full w-full overflow-auto p-2'>
-        <span className='bg-black opacity-80 text-white p-2 transition-all delay-100 cursor-pointer hover:opacity-60' onClick={onHandleState}>{textState}</span>
+        <ButtonUI onClick={onHandleState}>{textState}</ButtonUI>
         {
           state ?
             <div className='mt-5'>
@@ -31,7 +32,7 @@ export const ContenuContent = () => {
             </div>
             :
             <div className='mt-5'>
-              <AddContent idToUpdate={idToUpdate}  />
+              <AddContent idToUpdate={idToUpdate} />
             </div>
         }
       </div>

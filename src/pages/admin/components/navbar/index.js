@@ -4,13 +4,14 @@ import userDefaultImage from './../../../../assets/icons/User.ico'
 import { UserContext } from '../../../../contexts/UserContext'
 import $ from 'jquery';
 import './styles.scss'
+import { IMAGE_PATH } from '../../../../config/modules';
 
 export const NavbarAdmin = (props) => {
   const [isMenuShown, setIsMenuShown] = useState(false)
   const [isSetting, setIsSetting] = useState(false)
 
   const { pageLocation, newLocation } = props
-  const { logout } = useContext(UserContext)
+  const { user, logout } = useContext(UserContext)
 
   const toggleDropdownSetting = () => {
     setIsSetting(prev => !prev)
@@ -39,7 +40,7 @@ export const NavbarAdmin = (props) => {
   return (
     <div className="w-full p-2 drop-shadow-lg bg-gradient-to-r from-white to-green-200 rounded flex justify-between px-10 ADMIN_NAVBAR_STYLES">
       {/* DROPDOWN Menu */}
-      <div className="relative inline-block text-left pt-1.5 md:block hidden cursor-pointer">
+      <div className="relative inline-block text-left pt-1.5 md:block hidden dropdownmenubox cursor-pointer">
         <div className="toggle" onClick={onToggle}>
           <span></span>
           <span></span>
@@ -48,8 +49,8 @@ export const NavbarAdmin = (props) => {
         {/* Dropdown Menu */}
         {
           isMenuShown &&
-          <div className="absolute right-[-100px] dropdownmenubox mt-2 w-40 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5"
-            role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+          <div className="absolute right-[-100px] mt-2 w-40 origin-top-right rounded-md dropdownmenubox bg-white shadow-lg ring-1 ring-black ring-opacity-5"
+            role="menu" aria-orientation="vertical">
             <div className="py-1" role="none">
               <Link to="content" className="text-gray-700 block px-4 py-2 text-sm dropdownmenu" onClick={() => onHandleClick('contenu')}>
                 <span><i className='fa fa-toolbox'></i> contenu</span>
@@ -71,15 +72,15 @@ export const NavbarAdmin = (props) => {
         }
       </div>
       {/* <div className='pt-1.5 md:block hidden cursor-pointer'><span className=''>menu</span></div> */}
-      <div className='pt-1.5'>page: <span className='underline underline-offset-4'>{pageLocation}</span></div>
+      <div className='pt-3'>page: <span className='underline underline-offset-4'>{pageLocation}</span></div>
 
       <div className='sm:hidden md:block'>
-        <img src={userDefaultImage} alt="User" className='inline h-10 mr-1 hover:scale-110' />
-        <span>John Doe</span>
+        <img src={user?.avatar? IMAGE_PATH+"/staffs/images/"+user.avatar : userDefaultImage} alt="User" className='inline rounded-full w-14 h-14 mr-1 hover:scale-110' />
+        <span>{user?.username}</span>
       </div>
 
       {/* DROPDOWN SETTINGS */}
-      <div className="relative inline-block text-left pt-1.5">
+      <div className="relative inline-block text-left pt-3">
         <div>
           <button type="button" onClick={toggleDropdownSetting}
             className="inline-flex w-full justify-center text-2xl " id="menu-button" aria-expanded="true" aria-haspopup="true">
@@ -89,7 +90,7 @@ export const NavbarAdmin = (props) => {
         {/* Dropdown setting */}
         {
           isSetting &&
-          <div className="absolute right-0 z-10 dropdownmenubox mt-2 w-40 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5"
+          <div className="absolute right-0 z-10 mt-2 w-40 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5"
             role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
             <div className="py-1" role="none">
               <Link to="users" className="text-gray-700 block px-4 py-2 text-sm dropdownmenu" onClick={() => onHandleClick('utilisateur(s)')}>

@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import ListGallery from './list-gallery'
 import AddGallery from './add-gallery'
 import { GalleryProvider } from '../../../../../../contexts/GalleryContext'
+import { ButtonUI } from '../../../../ui/buttons'
 
 export const GalerieContent = () => {
   const [state, setState] = useState(true) // true: ListContent
@@ -15,7 +16,7 @@ export const GalerieContent = () => {
   return (
     <GalleryProvider>
       <div className='h-full w-full overflow-auto p-2'>
-        <span className='bg-black opacity-80 text-white p-2 cursor-pointer hover:opacity-60' onClick={onHandleState}>{textState}</span>
+        <ButtonUI onClick={onHandleState}>{textState}</ButtonUI>
         {
           state ?
             <div className='mt-5'>
