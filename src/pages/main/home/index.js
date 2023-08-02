@@ -141,19 +141,14 @@ export const HomePage = () => {
             <div className="flex md:flex-col lg:flex-row justify-center gap-5">
               {
                 personnels.map((staff, index) => (
-                  <Animation 
-                  animate={index%2 == 0 ?"flip-right":"flip-left" }  
+                  <Animation
+                  key={index}
+                  animate={index == 1 ?"flip-right":"flip-left" }  
                   duration={(index+1)*1000}>
                     <Card image={staff.image} name={staff.name} occupation={staff.occupation} />
                   </Animation>
                 ))
               }
-              {/* <Animation animate="flip-left" duration="2000">
-                <Card />
-              </Animation>
-              <Animation animate="flip-right" duration="3000">
-                <Card />
-              </Animation> */}
             </div>
           </section>
         }

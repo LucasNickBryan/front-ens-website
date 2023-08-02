@@ -7,15 +7,15 @@ import { Card } from "../ui/cards";
 import { SectionContentUI } from "../ui/section/SectionUI";
 import Header from "../layout/header";
 import BackgroundUrl from '../../../assets/images/imgs/header.JPG'
+import ContentServices from "../../../services/Content.services";
 
 const Actuality = () => {
   const [actualities, setActualities] = useState([]);
 
   useEffect(() => {
-    ActualityServices.get()
-      .then((res) => {
-        setActualities(res.data.data);
-        console.log("Actualités ", res.data.data);
+    ContentServices.getActuality()
+      .then(res => {
+        setActualities(res.data.data)
       })
       .catch((er) => {
         console.log(er);
@@ -38,9 +38,12 @@ const Actuality = () => {
         </div>
       </Header>
       <section className="!px-16">
-        <SectionContentUI />
-        <SectionContentUI />
-        <SectionContentUI />
+        {
+          actualities.length > 0 &&
+          actualities.map((actu, index)=>(
+            <SectionContentUI key={index} content={actu.Content} picture={actu.Picture} />
+          ))
+        }
       </section>
     </div>
   );
