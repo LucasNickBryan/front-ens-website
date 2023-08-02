@@ -116,7 +116,8 @@ export const HomePage = () => {
 
         {
           actualities.length > 0 &&
-          <section className="!px-16">
+          <section className="!px-16 hh_fr">
+            {/* !px-16 */}
             <Animation animate="fade-down">
               <SectionTitle title="Actualités" mt={"50px"} url={"/actuality"} />
             </Animation>
@@ -126,7 +127,7 @@ export const HomePage = () => {
 
         {
           histories.length > 0 &&
-          <section className="!px-16">
+          <section className="!px-16 hh_fr">
             <Animation animate="fade-down">
               <SectionTitle title="Historiques" mt={"0px"} url={"/history"} />
             </Animation>
