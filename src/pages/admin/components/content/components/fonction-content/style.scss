@@ -23,7 +23,7 @@
                 // background-color: aqua;
                 padding: 5px;
                 width: 100%;
-                height: 64px;
+                // height: 100px;
                 float: left;
     
                 box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -53,7 +53,7 @@
                 // background-color: aqua;
                 padding: 5px;
                 width: 100%;
-                height: 64px;
+                // height: 64px;
                 float: left;
     
                 box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -72,6 +72,38 @@
     }
    
 
+    .form_fc{
+        // width: 50%;
+        height: calc(100% - 170px);
+        background-color: rgb(255, 255, 255);
+        border-radius: 20px;
+        position: absolute;
+        right: 10px;
+        overflow: hidden;
+        transition: 0.5s;
+        box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+        z-index: 10;
+        // margin-top: -10px;
+        .inside_fc{
+            float: left;
+            width: 100%;
+            height: 100%;
+            position: relative;
+            z-index: 11;
+        }
+    }
+
+    .active_form_fc{
+        width: 300px;
+        padding: 20px;
+
+    }
+
+    .desactive_form_fc{
+        width: 0;
+        padding: 0;
+    }
+
     .space_work_fc{
         width: calc(100% - 300px);
         height: calc(100% - 64px);
@@ -83,37 +115,7 @@
         padding: 10px;
         position: relative;
 
-        .form_fc{
-            // width: 50%;
-            height: calc(100% - 20px);
-            background-color: rgb(255, 255, 255);
-            border-radius: 20px;
-            position: absolute;
-            right: 10px;
-            overflow: hidden;
-            transition: 0.5s;
-            box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
-            z-index: 10;
-            // margin-top: -10px;
-            .inside_fc{
-                float: left;
-                width: 100%;
-                height: 100%;
-                position: relative;
-                z-index: 11;
-            }
-        }
 
-        .active_form_fc{
-            width: 300px;
-            padding: 20px;
-
-        }
-
-        .desactive_form_fc{
-            width: 0;
-            padding: 0;
-        }
 
         .hierarchie{
             width: 100%;
@@ -199,7 +201,7 @@
     background-color: rgb(245, 255, 244);
     width: 100%;
     height: 100px;
-    border-style: dotted;
+    // border-style: initial;
     border-width: thick;
     border-color: grey;
     margin-bottom: 10px;
@@ -209,26 +211,39 @@
     text-align: center;
     overflow: hidden;
     transition: 0.2s;
-   
+    padding-top: 10px;
+    position: relative;
     
 
     .head_fc{
         // background-color: red;
-        height: 50%;
+        height: 60%;
+        // height: 100%;
         width: 100%;
+        font-weight: 600;
+        color: rgb(39, 39, 39)
     }
 
     .foot_fc{
-        background-color: white;
-        height: 50%;
-        width: 100%;
-        padding: 10px;
-        position: relative;
+        background-color: grey;
+        color: white;
+        height: 100%;
+        width: 150px;
+        // padding: 10px;
+        position: absolute;
+        right: 0;
+        text-align: right;
+        font-size: 100%;
+        padding-right: 10px;
+        padding-top: 5px;
+        font-weight: 700;
+        border-top-left-radius: 50%;
     }
 }
 
 .fun_p_fc:hover{
     background-color: rgb(137, 255, 212);
+    
 }
 
 .sec_fc{
@@ -241,4 +256,17 @@
 
 .full_p_fc:hover{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+@media screen and (max-width: 700px) {
+    .main_fc{
+        .liste_left {
+            width: 100%;
+        }
+
+        .space_work_fc{
+            display: none;
+        }
+    }
+    
 }
