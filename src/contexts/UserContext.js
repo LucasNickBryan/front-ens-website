@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import UserServices from "../services/User.services";
 import DefaultImage from '../assets/icons/image.png'
 import { useNavigate } from "react-router-dom";
@@ -8,7 +8,7 @@ export const UserContext = createContext(null)
 
 export const UserProvider = ({ children }) => {
     let navigate = useNavigate()
-    const [isLoading, setIsLoading] = useState(true)
+    const [user, setUser] = useState(null)
     const [data, setData] = useState([
         // {
         //     id: 1,
@@ -20,6 +20,12 @@ export const UserProvider = ({ children }) => {
         // },
     ])
     let service = UserServices
+
+    useEffect(()=>{
+        service.getUser()
+        .then((res)=>{ console.log(res.data);setUser(res.data)})
+        .catch(err=>console.log("ERROR ", err))
+    },[])
 
     const fetchUser = () => {
         service.get()
@@ -105,7 +111,7 @@ export const UserProvider = ({ children }) => {
     }
 
     return (
-        <UserContext.Provider value={{ users: data, fetchUser, disableUser, addUser, signUpUser, signInUser, updateUser, logout, deleteUser }} >
+        <UserContext.Provider value={{ users: data, user, fetchUser, disableUser, addUser, signUpUser, signInUser, updateUser, logout, deleteUser }} >
             {children}
         </UserContext.Provider>
     )

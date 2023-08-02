@@ -13,6 +13,9 @@ class UserServices {
     //     return axios.get(API_URL + "/user/logout", header());
     // }
     get(){
+        return axios.get(API_URL + "/user/all", header());
+    }
+    getUser(){
         return axios.get(API_URL + "/user", header());
     }
     disable(id){
