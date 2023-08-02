@@ -354,12 +354,13 @@ export default function Staff(){
     function bigy(){
       var tabNiv = [];
       for (let i = 0; i < nbNiv1; i++) {
+
           tabNiv[i] =
           <>
             <div className='level_fc'>
               <div className='title_level_fc'>
-                {/* Niveau {rankR1[i]} */}
-                {/* Niveau {i} */}
+                {/* Niveau {rankR1[i]}
+                Niveau {i} */}
               </div>
                 
               <div className='reste_level_fc'>
