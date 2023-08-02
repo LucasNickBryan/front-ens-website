@@ -40,7 +40,7 @@ export const HomePage = () => {
           <Animation animate="fade-down" duration="4000">
             <SectionTitle title="Nos moments forts" url={"/gallery"} />
           </Animation>
-          <Animation animate="fade-up" duration="3000">
+          <Animation animate="fade-up" duration="3000" offset="200">
             <div className="!mb-20">
               <CarouselUI />
             </div>

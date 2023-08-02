@@ -223,6 +223,7 @@ export default function Staff(){
       },
     ];
 
+
     // const [data_ex2, setListFunction] = useState([]);
     // const [data_ex1, setListPerso] = useState([]);
 
@@ -246,34 +247,34 @@ export default function Staff(){
     }, []);
 
     function getListes(){
-      // FunctionServices.get().then(res =>{
-      //   setListFunction(res.data);
-      //   data2 = res.data;
-      //   updateNiveau();
-      //   console.log(data2);
-      //   setCheck(false);
-      // }, 
-      //   err => {
-      //       console.log("ERROR ", err.message);
-      //   }
-      // )
+      FunctionServices.get().then(res =>{
+        setListFunction(res.data);
+        data2 = res.data;
+        updateNiveau();
+        console.log(data2);
+        setCheck(false);
+      }, 
+        err => {
+            console.log("ERROR ", err.message);
+        }
+      )
   
-      // PersonnelServices.get().then(res =>{
-      //   setListPerso(res.data);
-      //   data1 = res.data;
-      //   setCheck(true);
-      // }, 
-      //   err => {
-      //       console.log("ERROR ", err.message);
-      //   }
-      // )
+      PersonnelServices.get().then(res =>{
+        setListPerso(res.data);
+        data1 = res.data;
+        setCheck(true);
+      }, 
+        err => {
+            console.log("ERROR ", err.message);
+        }
+      )
 
-      setListFunction(data_ex20);
-      data2 = data_ex20;
-      setListPerso(data_ex10);
-      data1 = data_ex10;
+      // setListFunction(data_ex20);
+      // data2 = data_ex20;
+      // setListPerso(data_ex10);
+      // data1 = data_ex10;
 
-      updateNiveau();
+      // updateNiveau();
       // console.log(data_ex1);
     }
 

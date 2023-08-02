@@ -6,6 +6,7 @@ import FunctionServices from '../../../../../../services/Function.services';
 import PersonnelServices from '../../../../../../services/Personnel.services';
 import DefautImage from "../../../../../../assets/icons/image.png";
 import { IMAGE_PATH } from '../../../../../../config/modules';
+import { notify } from '../../../../../ui/Notification';
 
 export const FonctionContent = () => {
 
@@ -480,7 +481,19 @@ export const FonctionContent = () => {
       formData.append('name', nomFonction);
       formData.append('rank', rangFonction);
 
-      FunctionServices.post(formData);
+      notify(
+        FunctionServices.post(formData).then(res =>{
+          getListes();
+          init();
+        }, 
+          err => {
+              console.log("ERROR ", err.message);
+          }
+        )
+      );
+
+
+      
       getListes();
       init();
     }else{
@@ -522,7 +535,17 @@ export const FonctionContent = () => {
     var elements2 = document.getElementsByClassName('44_fc');
     elements2[0].style.display = "block";
 
-    FunctionServices.delete(idFonction);
+    notify(
+      FunctionServices.delete(idFonction).then(res =>{
+        getListes();
+        init();
+      }, 
+        err => {
+            console.log("ERROR ", err.message);
+        }
+      )
+    )
+    
 
     getListes();
     init();
@@ -558,7 +581,17 @@ export const FonctionContent = () => {
     formData.append('name', nomFonction);
     formData.append('rank', rangFonction);
 
-    FunctionServices.put(idFonction,formData);
+    notify(
+      FunctionServices.put(idFonction,formData).then(res =>{
+        getListes();
+        init();
+      }, 
+        err => {
+            console.log("ERROR ", err.message);
+        }
+      )
+  
+    )
 
     getListes();
     init();
