@@ -707,7 +707,7 @@ export const FonctionContent = () => {
               <Input value={nomFonction}  onChange={e => setNomFonction(e.target.value)} />
               
               <p>Rang de la fonction</p>
-              <Input value={rangFonction} type="number"  onChange={e => setRangFonction(e.target.value)} />
+              <Input value={rangFonction} type="number" min="0" onChange={e => setRangFonction(e.target.value)} />
                 <button className='btn_fc 11_fc' style={{float: "right", display: "block"}} onClick={(e) => enregistrer(e)}>Enregistrer</button>
                 
                 <button className='btn_fc 44_fc' style={{float: "right", display: "block", backgroundColor: "grey", color: "white"}} onClick={(e) => supprimer(e)}>Supprimer</button>

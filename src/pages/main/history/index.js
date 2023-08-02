@@ -44,7 +44,7 @@ const History = () => {
         </div>
       </Header>
 
-      <section className="w-10/12 mx-auto">
+      <section className="w-10/12 mx-auto hh_fr">
         {
           histories.length > 0 &&
           histories.map((hist, index)=>(
