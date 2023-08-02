@@ -54,19 +54,17 @@ export default function Gallery() {
                 <div className='grid  grid-cols-4 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-5'>
                     {
                         galleries.length > 0 && galleries.map((img, index) => (
-                            <div key={index} className='max-w-sm bg-redcolor relative cursor-pointer image-container'>
-                                <Animation random={true} className={" relative"}>
-                                    <div className='!max-h-56'>
-                                        <img src={img.image} alt='...' className='w-full  h-full object-cover  rounded-lg' />
-                                    </div>
-                                    <div className='absolute box-overlay'>
-                                        <div className='relative h-full'>
-                                            <div className='absolute top-[45%] left-[47%] sm:top-[40%] sm:left-[40%] md:top-[40%] md:left-[40%]'>
-                                                <img src={ZoomIcon} alt='zoom' className='w-10 sm:w-6 hover:scale-110 transition-all delay-150' onClick={() => zoomImage(img.image)} />
-                                            </div>
+                            <div key={index} className='max-w-sm relative cursor-pointer image-container'>
+                                <Animation random={true}>
+                                    <img src={img.image} alt='...' className='w-full h-56 object-cover rounded-lg' />
+                                </Animation>
+                                <div className='absolute box-overlay'>
+                                    <div className='relative h-full'>
+                                        <div className='absolute top-[45%] left-[47%] sm:top-[40%] sm:left-[40%] md:top-[40%] md:left-[40%]'>
+                                            <img src={ZoomIcon} alt='zoom' className='w-10 sm:w-6 hover:scale-110 transition-all delay-150' onClick={() => zoomImage(img.image)} />
                                         </div>
                                     </div>
-                                </Animation>
+                                </div>
                             </div>
                         ))
                     }
@@ -78,7 +76,7 @@ export default function Gallery() {
                     <div className="fixed inset-0 z-10 overflow-y-auto">
                         <div className="flex min-h-full items-end justify-center p-4 text-center items-center p-0">
                             <div className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all my-8 w-full h-full max-h-[80vh] object-contain">
-                                <img src={currentImage} alt='...' />
+                                <img src={currentImage} alt='...' className='w-full h-full object-cover' />
                                 <div className='absolute top-2 right-2'>
                                     <img src={CloseIcon} alt='...' className='w-8 hover:scale-110 cursor-pointer' onClick={() => { $('.gallery-zoom').fadeToggle(300) }} />
                                 </div>
