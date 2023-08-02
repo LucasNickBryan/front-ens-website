@@ -77,7 +77,6 @@ function AddContent(props) {
         image: image.length > 0 ? image[0].file : null,
         isActuality: !isHistory
       }
-      console.log("DATA ", data);
       if (idToUpdate > 0) updateContent(idToUpdate, data)
       else addContent(data)
     }

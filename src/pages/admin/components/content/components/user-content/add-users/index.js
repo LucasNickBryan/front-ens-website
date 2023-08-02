@@ -76,7 +76,6 @@ export default function AddUser(props) {
         avatar: image.length > 0 ? image[0].file : currentImage,
       }
 
-      console.log("DATA ", data);
       if (idToUpdate > 0) updateUser(idToUpdate, data)
       else signUpUser(data)
     }

@@ -251,7 +251,6 @@ export default function Staff() {
       setListFunction(res.data);
       data2 = res.data;
       updateNiveau();
-      console.log(data2);
       setCheck(false);
     },
       err => {

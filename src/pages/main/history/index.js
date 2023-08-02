@@ -25,7 +25,6 @@ const History = () => {
     HistoryServices.get()
       .then((res) => {
         setHistories(res.data.data);
-        console.log("HISTORIES ", res.data.data);
       })
       .catch((er) => {
         console.log(er);

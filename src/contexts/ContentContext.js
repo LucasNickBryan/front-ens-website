@@ -1,6 +1,7 @@
 import { createContext, useState } from "react";
 import ContentServices from "../services/Content.services";
 import DefaultImage from '../assets/icons/image.png'
+import { notify } from "../pages/ui/Notification";
 
 export const ContentContext = createContext(null)
 
@@ -34,33 +35,34 @@ export const ContentProvider = ({ children }) => {
     }
 
     const addContent = (credential) => {
-        service.post(credential)
-            .then((res) => {
-                console.log("SUCCESS ", res.data.data);
-                fetchContent()
-            },
-                err => { console.log("FAILED OPERATION", err.message); }
-            )
+        notify(
+            service.post(credential)
+                .then((res) => {
+                    fetchContent()
+                },
+                )
+        )
     }
 
     const updateContent = (id, credential) => {
-        service.put(id, credential)
-            .then((res) => {
-                console.log("SUCCESS ", res.data.data);
-                fetchContent()
-            },
-                err => { console.log("FAILED OPERATION", err.message); }
-            )
+        notify(
+            service.put(id, credential)
+                .then((res) => {
+                    fetchContent()
+                },
+                )
+        )
     }
 
     const deleteContent = (id) => {
-        service.delete(id)
-            .then((res) => {
-                console.log("SUCCESS ", res.data.data);
-                fetchContent()
-            },
-                err => { console.log("FAILED OPERATION", err.message); }
-            )
+        notify(
+            service.delete(id)
+                .then((res) => {
+                    fetchContent()
+                },
+                    err => { console.log("FAILED OPERATION", err.message); }
+                )
+        )
     }
 
     return (

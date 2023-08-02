@@ -2,7 +2,7 @@ import { createContext, useState } from "react";
 import UserServices from "../services/User.services";
 import DefaultImage from '../assets/icons/image.png'
 import { useNavigate } from "react-router-dom";
-import Notification, { notify } from "../pages/ui/Notification";
+import { notify } from "../pages/ui/Notification";
 
 export const UserContext = createContext(null)
 
@@ -33,31 +33,28 @@ export const UserProvider = ({ children }) => {
     }
 
     const disableUser = (id) => {
-        service.disable(id)
-            .then((res) => {
-                console.log("SUCCESS ", res.data);
-                fetchUser()
-            },
-                err => {
-                    console.log("ERROR ", err.message);
-                }
-            )
+        notify(
+            service.disable(id)
+                .then((res) => {
+                    fetchUser()
+                },
+                )
+        )
     }
 
     const signUpUser = (credential) => {
-        service.signup(credential)
-            .then((res) => {
-                console.log("SUCCESS ", res.data);
-                fetchUser()
-            },
-                err => { console.log("FAILED OPERATION", err.message); }
-            )
+        notify(
+            service.signup(credential)
+                .then((res) => {
+                    fetchUser()
+                },
+                )
+        )
     }
     const signInUser = (credential) => {
         notify(
             service.signin(credential)
                 .then((res) => {
-                    console.log("SUCCESS ", res.data);
                     localStorage.setItem("user_token", res.data);
                     navigate("/admin/");
                 }),
@@ -78,38 +75,38 @@ export const UserProvider = ({ children }) => {
     }
 
     const addUser = (credential) => {
-        service.post(credential)
-            .then((res) => {
-                fetchUser()
-            },
-                err => { console.log("FAILED OPERATION", err.message); }
-            )
+        notify(
+            service.post(credential)
+                .then((res) => {
+                    fetchUser()
+                },
+                )
+        )
     }
 
     const updateUser = (id, credential) => {
-        service.put(id, credential)
-            .then((res) => {
-                console.log("SUCCESS ", res.data);
-                fetchUser()
-            },
-                err => { console.log("FAILED OPERATION", err.message); }
-            )
+        notify(
+            service.put(id, credential)
+                .then((res) => {
+                    fetchUser()
+                },
+                )
+        )
     }
 
     const deleteUser = (id) => {
-        service.delete(id)
-            .then((res) => {
-                console.log("SUCCESS ", res.data);
-                fetchUser()
-            },
-                err => { console.log("FAILED OPERATION", err.message); }
-            )
+        notify(
+            service.delete(id)
+                .then((res) => {
+                    fetchUser()
+                },
+                )
+        )
     }
 
     return (
         <UserContext.Provider value={{ users: data, fetchUser, disableUser, addUser, signUpUser, signInUser, updateUser, logout, deleteUser }} >
             {children}
-            <Notification />
         </UserContext.Provider>
     )
 }

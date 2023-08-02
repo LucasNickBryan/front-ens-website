@@ -1,6 +1,7 @@
 import { createContext, useState } from "react";
 import PersonnelServices from "../services/Personnel.services";
 import DefaultImage from '../assets/icons/image.png'
+import { notify } from "../pages/ui/Notification";
 
 export const PersonnelContext = createContext(null)
 
@@ -32,33 +33,33 @@ export const PersonnelProvider = ({ children }) => {
     }
 
     const addPersonnel = (credential) => {
-        service.post(credential)
-            .then((res) => {
-                console.log("SUCCESS ", res.data);
-                fetchPersonnel()
-            },
-                err => { console.log("FAILED OPERATION", err.message); }
-            )
+        notify(
+            service.post(credential)
+                .then((res) => {
+                    fetchPersonnel()
+                },
+                )
+        )
     }
 
     const updatePersonnel = (id, credential) => {
-        service.put(id, credential)
-            .then((res) => {
-                console.log("SUCCESS ", res.data);
-                fetchPersonnel()
-            },
-                err => { console.log("FAILED OPERATION", err.message); }
-            )
+        notify(
+            service.put(id, credential)
+                .then((res) => {
+                    fetchPersonnel()
+                },
+                )
+        )
     }
 
     const deletePersonnel = (id) => {
-        service.delete(id)
-            .then((res) => {
-                console.log("SUCCESS ", res.data);
-                fetchPersonnel()
-            },
-                err => { console.log("FAILED OPERATION", err.message); }
-            )
+        notify(
+            service.delete(id)
+                .then((res) => {
+                    fetchPersonnel()
+                },
+                )
+        )
     }
 
     return (

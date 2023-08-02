@@ -8,7 +8,6 @@ export const AuthProvider = ({ children }) => {
     let service = AuthServices
 
     const signin = (data) => {
-
         if (!isLoggedUser) {
             service.signin(data)
                 .then((res) => {
