@@ -18,7 +18,7 @@ export const SectionContentUI = (props) => {
                     </div>
                 </Animation>
             }
-            <div className="relative pl-5 text-side shadow">
+            <div className="relative pl-5 text-side shadow hh2_fr">
                 <Animation animate={isActuality ? "fade-left" : "fade-right"}>
                     <div className="text-center pr-5">
                         <h2 className="border-b-2 border-redcolor uppercase text-redcolor">{title}</h2>
