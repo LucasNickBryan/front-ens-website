@@ -430,10 +430,11 @@ export const FonctionContent = () => {
         <div className={'fun_p_fc '+vv} id={"fun"+p.id} onClick={(e) => setForm(e,p.name,p.rank,p.id)}>
           <div className='head_fc'> {p.name}
           <br></br>
-          Niveau: {p.rank}
+          
           </div>
           <div className='foot_fc'>
-            <button className='bt_change_fc' style={{height: "0px", padding: "0"}} id={"cha"+p.id}>Changer</button>
+            {/* <button className='bt_change_fc' style={{height: "0px", padding: "0"}} id={"cha"+p.id}>Changer</button> */}
+            Niveau: {p.rank}
           </div>
           
         </div>
@@ -539,10 +540,8 @@ export const FonctionContent = () => {
       FunctionServices.delete(idFonction).then(res =>{
         getListes();
         init();
-      }, 
-        err => {
-            console.log("ERROR ", err.message);
-        }
+        console.log(res);
+      }
       )
     )
     
@@ -699,17 +698,51 @@ export const FonctionContent = () => {
       {/* <div>FonctionContent</div> */}
 
       <div className='main_fc'>
+          <div className='form_fc desactive_form_fc' id='form_fc'>
+              <div className='inside_fc'>
+              <button onClick={(e) => openM(e)} style={{border: "2px solid grey", paddingLeft: "10px", paddingRight: "10px"}}>X</button>
+              
+              <h3><b>Formulaire fonction</b></h3><br></br>
+              <p>Nom de la fonction</p>
+              <Input value={nomFonction}  onChange={e => setNomFonction(e.target.value)} />
+              
+              <p>Rang de la fonction</p>
+              <Input value={rangFonction} type="number"  onChange={e => setRangFonction(e.target.value)} />
+                <button className='btn_fc 11_fc' style={{float: "right", display: "block"}} onClick={(e) => enregistrer(e)}>Enregistrer</button>
+                
+                <button className='btn_fc 44_fc' style={{float: "right", display: "block", backgroundColor: "grey", color: "white"}} onClick={(e) => supprimer(e)}>Supprimer</button>
+                
+                <button className='btn_fc 33_fc' style={{float: "right", width: "64px", display: "none", marginLeft: "20px"}}
+                onClick={(e) => oui2(e)}>Oui</button>
+                <button className='btn_fc 33_fc' style={{float: "right", width: "64px", display: "none", marginLeft: "20px"}}
+                onClick={(e) => non2(e)}>Non</button>
+
+                <p className='22_fc' style={{display: "none", color: "red"}}>Vous êtes sûre de vouloir modifier?</p>
+                <button className='btn_fc 22_fc' style={{float: "right", width: "64px", display: "none", marginLeft: "20px"}}
+                onClick={(e) => oui(e)}>Oui</button>
+                <button className='btn_fc 22_fc' style={{float: "right", width: "64px", display: "none", marginLeft: "20px"}}
+                onClick={(e) => non(e)}>Non</button>
+              </div>
+          </div>
+
 
         <div className='liste_left'>
           <div className='liste_fonction_fc'>
-          <div>Fonction</div>
+          
             <div className='search_p_fc'>
+              <div>Recherche:</div>
               <div>
                 <Input value={recherche2}  onChange={e => setRecherche2(e.target.value)} />
               </div>
+              
               {/* <div>Liste personnel:</div> */}
-
+              
             </div>
+
+          <div style={{display: "flex", justifyContent: "center", padding: "10px"}}>
+              <button className='btn_fc' onClick={(e) => openM(e)}> + Ajouter une fonction</button>
+          </div>
+
             <div className='data_p_fc'>
               {
                 data_ex2.map((ind) => {
@@ -751,34 +784,9 @@ export const FonctionContent = () => {
 
 
         <div className='space_work_fc'>
-          <div className='form_fc desactive_form_fc' id='form_fc'>
-              <div className='inside_fc'>
-              <button onClick={(e) => openM(e)} style={{border: "2px solid grey", paddingLeft: "10px", paddingRight: "10px"}}>X</button>
-              
-              <h3><b>Formulaire fonction</b></h3><br></br>
-              <p>Nom de la fonction</p>
-              <Input value={nomFonction}  onChange={e => setNomFonction(e.target.value)} />
-              
-              <p>Rang de la fonction</p>
-              <Input value={rangFonction} type="number"  onChange={e => setRangFonction(e.target.value)} />
-                <button className='btn_fc 11_fc' style={{float: "right", display: "block"}} onClick={(e) => enregistrer(e)}>Enregistrer</button>
-                
-                <button className='btn_fc 44_fc' style={{float: "right", display: "block", backgroundColor: "grey", color: "white"}} onClick={(e) => supprimer(e)}>Supprimer</button>
-                
-                <button className='btn_fc 33_fc' style={{float: "right", width: "64px", display: "none", marginLeft: "20px"}}
-                onClick={(e) => oui2(e)}>Oui</button>
-                <button className='btn_fc 33_fc' style={{float: "right", width: "64px", display: "none", marginLeft: "20px"}}
-                onClick={(e) => non2(e)}>Non</button>
+         
 
-                <p className='22_fc' style={{display: "none", color: "red"}}>Vous êtes sûre de vouloir modifier?</p>
-                <button className='btn_fc 22_fc' style={{float: "right", width: "64px", display: "none", marginLeft: "20px"}}
-                onClick={(e) => oui(e)}>Oui</button>
-                <button className='btn_fc 22_fc' style={{float: "right", width: "64px", display: "none", marginLeft: "20px"}}
-                onClick={(e) => non(e)}>Non</button>
-              </div>
-          </div>
-
-          <button className='btn_fc' onClick={(e) => openM(e)}> + Ajouter une fonction</button>
+          {/* <button className='btn_fc' onClick={(e) => openM(e)}> + Ajouter une fonction</button> */}
             <div className='hierarchie'>
               {
                 bigy()
