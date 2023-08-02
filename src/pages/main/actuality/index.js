@@ -1,9 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "./styles.scss";
-import ActualityServices from "../../../services/Actuality.services";
-import CarouselUI from "../ui/carousel";
-import { SectionTitle } from "../ui/texts/texts";
-import { Card } from "../ui/cards";
 import { SectionContentUI } from "../ui/section/SectionUI";
 import Header from "../layout/header";
 import BackgroundUrl from '../../../assets/images/imgs/header.JPG'

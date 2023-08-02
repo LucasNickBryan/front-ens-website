@@ -55,7 +55,7 @@ export const HomePage = () => {
         err => { console.log("ERROR ", err); }
       )
 
-    // load actualities
+    // load personnels
     PersonnelServices.get()
       .then(res => {
         let staff_list = []

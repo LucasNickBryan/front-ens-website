@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from "react";
-
-import image from "../../../assets/images/darya.jpg";
 import "./style.scss";
-import HistoryServices from "../../../services/History.services";
-import { IMAGE_PATH } from "../../../config/modules";
 import Header from "../layout/header";
 import BackgroundUrl from '../../../assets/images/imgs/header.JPG'
 import { SectionContentUI } from "../ui/section/SectionUI";
+import ContentServices from "../../../services/Content.services";
 
 const History = () => {
   const [histories, setHistories] = useState([
@@ -22,9 +19,9 @@ const History = () => {
   ]);
 
   useEffect(() => {
-    HistoryServices.get()
-      .then((res) => {
-        setHistories(res.data.data);
+    ContentServices.getHistory()
+      .then(res => {
+        setHistories(res.data.data)
       })
       .catch((er) => {
         console.log(er);
@@ -48,8 +45,12 @@ const History = () => {
       </Header>
 
       <section className="w-10/12 mx-auto">
-        <SectionContentUI isActuality={false} />
-        <SectionContentUI isActuality={false} />
+        {
+          histories.length > 0 &&
+          histories.map((hist, index)=>(
+            <SectionContentUI key={index} isActuality={false} content={hist.Content} picture={hist.Picture} />
+          ))
+        }
       </section>
     </div>
   );
