@@ -7,6 +7,8 @@ import ZoomIcon from '../../../assets/icons/search-plus.png';
 import CloseIcon from '../../../assets/icons/window-close.png';
 import Animation from '../../ui/Animation';
 import $ from 'jquery';
+import GalleryServices from '../../../services/Gallery.services';
+import { IMAGE_PATH } from '../../../config/modules';
 
 const GALLERIES = [
     { image: DefautlImage }, { image: DefautlImage }, { image: DefautlImage }, { image: DefautlImage }, { image: DefautlImage }, { image: DefautlImage },
@@ -15,6 +17,7 @@ const GALLERIES = [
 
 export default function Gallery() {
     const [currentImage, setCurrentImage] = useState([])
+    const [galleries, setGalleries] = useState([])
 
     useEffect(() => {
         window.scrollTo({
@@ -22,6 +25,16 @@ export default function Gallery() {
             left: 0,
             behavior: "smooth",
         });
+
+        GalleryServices.get()
+            .then(res => {
+                const gallery_images = []
+                res.data.data.forEach(img => {
+                    gallery_images.push({ image: IMAGE_PATH + "/pictures/images/" + img.image })
+                });
+                setGalleries(gallery_images)
+            })
+            .catch(err => { console.log("ERROR ", err); })
     }, [])
 
     const zoomImage = (image) => {
@@ -40,10 +53,12 @@ export default function Gallery() {
             <section className='!px-10 relative'>
                 <div className='grid  grid-cols-4 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-5'>
                     {
-                        GALLERIES.map((img, index) => (
-                            <div key={index} className='max-w-sm relative cursor-pointer image-container'>
-                                <Animation random={true}>
-                                    <img src={img.image} alt='...' className='w-full rounded-lg' />
+                        galleries.length > 0 && galleries.map((img, index) => (
+                            <div key={index} className='max-w-sm bg-redcolor relative cursor-pointer image-container'>
+                                <Animation random={true} className={" relative"}>
+                                    <div className='!max-h-56'>
+                                        <img src={img.image} alt='...' className='w-full  h-full object-cover  rounded-lg' />
+                                    </div>
                                     <div className='absolute box-overlay'>
                                         <div className='relative h-full'>
                                             <div className='absolute top-[45%] left-[47%] sm:top-[40%] sm:left-[40%] md:top-[40%] md:left-[40%]'>
