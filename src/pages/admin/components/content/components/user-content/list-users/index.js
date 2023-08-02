@@ -8,8 +8,8 @@ import Skeleton from '../../../../../ui/skeleton'
 import { UserContext } from '../../../../../../../contexts/UserContext'
 
 export default function ListUser(props) {
-    const { onUpdate } = props
-    const { users, fetchUser, disableUser, deleteUser } = useContext(UserContext)
+    const { onUpdate, onUpdatePassword } = props
+    const { users, user, fetchUser, disableUser, deleteUser } = useContext(UserContext)
     const [openModal, setOpenModal] = useState(false)
     const [idToDelete, setIdToDelete] = useState(0)
 
@@ -44,6 +44,7 @@ export default function ListUser(props) {
                     <tr className='uppercase text-left'>
                         <th className='p-3'>photo</th>
                         <th>nom d'utilisateur</th>
+                        <th>email</th>
                         <th>rôle</th>
                         <th>compte</th>
                         <th>actions</th>
@@ -52,31 +53,42 @@ export default function ListUser(props) {
                 <tbody className='border border-2 rounded p-2'>
                     {
                         users.length > 0 ?
-                            users.map(user => (
-                                <tr>
+                            users.map(usr => (
+                                <tr key={usr.id}>
                                     <td className='p-2'>
-                                        <img src={user.avatar ?
-                                            IMAGE_PATH + "/staffs/images/" + user.avatar :
+                                        <img src={usr.avatar ?
+                                            IMAGE_PATH + "/staffs/images/" + usr.avatar :
                                             DefautImage} className='w-24' />
                                     </td>
-                                    <td>{user.username}</td>
-                                    <td>{user.role}</td>
+                                    <td>{usr.username}</td>
+                                    <td>{usr.email}</td>
+                                    <td>{usr.role}</td>
                                     <td>
+                                        <div>
+                                            {
+                                                usr.isActive ?
+                                                    <button className='p-1 px-4 rounded-full text-white bg-greencolor'
+                                                        onClick={() => disableUser(usr.id)}
+                                                    >activé</button>
+                                                    :
+                                                    <button className='p-1 px-4 rounded-full text-white bg-redcolor'
+                                                        onClick={() => disableUser(usr.id)}
+                                                    >bloqué</button>
+                                            }
+                                        </div>
                                         {
-                                            user.isActive ?
-                                                <button className='p-1 px-4 rounded-full text-white bg-greencolor'
-                                                    onClick={() => disableUser(user.id)}
-                                                >activé</button>
-                                                :
-                                                <button className='p-1 px-4 rounded-full text-white bg-redcolor'
-                                                    onClick={() => disableUser(user.id)}
-                                                >bloqué</button>
+                                            (usr.email == user?.email) &&
+                                            <div className='pt-1'>
+                                                <button className='p-1 px-4 rounded-full text-white bg-slate-800'
+                                                    onClick={onUpdatePassword}
+                                                >mot de passe</button>
+                                            </div>
                                         }
                                     </td>
                                     <td className='table-cell align-middle'>
                                         <div className='m-auto grid grid-cols-2'>
-                                            <img src={PencilIcon} alt="edit" className='w-7 cursor-pointer' onClick={() => onUpdate(user.id)} />
-                                            <img src={DeleteIcon} alt="delete" className='w-5 cursor-pointer' onClick={() => onHandleDelete(user.id)} />
+                                            <img src={PencilIcon} alt="edit" className='w-7 cursor-pointer' onClick={() => onUpdate(usr.id)} />
+                                            <img src={DeleteIcon} alt="delete" className='w-5 cursor-pointer' onClick={() => onHandleDelete(usr.id)} />
                                         </div>
                                     </td>
                                 </tr>

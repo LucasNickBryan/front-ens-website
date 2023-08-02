@@ -27,6 +27,9 @@ class UserServices {
     put(id, data){
         return axios.put(API_URL + "/user/" + id, data, header("image"));
     }
+    updatePassword(data){
+        return axios.put(API_URL + "/user/changePassword", data, header());
+    }
     delete(id){
         return axios.delete(API_URL + "/user/" + id, header());
     }
