@@ -5,6 +5,7 @@ import { ContentAdmin } from './content'
 import './styles.scss'
 import { useNavigate } from 'react-router-dom'
 import { UserProvider } from '../../../contexts/UserContext'
+import Notification from '../../ui/Notification'
 
 export const AdminPage = () => {
   const [pageLocation, setPageLocation] = useState("admin panel")
@@ -24,12 +25,13 @@ export const AdminPage = () => {
     }
   }
 
-  // useEffect(() => {
-  //   !localStorage.getItem("user_token") && navigate("/sign-in");
-  // }, [])
+  useEffect(() => {
+    !localStorage.getItem("user_token") && navigate("/sign-in");
+  }, [])
 
   return (
     <div className="flex w-full h-screen bg-gradient-to-b from-white from-95% to-red-200">
+      <Notification/>
       <div className='w-80 p-3 md:hidden'>
         <SidebarAdmin newLocation={setPageLocation} onChangeActive={onChangeActive} />
       </div>

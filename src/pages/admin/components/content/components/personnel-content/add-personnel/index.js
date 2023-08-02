@@ -74,7 +74,6 @@ export default function AddPersonnel(props) {
       occupation: fonctionId.value,
       avatar: image.length > 0 ? image[0].file : null,
     }
-    console.log("DATA ", data);
     if (idToUpdate > 0) updatePersonnel(idToUpdate, data)
     else addPersonnel(data)
 
