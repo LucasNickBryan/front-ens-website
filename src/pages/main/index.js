@@ -7,9 +7,9 @@ import MainFooter from "./layout/footer";
 
 function Main() {
   let navigate = useNavigate()
-  useEffect(() => {
-    localStorage.getItem("user_token") && navigate("/admin");
-  }, [])
+  // useEffect(() => {
+  //   localStorage.getItem("user_token") && navigate("/admin");
+  // }, [])
 
   return (
     <div className="MAIN_STYLES">

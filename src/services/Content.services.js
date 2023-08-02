@@ -6,6 +6,12 @@ class ContentServices {
     get(){
         return axios.get(API_URL + "/contents", header());
     }
+    getHistory(){
+        return axios.get(API_URL + "/contents/history", header());
+    }
+    getActuality(){
+        return axios.get(API_URL + "/contents/actuality", header());
+    }
     post(data){
         return axios.post(API_URL + "/contents", data, header("image"));
     }

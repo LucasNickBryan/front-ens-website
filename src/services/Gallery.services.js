@@ -5,6 +5,9 @@ class GalleryServices {
     get(){
         return axios.get(API_URL + "/pictures", header());
     }
+    getPrincipal(){
+        return axios.get(API_URL + "/pictures/principal", header());
+    }
     post(data){
         return axios.post(API_URL + "/pictures", data, header("image"));
     }
