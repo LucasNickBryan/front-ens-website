@@ -33,7 +33,7 @@ const Actuality = () => {
           </div>
         </div>
       </Header>
-      <section className="!px-16">
+      <section className="!px-16 hh_fr">
         {
           actualities.length > 0 &&
           actualities.map((actu, index)=>(

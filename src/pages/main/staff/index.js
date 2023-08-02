@@ -244,15 +244,13 @@ export default function Staff(){
 
     useEffect(() => {
       getListes();
+      updateNiveau();
     }, []);
 
     function getListes(){
       FunctionServices.get().then(res =>{
         setListFunction(res.data);
         data2 = res.data;
-        updateNiveau();
-        console.log(data2);
-        setCheck(false);
       }, 
         err => {
             console.log("ERROR ", err.message);
@@ -262,7 +260,6 @@ export default function Staff(){
       PersonnelServices.get().then(res =>{
         setListPerso(res.data);
         data1 = res.data;
-        setCheck(true);
       }, 
         err => {
             console.log("ERROR ", err.message);
@@ -274,8 +271,7 @@ export default function Staff(){
       // setListPerso(data_ex10);
       // data1 = data_ex10;
 
-      // updateNiveau();
-      // console.log(data_ex1);
+      updateNiveau();
     }
 
     function updateNiveau(){
@@ -283,9 +279,9 @@ export default function Staff(){
       var efaVita = [];
       var efa = false;
   
-      for (let i = 0; i < data2.length; i++) {
+      for (let i = 0; i < data_ex2.length; i++) {
         for (let j = 0; j < efaVita.length; j++) {
-          if(data2[i].rank === efaVita[j]){
+          if(data_ex2[i].rank === efaVita[j]){
             efa = true;
             break;
           }else{
@@ -294,8 +290,19 @@ export default function Staff(){
         }
   
         if(efa === false){
-          efaVita[isany] = data2[i].rank;
-          isany++;
+          var misy = false;
+          for (let k = 0; k < data_ex1.length; k++) {
+            if(data_ex1[k].Occupation.id === data_ex2[i].id){
+              misy = true;
+              break;
+            }
+          }
+
+          if(misy === true){
+            efaVita[isany] = data_ex2[i].rank;
+            isany++;
+          }
+         
         }
   
        efa = false;      
@@ -353,22 +360,24 @@ export default function Staff(){
 
     function bigy(){
       var tabNiv = [];
+      // alert(nbNiv1)
       for (let i = 0; i < nbNiv1; i++) {
 
           tabNiv[i] =
           <>
             <div className='level_fc'>
               <div className='title_level_fc'>
-                {/* Niveau {rankR1[i]}
-                Niveau {i} */}
-              </div>
+                Niveau {rankR1[i]}
+                {/* Niveau {i} */}
+              </div> 
                 
               <div className='reste_level_fc'>
                 {
                   data_ex1.map((ind,index)=>(
-                    <div key={index} style={{}}>
+                    <div key={index} style={{}} >
+                      {/* {rankR[i]} */}
                       {
-                       ( Number(ind.Occupation.rank) === Number(rankR1[i])) &&
+                       ( Number(ind.Occupation.rank) === Number(rankR[i])) &&
                        
                        <Animation random={true}>
                         <Card image={ ind.avatar
@@ -382,6 +391,7 @@ export default function Staff(){
                           
                           occupation={ind.Occupation.name}/>
                         </Animation>
+
                       }
                     </div>
                   ))
@@ -407,7 +417,6 @@ export default function Staff(){
         </div>
       </Header>
 
-   
       <section>
       <div className="STAFF"> 
 
