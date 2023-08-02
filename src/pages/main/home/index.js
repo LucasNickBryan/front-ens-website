@@ -60,13 +60,15 @@ export const HomePage = () => {
       .then(res => {
         let staff_list = []
         for (let i = 0; i < (res.data).length; i++) {
-          const staff = {
-            image: res.data[i].avatar ? IMAGE_PATH + "/staffs/images/" +res.data[i].avatar : DefaultUserImage,
-            name: res.data[i].name,
-            occupation: res.data[i].Occupation.name,
+          if (i < 3) {
+            const staff = {
+              image: res.data[i].avatar ? IMAGE_PATH + "/staffs/images/" + res.data[i].avatar : DefaultUserImage,
+              name: res.data[i].name,
+              occupation: res.data[i].Occupation.name,
+            }
+            staff_list.push(staff)
           }
-          staff_list.push(staff)
-          if (i == 3) { break }
+
         }
         setPersonnels(staff_list)
 
@@ -142,9 +144,9 @@ export const HomePage = () => {
               {
                 personnels.map((staff, index) => (
                   <Animation
-                  key={index}
-                  animate={index == 1 ?"flip-right":"flip-left" }  
-                  duration={(index+1)*1000}>
+                    key={index}
+                    animate={index == 1 ? "flip-right" : "flip-left"}
+                    duration={(index + 1) * 1000}>
                     <Card image={staff.image} name={staff.name} occupation={staff.occupation} />
                   </Animation>
                 ))

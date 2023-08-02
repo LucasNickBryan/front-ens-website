@@ -75,6 +75,7 @@ export const UserProvider = ({ children }) => {
 
     const logout = () => {
         localStorage.removeItem("user_token");
+        localStorage.removeItem("adminButtonActive");
         navigate("/sign-in");
         // service.logout()
         //     .then((res) => {
