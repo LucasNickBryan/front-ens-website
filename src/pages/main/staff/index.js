@@ -227,8 +227,8 @@ export default function Staff(){
     // const [data_ex2, setListFunction] = useState([]);
     // const [data_ex1, setListPerso] = useState([]);
 
-    const [data_ex2, setListFunction] = useState(data_ex20);
-    const [data_ex1, setListPerso] = useState(data_ex10);
+    const [data_ex2, setListFunction] = useState([]);
+    const [data_ex1, setListPerso] = useState([]);
     
     const [nbNiv1, setNbNiv1] = useState(0);
     const [rankR1, setRankR1] = useState([]);
@@ -244,7 +244,6 @@ export default function Staff(){
 
     useEffect(() => {
       getListes();
-      updateNiveau();
     }, []);
 
     function getListes(){
@@ -260,6 +259,7 @@ export default function Staff(){
       PersonnelServices.get().then(res =>{
         setListPerso(res.data);
         data1 = res.data;
+        updateNiveau();
       }, 
         err => {
             console.log("ERROR ", err.message);
@@ -271,7 +271,7 @@ export default function Staff(){
       // setListPerso(data_ex10);
       // data1 = data_ex10;
 
-      updateNiveau();
+      
     }
 
     function updateNiveau(){
@@ -279,9 +279,9 @@ export default function Staff(){
       var efaVita = [];
       var efa = false;
   
-      for (let i = 0; i < data_ex2.length; i++) {
+      for (let i = 0; i < data2.length; i++) {
         for (let j = 0; j < efaVita.length; j++) {
-          if(data_ex2[i].rank === efaVita[j]){
+          if(data2[i].rank === efaVita[j]){
             efa = true;
             break;
           }else{
@@ -291,15 +291,15 @@ export default function Staff(){
   
         if(efa === false){
           var misy = false;
-          for (let k = 0; k < data_ex1.length; k++) {
-            if(data_ex1[k].Occupation.id === data_ex2[i].id){
+          for (let k = 0; k < data1.length; k++) {
+            if(data1[k].Occupation.id === data2[i].id){
               misy = true;
               break;
             }
           }
 
           if(misy === true){
-            efaVita[isany] = data_ex2[i].rank;
+            efaVita[isany] = data2[i].rank;
             isany++;
           }
          
@@ -327,37 +327,6 @@ export default function Staff(){
       setRankR1(efaVita);
     }
 
-    function persoFonction(p){
-      var ls = <>
-          <div className='card_fc' id={"card"+p.id} >
-            <div className='card_sary_fc'>
-                  <img
-                      src={
-                        p.avatar
-                          ? IMAGE_PATH +
-                          "/staffs/images/" +
-                          p.avatar
-                          : // content.Picture.image
-                          DefautImage
-                      }
-                      className=""
-                      alt=""
-                    />
-            </div>
-            <div className='card_footer_fc'>
-              <div className='fun_card_fc'><b>{p.Occupation.name}</b></div>
-              <div className='name_card_fc'>{p.name}</div>
-              <div className='des_card_fc'>{p.description}</div>
-             
-            </div>
-          </div>
-        </>;
-  
-  
-  
-      return ls;
-    }
-
     function bigy(){
       var tabNiv = [];
       // alert(nbNiv1)
@@ -367,7 +336,7 @@ export default function Staff(){
           <>
             <div className='level_fc'>
               <div className='title_level_fc'>
-                Niveau {rankR1[i]}
+                <div style={{display: "none"}}>Niveau {rankR1[i]}</div>
                 {/* Niveau {i} */}
               </div> 
                 
@@ -377,7 +346,7 @@ export default function Staff(){
                     <div key={index} style={{}} >
                       {/* {rankR[i]} */}
                       {
-                       ( Number(ind.Occupation.rank) === Number(rankR[i])) &&
+                       ( Number(ind.Occupation.rank) === Number(rankR1[i])) &&
                        
                        <Animation random={true}>
                         <Card image={ ind.avatar
@@ -388,11 +357,14 @@ export default function Staff(){
                           DefautImage}
                           
                           name={ind.name}
+                          // name={ind.Occupation.rank}
                           
                           occupation={ind.Occupation.name}/>
                         </Animation>
 
                       }
+
+                      {/* if(Number(ind.Occupation.rank) === Number(rankR[i])) */}
                     </div>
                   ))
                 }
