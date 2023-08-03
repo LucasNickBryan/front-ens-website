@@ -75,9 +75,8 @@ function AddContent(props) {
         image: image.length > 0 ? image[0].file : null,
         isActuality: !isHistory
       }
-      if (idToUpdate > 0) updateContent(idToUpdate, data)
-      else addContent(data)
-      onHandleState()
+      if (idToUpdate > 0) updateContent(idToUpdate, data, onHandleState)
+      else addContent(data, onHandleState)
     }
 
   }

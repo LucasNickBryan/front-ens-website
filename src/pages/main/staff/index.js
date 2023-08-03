@@ -251,20 +251,14 @@ export default function Staff(){
       FunctionServices.get().then(res =>{
         setListFunction(res.data);
         data2 = res.data;
-      }, 
-        err => {
-            console.log("ERROR ", err.message);
-        }
-      )
+      }).catch(err => { console.log("ERROR ", err.message); })
+
   
       PersonnelServices.get().then(res =>{
         setListPerso(res.data);
         data1 = res.data;
-      }, 
-        err => {
-            console.log("ERROR ", err.message);
-        }
-      )
+      }).catch(err => { console.log("ERROR ", err.message); })
+
 
       // setListFunction(data_ex20);
       // data2 = data_ex20;

@@ -25,28 +25,27 @@ export const PersonnelProvider = ({ children }) => {
         service.get()
             .then((res) => {
                 setData(res.data)
-            },
-                err => {
-                    console.log("ERROR ", err.message);
-                }
-            )
+            })
+            .catch(err => { console.log("ERROR ", err); })
     }
 
-    const addPersonnel = (credential) => {
+    const addPersonnel = (credential, callback_fn=()=>{}) => {
         notify(
             service.post(credential)
-                .then((res) => {
+                .then(() => {
                     fetchPersonnel()
+                    callback_fn()
                 },
                 )
         )
     }
 
-    const updatePersonnel = (id, credential) => {
+    const updatePersonnel = (id, credential, callback_fn=()=>{}) => {
         notify(
             service.put(id, credential)
-                .then((res) => {
+                .then(() => {
                     fetchPersonnel()
+                    callback_fn()
                 },
                 )
         )
@@ -55,7 +54,7 @@ export const PersonnelProvider = ({ children }) => {
     const deletePersonnel = (id) => {
         notify(
             service.delete(id)
-                .then((res) => {
+                .then(() => {
                     fetchPersonnel()
                 },
                 )

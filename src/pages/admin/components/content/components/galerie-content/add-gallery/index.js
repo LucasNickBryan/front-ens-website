@@ -2,7 +2,8 @@ import React, { useContext, useState } from 'react'
 import { ImageUploader } from '../../../../../ui/image-uploader'
 import { GalleryContext } from '../../../../../../../contexts/GalleryContext'
 
-export default function AddGallery() {
+export default function AddGallery(props) {
+  const { onHandleState } = props
   const [images, setImages] = useState([])
   const [checkedImages, setCheckedImages] = useState([])
   const { addGallery } = useContext(GalleryContext)
@@ -16,7 +17,8 @@ export default function AddGallery() {
       }
       gallery_images.push(img)
     }
-    addGallery(gallery_images)
+    addGallery(gallery_images,onHandleState)
+    // onHandleState()
   }
 
   return (

@@ -32,7 +32,7 @@ export const PersonnelContent = () => {
             </div>
             :
             <div className='mt-5'>
-              <AddPersonnel idToUpdate={idToUpdate} />
+              <AddPersonnel idToUpdate={idToUpdate} onHandleState={onHandleState} />
             </div>
         }
       </div>

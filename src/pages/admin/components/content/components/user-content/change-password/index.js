@@ -5,16 +5,14 @@ import { Controller, useForm } from 'react-hook-form'
 import { RequiredStar, RequiredText } from '../../../../../ui/texts'
 import { UserContext } from '../../../../../../../contexts/UserContext'
 
-export default function ChangeUserPassword() {
-    const [isValidPassword, setIsValidPassword] = useState(true)
+export default function ChangeUserPassword(props) {
+    const { onHandleState } = props;
+    const [isValidPassword, setIsValidPassword] = useState(true);
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-    const {updatePassword} = useContext(UserContext)
+    const {updatePassword} = useContext(UserContext);
 
     const {
-        register,
         handleSubmit,
-        setValue,
-        getValues,
         control,
         formState: { errors },
     } = useForm()
@@ -31,8 +29,7 @@ export default function ChangeUserPassword() {
                 current_password: value.password,
                 new_password: value.new_password,
             }
-            updatePassword(data)
-            console.log("DATA ", data);
+            updatePassword(data, onHandleState)
         }
 
 

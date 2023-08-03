@@ -11,7 +11,7 @@ import { IMAGE_PATH } from '../../../../../../../config/modules'
 import FunctionServices from '../../../../../../../services/Function.services'
 
 export default function AddPersonnel(props) {
-  const { idToUpdate } = props
+  const { idToUpdate, onHandleState } = props
   const { personnels, addPersonnel, updatePersonnel } = useContext(PersonnelContext)
   const [image, setImage] = useState([])
   const [currentImage, setCurrentImage] = useState(null)
@@ -31,9 +31,8 @@ export default function AddPersonnel(props) {
           formated_functions.push(value)
         });
         setFonctions(formated_functions)
-      },
-        err => { console.log("ERROR"); }
-      )
+      })
+      .catch(err => { console.log("ERROR ", err); })
   }, [])
 
   useEffect(() => {
@@ -44,7 +43,6 @@ export default function AddPersonnel(props) {
       setValue('year', item.year)
       setValue('functionId', item.occupationId)
       setCurrentImage(IMAGE_PATH + "/staffs/images/" + item.avatar)
-      // setCurrentImage(item.avatar)
       setFonctionId({ value: item.Occupation.id, label: item.Occupation.name })
       setIsUpdate(true)
     }
@@ -74,8 +72,8 @@ export default function AddPersonnel(props) {
       occupation: fonctionId.value,
       avatar: image.length > 0 ? image[0].file : null,
     }
-    if (idToUpdate > 0) updatePersonnel(idToUpdate, data)
-    else addPersonnel(data)
+    if (idToUpdate > 0) updatePersonnel(idToUpdate, data, onHandleState)
+    else addPersonnel(data, onHandleState)
 
   }
 

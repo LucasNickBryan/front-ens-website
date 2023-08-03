@@ -259,22 +259,17 @@ export const FonctionContent = () => {
       updateNiveau();
       console.log(data2);
       setCheck(false);
-    }, 
-      err => {
-          console.log("ERROR ", err.message);
-      }
-    )
+    })
+    .catch(err => { console.log("ERROR ", err.message); })
 
     PersonnelServices.get().then(res =>{
       setListPerso(res.data);
       data1 = res.data;
       setCheck(true);
       // console.log(res.data)
-    }, 
-      err => {
-          console.log("ERROR ", err.message);
-      }
-    )
+    })
+    .catch(err => { console.log("ERROR ", err.message); })
+
   }
 
   function updateNiveau(){
@@ -584,11 +579,7 @@ export const FonctionContent = () => {
       FunctionServices.put(idFonction,formData).then(res =>{
         getListes();
         init();
-      }, 
-        err => {
-            console.log("ERROR ", err.message);
-        }
-      )
+      })
   
     )
 
