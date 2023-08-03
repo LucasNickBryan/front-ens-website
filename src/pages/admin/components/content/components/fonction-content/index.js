@@ -451,8 +451,9 @@ export const FonctionContent = () => {
                         : // content.Picture.image
                         DefautImage
                     }
-                    className=""
+                    className="sariko"
                     alt=""
+
                   />
           </div>
           <div className='card_footer_fc'>
