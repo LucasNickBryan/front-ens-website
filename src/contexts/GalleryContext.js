@@ -38,11 +38,12 @@ export const GalleryProvider = ({ children }) => {
             .catch(err=>console.log("ERROR ", err))
     }
 
-    const addGallery = (credential) => {
+    const addGallery = (credential, callback_fn=()=>{}) => {
         notify(
             service.post(credential)
-                .then((res) => {
+                .then(() => {
                     fetchGallery()
+                    callback_fn()
                 },
                 )
         )

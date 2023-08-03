@@ -31,36 +31,37 @@ export const UserProvider = ({ children }) => {
         service.get()
             .then((res) => {
                 setData(res.data)
-            },
-                err => {
-                    console.log("ERROR ", err.message);
-                }
-            )
+            })
+            .catch(err => { console.log("ERROR ", err); })
     }
 
     const disableUser = (id) => {
         notify(
             service.disable(id)
-                .then((res) => {
+                .then(() => {
                     fetchUser()
                 },
                 )
         )
     }
 
-    const signUpUser = (credential) => {
+    const signUpUser = (credential, callback_fn=()=>{}) => {
         notify(
             service.signup(credential)
-                .then((res) => {
+                .then(() => {
                     fetchUser()
+                    callback_fn()
                 },
                 )
         )
     }
 
-    const updatePassword = (credential) => {
+    const updatePassword = (credential, callback_fn=()=>{}) => {
         notify(
             service.updatePassword(credential)
+            .then(()=>{
+                callback_fn()
+            })
         )
     }
     const signInUser = (credential) => {
@@ -90,18 +91,19 @@ export const UserProvider = ({ children }) => {
     const addUser = (credential) => {
         notify(
             service.post(credential)
-                .then((res) => {
+                .then(() => {
                     fetchUser()
                 },
                 )
         )
     }
 
-    const updateUser = (id, credential) => {
+    const updateUser = (id, credential, callback_fn=()=>{}) => {
         notify(
             service.put(id, credential)
-                .then((res) => {
+                .then(() => {
                     fetchUser()
+                    callback_fn()
                 },
                 )
         )
@@ -110,7 +112,7 @@ export const UserProvider = ({ children }) => {
     const deleteUser = (id) => {
         notify(
             service.delete(id)
-                .then((res) => {
+                .then(() => {
                     fetchUser()
                 },
                 )

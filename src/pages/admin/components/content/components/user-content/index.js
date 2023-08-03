@@ -44,14 +44,14 @@ export const UsersAdmin = () => {
             <div className='mt-5'>
               {
                 isChangePassword ?
-                  <ChangeUserPassword />
+                  <ChangeUserPassword onHandleState={onHandleState} />
                   :
                   <ListUser onUpdate={onUpdate} onUpdatePassword={onUpdatePassword} />
               }
             </div>
             :
             <div className='mt-5'>
-              <AddUser idToUpdate={idToUpdate} />
+              <AddUser idToUpdate={idToUpdate} onHandleState={onHandleState} />
             </div>
         }
       </div>

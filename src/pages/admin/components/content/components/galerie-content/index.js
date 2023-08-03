@@ -24,7 +24,7 @@ export const GalerieContent = () => {
             </div>
             :
             <div className='mt-5'>
-              <AddGallery />
+              <AddGallery onHandleState={onHandleState} />
             </div>
         }
       </div>

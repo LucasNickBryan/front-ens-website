@@ -27,28 +27,27 @@ export const ContentProvider = ({ children }) => {
         service.get()
             .then((res) => {
                 setData(res.data.data)
-            },
-                err => {
-                    console.log("ERROR ", err.message);
-                }
-            )
+            })
+            .catch(err => { console.log("ERROR ", err); })
     }
 
-    const addContent = (credential) => {
+    const addContent = (credential, callback_fn=()=>{}) => {
         notify(
             service.post(credential)
-                .then((res) => {
+                .then(() => {
                     fetchContent()
+                    callback_fn()
                 },
                 )
         )
     }
 
-    const updateContent = (id, credential) => {
+    const updateContent = (id, credential, callback_fn=()=>{}) => {
         notify(
             service.put(id, credential)
                 .then((res) => {
                     fetchContent()
+                    callback_fn()
                 },
                 )
         )

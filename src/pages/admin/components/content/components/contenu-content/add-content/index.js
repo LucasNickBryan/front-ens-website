@@ -13,7 +13,7 @@ import { IMAGE_PATH } from '../../../../../../../config/modules';
 import DatabaseIcon from '../../../../../../../assets/icons/database.png'
 
 function AddContent(props) {
-  const { idToUpdate } = props
+  const { idToUpdate, onHandleState } = props
   const { contents, addContent, updateContent } = useContext(ContentContext)
   const [editorState, setEditorState] = useState(
     () => EditorState.createEmpty()
@@ -31,7 +31,6 @@ function AddContent(props) {
       setValue('link', item.Content.link)
       setValue('date', item.Content.date)
       setCurrentImage(IMAGE_PATH + "/pictures/images/" + item.Picture.image)
-      // setCurrentImage(item.Picture.image)
       setIsUpdate(true)
       setIsHistory(!item.Content.isActuality)
       const contentState = convertFromHTML(item.Content.description);
@@ -45,7 +44,7 @@ function AddContent(props) {
     handleSubmit,
     setValue,
     getValues,
-    formState: { errors, isValid },
+    formState: { errors },
   } = useForm({
     defaultValues: {
       title: '',
@@ -53,7 +52,6 @@ function AddContent(props) {
       date: '',
     }
   })
-
 
   const onChangeEvent = (value) => {
     setIsHistory(value)
@@ -77,8 +75,8 @@ function AddContent(props) {
         image: image.length > 0 ? image[0].file : null,
         isActuality: !isHistory
       }
-      if (idToUpdate > 0) updateContent(idToUpdate, data)
-      else addContent(data)
+      if (idToUpdate > 0) updateContent(idToUpdate, data, onHandleState)
+      else addContent(data, onHandleState)
     }
 
   }

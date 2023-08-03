@@ -16,7 +16,7 @@ const OPTIONS = [
 ];
 
 export default function AddUser(props) {
-  const { idToUpdate } = props
+  const { idToUpdate, onHandleState } = props
   const { users, updateUser, signUpUser } = useContext(UserContext)
   const [image, setImage] = useState([])
   const [currentImage, setCurrentImage] = useState(null)
@@ -76,8 +76,8 @@ export default function AddUser(props) {
         avatar: image.length > 0 ? image[0].file : currentImage,
       }
 
-      if (idToUpdate > 0) updateUser(idToUpdate, data)
-      else signUpUser(data)
+      if (idToUpdate > 0) updateUser(idToUpdate, data, onHandleState)
+      else signUpUser(data, onHandleState)
     }
 
 

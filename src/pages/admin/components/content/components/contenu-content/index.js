@@ -32,7 +32,7 @@ export const ContenuContent = () => {
             </div>
             :
             <div className='mt-5'>
-              <AddContent idToUpdate={idToUpdate} />
+              <AddContent idToUpdate={idToUpdate} onHandleState={onHandleState} />
             </div>
         }
       </div>
