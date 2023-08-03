@@ -33,10 +33,10 @@ export const HomePage = () => {
         res.data.data.forEach(img => {
           formated_galleries.push({ image: IMAGE_PATH + "/pictures/images/" + img.image })
         })
-        .catch(err => { console.log("ERROR ", err); })
-
+        
         setGallery(formated_galleries)
       }))
+      .catch(err => { console.log("ERROR ", err); })
 
     // load histories
     ContentServices.getHistory()

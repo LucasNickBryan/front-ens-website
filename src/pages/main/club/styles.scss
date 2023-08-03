@@ -1,0 +1,54 @@
+.club_cc{
+    // background-color: red !important;
+    padding: 10px;
+    transition: 0.3s;
+
+    .club_ca{
+        height: 100%;
+        transition: 0.3s;
+        border-radius: 10px;
+        overflow: hidden;
+        // background-color: red;
+        position: relative;
+        border-width: 3px;
+
+        .club_ao{
+            width: 60px;
+            height: 60px;
+            background-color: #32b27e;
+            position: absolute;
+            right: 10px;
+            margin-top: -10px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+            .ico{
+                color: white;
+                transition: 1s;
+            }
+        }
+
+        .club_aa{
+            width: 100%;
+            margin-top: 60px;
+            // background-color: orange;
+        }
+    }
+}
+
+.club_cc:hover .club_ca{
+    background-color: #32b27e;
+    color: white;
+}
+
+.club_cc:hover .club_ao{
+    background-color: #ffffff;
+    color: white;
+
+    .ico{
+        color: #32b27e ;
+    }
+}
+
