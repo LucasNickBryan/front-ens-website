@@ -18,6 +18,9 @@ export const ContentProvider = ({ children }) => {
             },
             Picture: [
                 { image: DefaultImage },
+                { image: DefaultImage },
+                { image: DefaultImage },
+                { image: DefaultImage },
             ]
         }
     ])

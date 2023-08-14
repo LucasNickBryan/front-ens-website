@@ -29,12 +29,7 @@ export const HomePage = () => {
     // load principals images
     GalleryServices.getPrincipal()
       .then((res => {
-        const formated_galleries = []
-        res.data.data.forEach(img => {
-          formated_galleries.push({ image: IMAGE_PATH + "/pictures/images/" + img.image })
-        })
-        
-        setGallery(formated_galleries)
+        setGallery(res.data.data)
       }))
       .catch(err => { console.log("ERROR ", err); })
 
@@ -103,7 +98,7 @@ export const HomePage = () => {
               </Animation>
               <Animation animate="fade-up" duration="3000" offset="200">
                 <div className="!mb-20">
-                  <CarouselUI images={gallery} />
+                  <CarouselUI path={IMAGE_PATH + "/pictures/images/"} images={gallery} />
                 </div>
               </Animation>
             </>
