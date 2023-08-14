@@ -5,7 +5,7 @@ export default function Header(props) {
   const { BackgroundUrl } = props;
 
   return (
-    <div>
+    <div className={`${!BackgroundUrl && "!h-32 bg-black opacity-90"}`}>
       <div className="HEADER_STYLES">
         <header
           className="header"

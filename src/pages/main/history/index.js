@@ -6,17 +6,7 @@ import { SectionContentUI } from "../ui/section/SectionUI";
 import ContentServices from "../../../services/Content.services";
 
 const History = () => {
-  const [histories, setHistories] = useState([
-    {
-      Picture: {},
-      Content: {
-        title: "RÉCEPTION NOVICES l1",
-        description: "<p> lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsumlorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsumlorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsumlorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsumlorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsumlorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum lorem upsum</p>",
-        link: null,
-        date: "2023"
-      }
-    }
-  ]);
+  const [histories, setHistories] = useState([]);
 
   useEffect(() => {
     ContentServices.getHistory()
@@ -36,13 +26,7 @@ const History = () => {
 
   return (
     <div className="HISTORY_STYLES">
-      <Header BackgroundUrl={BackgroundUrl}>
-        <div className="overlay">
-          <div className="border p-3 title">
-            <h1>Événements et Historiques</h1>
-          </div>
-        </div>
-      </Header>
+      <Header/>
 
       <section className="w-10/12 mx-auto hh_fr">
         {

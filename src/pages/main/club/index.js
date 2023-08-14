@@ -15,13 +15,7 @@ const Club = () => {
   
   return (
     <div className="CLUB_STYLES">
-      <Header BackgroundUrl={BackgroundUrl}>
-        <div className="overlay">
-          <div className="border p-3 title">
-            <h1>Nos clubs</h1>
-          </div>
-        </div>
-      </Header>
+      <Header/>
 
       <section id="service">
         <div className="container">

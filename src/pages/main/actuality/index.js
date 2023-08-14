@@ -26,17 +26,11 @@ const Actuality = () => {
 
   return (
     <div className="ACTU_STYLES !pb-8">
-      <Header BackgroundUrl={BackgroundUrl}>
-        <div className="overlay">
-          <div className="border p-3 title">
-            <h1>Actualités</h1>
-          </div>
-        </div>
-      </Header>
+      <Header/>
       <section className="!px-16 hh_fr">
         {
           actualities.length > 0 &&
-          actualities.map((actu, index)=>(
+          actualities.map((actu, index) => (
             <SectionContentUI key={index} content={actu.Content} picture={actu.Picture} />
           ))
         }

@@ -15,7 +15,7 @@ import DatabaseIcon from '../../../../../../../assets/icons/database.png'
 
 function AddContent(props) {
   const { idToUpdate, onHandleState } = props
-  const { contents, addContent, updateContent } = useContext(ContentContext)
+  const { contents, addContent, updateContent, deletePicture } = useContext(ContentContext)
   const [editorState, setEditorState] = useState(
     () => EditorState.createEmpty()
   );
@@ -30,8 +30,12 @@ function AddContent(props) {
     if (item) {
       const images = []
       item.Picture.forEach(img => {
-        // images.push(IMAGE_PATH + "/pictures/images/" + img.image)
-        images.push(img.image)
+        images.push(
+          {
+            id: img.id,
+            src: IMAGE_PATH + "/pictures/images/" + img.image},
+          )
+        // images.push(img.image)
       });
       setImageList(images)
       setValue('title', item.Content.title)
@@ -63,6 +67,12 @@ function AddContent(props) {
   const onChangeEvent = (value) => {
     setIsHistory(value)
   }
+
+  const onDeletePicture=(id)=>{
+    deletePicture(id)
+  }
+
+
   const confirmValues = (value) => {
     let valid = true;
     const description = convertToHTML(editorState.getCurrentContent());
@@ -172,9 +182,9 @@ function AddContent(props) {
               <div className='grid grid-cols-5 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 content-around'>
                 {imageList.length > 0 && imageList.map((image, index) => (
                   <div key={index} className="bg-white shadow-lg max-w-[200px] p-3 flex flex-col justify-between">
-                    <img src={image} alt="" className='h-auto hover:scale-110 transition-all delay-100 hover:mb-4' />
+                    <img src={image.src} alt="" className='h-auto hover:scale-110 transition-all delay-100 hover:mb-4' />
                     <div className="mt-2 flex justify-evenly gap-8">
-                      <button type='button'>
+                      <button type='button' onClick={()=>onDeletePicture(image.id)}>
                         <img src={TrashIcon} alt='delete' className='w-4' />
                       </button>
                     </div>

@@ -43,13 +43,7 @@ export default function Gallery() {
     }
     return (
         <div className='GALLERY_STYLES'>
-            <Header BackgroundUrl={BackgroundUrl}>
-                <div className="overlay">
-                    <div className="border p-3 title">
-                        <h1>Galerie</h1>
-                    </div>
-                </div>
-            </Header>
+            <Header />
             <section className='!px-10 relative'>
                 <div className='grid  grid-cols-4 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-5'>
                     {

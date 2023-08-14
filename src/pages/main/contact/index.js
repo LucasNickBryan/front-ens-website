@@ -52,14 +52,7 @@ const Contact = () => {
     <>
       <Notification />
       <div className="CONTACT_STYLES">
-
-        <Header BackgroundUrl={BackgroundUrl}>
-          <div className="overlay">
-            <div className="border p-3 title">
-              <h1>Contactez-nous</h1>
-            </div>
-          </div>
-        </Header>
+        <Header />
 
         {/* Contact Section */}
         <section id="contact">
