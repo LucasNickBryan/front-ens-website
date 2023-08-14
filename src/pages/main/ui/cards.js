@@ -5,7 +5,7 @@ export const Card = (props) => {
   const { image, name, occupation } = props;
 
   return (
-    <div className="max-w-sm rounded overflow-hidden shadow-lg img-wrapper">
+    <div className="w-[300px] rounded overflow-hidden shadow-lg img-wrapper">
       <div className=''>
         <img className="w-full" src={image} alt="profile" style={{objectFit: "cover", width: "300px",height:"300px"}}/>
         <div className="!px-6 !py-4">
