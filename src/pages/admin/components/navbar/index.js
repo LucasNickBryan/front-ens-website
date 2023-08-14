@@ -72,7 +72,7 @@ export const NavbarAdmin = (props) => {
         }
       </div>
       {/* <div className='pt-1.5 md:block hidden cursor-pointer'><span className=''>menu</span></div> */}
-      <div className='pt-3'>page: <span className='underline underline-offset-4'>{pageLocation}</span></div>
+      <div className='pt-3 xs:hidden'>page: <span className='underline underline-offset-4'>{pageLocation}</span></div>
 
       <div className='sm:hidden md:block'>
         <img src={user?.avatar? IMAGE_PATH+"/staffs/images/"+user.avatar : userDefaultImage} alt="User" className='inline rounded-full w-14 h-14 mr-1 hover:scale-110' />

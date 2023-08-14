@@ -26,11 +26,11 @@ export default function AddGallery(props) {
       <span className='text-base'>Les images cochées seront mises à la une.</span>
       <div className='h-full mt-2'>
         <ImageUploader
-          mutilple={true}
+          multiple
           updateImages={setImages}
-          enableChecked={true}
+          enableChecked
           setCheckedImages={setCheckedImages}
-          useSaveButton={true}
+          useSaveButton
           onSave={onSave}
         />
       </div>

@@ -14,9 +14,9 @@ export default function ListContent(props) {
   const [openModal, setOpenModal] = useState(false);
   const [idToDelete, setIdToDelete] = useState(0);
 
-  useEffect(() => {
-    fetchContent();
-  }, []);
+  // useEffect(() => {
+  //   fetchContent();
+  // }, []);
 
   const onHandleDelete = (id) => {
     setOpenModal(true);
@@ -60,10 +60,10 @@ export default function ListContent(props) {
                 <td className="p-2">
                   <img
                     src={
-                      content.Picture.image
+                      content.Picture.length > 0
                         ? IMAGE_PATH +
                         "/pictures/images/" +
-                        content.Picture.image
+                        content.Picture[0].image
                         : // content.Picture.image
                         DefautImage
                     }
