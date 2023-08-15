@@ -7,7 +7,7 @@ import SaveGreenIcon from '../../../assets/icons/save-green.png'
 
 export function ImageUploader(props) {
   const [images, setImages] = useState([]);
-  const { mutilple, text_box, updateImages, enableChecked, setCheckedImages, useSaveButton, onSave } = props
+  const { multiple, text_box, updateImages, enableChecked, setCheckedImages, useSaveButton, onSave } = props
   const maxNumber = 10;
 
   const onChange = (imageList, addUpdateIndex) => {
@@ -29,7 +29,7 @@ export function ImageUploader(props) {
   return (
     <div className="App">
       <ImageUploading
-        multiple={mutilple}
+        multiple={multiple}
         value={images}
         onChange={onChange}
         maxNumber={maxNumber}
@@ -51,7 +51,7 @@ export function ImageUploader(props) {
               style={isDragging ? { color: 'red' } : undefined}
               onClick={onImageUpload}
               {...dragProps}
-              className={`border border-4 border-dashed border-gray-500 w-full py-8 mb-4 ${images.length > 0 && !mutilple ? 'hidden' : ''}`}
+              className={`border border-4 border-dashed border-gray-500 w-full py-8 mb-4 ${images.length > 0 && !multiple ? 'hidden' : ''}`}
             >
               <div className='flex justify-center gap-3'>
                 <img src={CloudUploadAlt} alt='file' className='max-w-[100px] sm:hidden' />
@@ -66,7 +66,7 @@ export function ImageUploader(props) {
             </button>
 
             {
-              (images.length > 0 && mutilple) &&
+              (images.length > 0 && multiple) &&
               <div className='mb-5'>
                 {
                   useSaveButton &&
@@ -89,7 +89,7 @@ export function ImageUploader(props) {
                 <div key={index} className="bg-white shadow-lg max-w-[200px] p-3 flex flex-col justify-between">
                   <img src={image['data_url']} alt="" className='h-auto hover:scale-110 transition-all delay-100 hover:mb-4' />
                   <div className="mt-2 flex justify-evenly gap-8">
-                    {mutilple && <input className='cursor-pointer checkbox_input' type="checkbox" onChange={onCheckImage} />}
+                    { enableChecked && <input className='cursor-pointer checkbox_input' type="checkbox" onChange={onCheckImage} />}
                     <button type='button' onClick={() => onImageUpdate(index)}>
                       <img src={RedoIcon} alt='redo' className='w-4' />
                     </button>
@@ -108,7 +108,7 @@ export function ImageUploader(props) {
 }
 
 ImageUploader.defautProps = {
-  mutilple: false,
+  multiple: false,
   enableChecked: false,
   useSaveButton: false,
 }

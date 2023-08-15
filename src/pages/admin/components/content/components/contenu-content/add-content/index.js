@@ -10,6 +10,7 @@ import '/node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import { useForm } from 'react-hook-form';
 import { ContentContext } from '../../../../../../../contexts/ContentContext';
 import { IMAGE_PATH } from '../../../../../../../config/modules';
+import TrashIcon from '../../../../../../../assets/icons/trash.png'
 import DatabaseIcon from '../../../../../../../assets/icons/database.png'
 
 function AddContent(props) {
@@ -19,7 +20,7 @@ function AddContent(props) {
     () => EditorState.createEmpty()
   );
   const [image, setImage] = useState([])
-  const [currentImage, setCurrentImage] = useState(null)
+  const [imageList, setImageList] = useState([])
   const [isValidDescription, setValidDescription] = useState(true)
   const [isUpadte, setIsUpdate] = useState(false)
   const [isHistory, setIsHistory] = useState(true)
@@ -27,10 +28,16 @@ function AddContent(props) {
   useEffect(() => {
     const item = contents.find(value => value.id == idToUpdate)
     if (item) {
+      const images = []
+      item.Picture.forEach(img => {
+        // images.push(IMAGE_PATH + "/pictures/images/" + img.image)
+        images.push(img.image)
+      });
+      setImageList(images)
       setValue('title', item.Content.title)
       setValue('link', item.Content.link)
       setValue('date', item.Content.date)
-      setCurrentImage(IMAGE_PATH + "/pictures/images/" + item.Picture.image)
+      // setCurrentImage(IMAGE_PATH + "/pictures/images/" + item.Picture.image)
       setIsUpdate(true)
       setIsHistory(!item.Content.isActuality)
       const contentState = convertFromHTML(item.Content.description);
@@ -72,7 +79,7 @@ function AddContent(props) {
         description: description,
         link: value.link,
         date: value.date,
-        image: image.length > 0 ? image[0].file : null,
+        image: image.length > 0 ? image.map(img => img.file) : null,
         isActuality: !isHistory
       }
       if (idToUpdate > 0) updateContent(idToUpdate, data, onHandleState)
@@ -127,38 +134,6 @@ function AddContent(props) {
               </div>
             </div>
           </div>
-        </div>
-
-        <div className='p-5'>
-          <div className='pb-5'>
-            <label className='uppercase'>Image</label>
-            {
-              isUpadte &&
-              <div>
-                <img src={currentImage} alt="illustration" className="max-w-[200px] mx-auto" />
-                <div className='flex justify-center'>
-                  <button className='p-1 px-2 bg-white shadow-lg border border-1 border-amber-400 text-amber-400 hover:bg-amber-400 hover:text-white transition-all delay-100' 
-                  onClick={() => setIsUpdate(prev => !prev)}>changer l'image</button>
-                </div>
-              </div>
-            }
-
-            {
-              !isUpadte &&
-              <div>
-                <ImageUploader text_box={<UniqueImageText />} updateImages={setImage} />
-                {
-                  idToUpdate > 0 &&
-                  <div className='flex justify-center mt-1'>
-                    <button className='p-1 px-2 bg-white shadow-lg border border-1 border-redcolor text-redcolor hover:bg-redcolor hover:text-white transition-all delay-100'
-                      onClick={() => { setIsUpdate(prev => !prev); setImage([]) }}>annuler</button>
-                  </div>
-                }
-              </div>
-            }
-
-
-          </div>
           <div className='pb-5'>
             <label className='uppercase'>Descriptions {<RequiredStar />}</label>
             <Editor
@@ -187,20 +162,47 @@ function AddContent(props) {
             {!isValidDescription && <RequiredText />}
           </div>
         </div>
+
+        <div className='p-5 w-full'>
+          <div className='pb-5'>
+            <label className='uppercase'>Images</label>
+            {
+              isUpadte &&
+
+              <div className='grid grid-cols-5 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 content-around'>
+                {imageList.length > 0 && imageList.map((image, index) => (
+                  <div key={index} className="bg-white shadow-lg max-w-[200px] p-3 flex flex-col justify-between">
+                    <img src={image} alt="" className='h-auto hover:scale-110 transition-all delay-100 hover:mb-4' />
+                    <div className="mt-2 flex justify-evenly gap-8">
+                      <button type='button'>
+                        <img src={TrashIcon} alt='delete' className='w-4' />
+                      </button>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            }
+
+            <div className='mt-3'>
+              <ImageUploader multiple updateImages={setImage} />
+            </div>
+
+          </div>
+        </div>
       </div>
       <div className='p-5 w-full flex justify-center'>
-      {
-            idToUpdate > 0 ?
-              <button type='submit' className="bg-amber-500 p-2 text-white hover:bg-amber-300 transition-all delay-100">
-                <img src={DatabaseIcon} alt='modifier' className='inline-block w-4' />
-                <span className='inline-block ml-1'>modifier</span>
-              </button>
-              :
-              <button type='submit' className="bg-greencolor p-2 text-white hover:bg-green-500 transition-all delay-100">
-                <img src={SaveIcon} alt='enregistrer' className='inline-block w-4' />
-                <span className='inline-block ml-1'>enregistrer</span>
-              </button>
-          }
+        {
+          idToUpdate > 0 ?
+            <button type='submit' className="bg-amber-500 p-2 text-white hover:bg-amber-300 transition-all delay-100">
+              <img src={DatabaseIcon} alt='modifier' className='inline-block w-4' />
+              <span className='inline-block ml-1'>modifier</span>
+            </button>
+            :
+            <button type='submit' className="bg-greencolor p-2 text-white hover:bg-green-500 transition-all delay-100">
+              <img src={SaveIcon} alt='enregistrer' className='inline-block w-4' />
+              <span className='inline-block ml-1'>enregistrer</span>
+            </button>
+        }
       </div>
     </form>
   )

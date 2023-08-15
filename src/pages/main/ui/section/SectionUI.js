@@ -3,6 +3,7 @@ import ActualityImage from '../../../../assets/images/pexells.jpg'
 import HistoryImage from '../../../../assets/images/darya.jpg'
 import Animation from '../../../ui/Animation';
 import { IMAGE_PATH } from '../../../../config/modules';
+import CarouselUI from '../carousel';
 
 export const SectionContentUI = (props) => {
     const { isActuality, content, picture } = props;
@@ -14,7 +15,7 @@ export const SectionContentUI = (props) => {
                 isActuality &&
                 <Animation animate="fade-right" duration="1500">
                     <div className="opacity-90 hover:opacity-100 h-full w-full">
-                        <img src={IMAGE_PATH + "/pictures/images/" + picture.image} alt="..." className="rounded object-cover h-full" />
+                        <CarouselUI path={IMAGE_PATH + "/pictures/images/"} images={picture} />
                     </div>
                 </Animation>
             }
@@ -35,7 +36,7 @@ export const SectionContentUI = (props) => {
                 !isActuality &&
                 <Animation animate={!isActuality ? "fade-left" : "fade-right"}>
                     <div className="opacity-90 hover:opacity-100 h-full w-full">
-                        <img src={ IMAGE_PATH + "/pictures/images/" + picture.image} alt="..." className="rounded object-cover h-full" />
+                        <CarouselUI path={IMAGE_PATH + "/pictures/images/"} images={picture} />
                     </div>
                 </Animation>
             }

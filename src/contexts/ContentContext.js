@@ -7,19 +7,22 @@ export const ContentContext = createContext(null)
 
 export const ContentProvider = ({ children }) => {
     const [data, setData] = useState([
-        // {
-        //     id: 1,
-        //     Content: {
-        //         title: "Fake Title",
-        //         link: "Fake link",
-        //         date: "2023-04-02",
-        //         isActuality: true,
-        //         description: "<p>Fake description</p>",
-        //     },
-        //     Picture: {
-        //         image: DefaultImage
-        //     }
-        // }
+        {
+            id: 1,
+            Content: {
+                title: "Fake Title",
+                link: "Fake link",
+                date: "2023-04-02",
+                isActuality: true,
+                description: "<p>Fake description</p>",
+            },
+            Picture: [
+                { image: DefaultImage },
+                { image: DefaultImage },
+                { image: DefaultImage },
+                { image: DefaultImage },
+            ]
+        }
     ])
     let service = ContentServices
 
@@ -31,7 +34,7 @@ export const ContentProvider = ({ children }) => {
             .catch(err => { console.log("ERROR ", err); })
     }
 
-    const addContent = (credential, callback_fn=()=>{}) => {
+    const addContent = (credential, callback_fn = () => { }) => {
         notify(
             service.post(credential)
                 .then(() => {
@@ -42,7 +45,7 @@ export const ContentProvider = ({ children }) => {
         )
     }
 
-    const updateContent = (id, credential, callback_fn=()=>{}) => {
+    const updateContent = (id, credential, callback_fn = () => { }) => {
         notify(
             service.put(id, credential)
                 .then((res) => {
