@@ -5,7 +5,6 @@ import { useNavigate } from 'react-router-dom'
 export const SidebarAdmin = (props) => {
   let navigate = useNavigate()
   const { newLocation, onChangeActive } = props
-  const href = window.location.href
 
   const onAdminClick = (e) => {
     navigate("");

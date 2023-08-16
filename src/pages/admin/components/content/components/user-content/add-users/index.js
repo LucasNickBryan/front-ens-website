@@ -31,7 +31,7 @@ export default function AddUser(props) {
       setValue('username', item.username)
       setValue('role', item.role)
       setValue('email', item.email)
-      setCurrentImage(item.avatar ? IMAGE_PATH + "/staffs/images/" + item.avatar : null)
+      setCurrentImage(item.avatar ? item.avatar : null)
       setRole({ value: item.role, label: item.role })
       setIsUpdate(true)
     }
@@ -66,6 +66,7 @@ export default function AddUser(props) {
       valid = false;
       setIsValidPassword(false)
     }
+    else setIsValidPassword(true)
 
     if (valid) {
       const data = {
@@ -96,7 +97,7 @@ export default function AddUser(props) {
           {
             isUpadte &&
             <div>
-              <img src={currentImage} alt="illustration" className="max-w-[200px] mx-auto" />
+              <img src={IMAGE_PATH + "/staffs/images/" + currentImage} alt="illustration" className="max-w-[200px] mx-auto" />
               <div className='flex justify-center'>
                 <button className='p-1 px-2 bg-white shadow-lg border border-1 border-amber-400 text-amber-400 hover:bg-amber-400 hover:text-white transition-all delay-100'
                   onClick={() => setIsUpdate(prev => !prev)}>changer l'image</button>

@@ -12,6 +12,7 @@ export default function ListUser(props) {
     const { users, user, fetchUser, disableUser, deleteUser } = useContext(UserContext)
     const [openModal, setOpenModal] = useState(false)
     const [idToDelete, setIdToDelete] = useState(0)
+    const [isPermited, setIsPersmited] = useState(false)
 
     const onHandleDelete = (id) => {
         setOpenModal(true)
@@ -64,18 +65,21 @@ export default function ListUser(props) {
                                     <td>{usr.email}</td>
                                     <td>{usr.role}</td>
                                     <td>
-                                        <div>
-                                            {
-                                                usr.isActive ?
-                                                    <button className='p-1 px-4 rounded-full text-white bg-greencolor'
-                                                        onClick={() => disableUser(usr.id)}
-                                                    >activé</button>
-                                                    :
-                                                    <button className='p-1 px-4 rounded-full text-white bg-redcolor'
-                                                        onClick={() => disableUser(usr.id)}
-                                                    >bloqué</button>
-                                            }
-                                        </div>
+                                        {
+                                            user?.role == "administrateur" &&
+                                            <div>
+                                                {
+                                                    usr.isActive ?
+                                                        <button className='p-1 px-4 rounded-full text-white bg-greencolor'
+                                                            onClick={() => disableUser(usr.id)}
+                                                        >activé</button>
+                                                        :
+                                                        <button className='p-1 px-4 rounded-full text-white bg-redcolor'
+                                                            onClick={() => disableUser(usr.id)}
+                                                        >bloqué</button>
+                                                }
+                                            </div>
+                                        }
                                         {
                                             (usr.email == user?.email) &&
                                             <div className='pt-1'>
@@ -87,8 +91,16 @@ export default function ListUser(props) {
                                     </td>
                                     <td className='table-cell align-middle'>
                                         <div className='m-auto grid grid-cols-2'>
-                                            <img src={PencilIcon} alt="edit" className='w-7 cursor-pointer' onClick={() => onUpdate(usr.id)} />
-                                            <img src={DeleteIcon} alt="delete" className='w-5 cursor-pointer' onClick={() => onHandleDelete(usr.id)} />
+                                            {
+                                                user?.role == "administrateur" ?
+                                                <img src={PencilIcon} alt="edit" className='w-7 cursor-pointer' onClick={() => onUpdate(usr.id)} />
+                                                :
+                                                (user?.email == usr.email) && <img src={PencilIcon} alt="edit" className='w-7 cursor-pointer' onClick={() => onUpdate(usr.id)} />
+                                            }
+                                            {
+                                                user?.role == "administrateur" &&
+                                                <img src={DeleteIcon} alt="delete" className='w-5 cursor-pointer' onClick={() => onHandleDelete(usr.id)} />
+                                            }
                                         </div>
                                     </td>
                                 </tr>

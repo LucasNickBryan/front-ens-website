@@ -11,14 +11,11 @@ export const AuthProvider = ({ children }) => {
         if (!isLoggedUser) {
             service.signin(data)
                 .then((res) => {
-                    console.log("TOKEN ", res.data);
                     // localStorage.setItem("access_token", res.data);
                     setIsLoggedUser(true)
-                },
-                    err => {
-                        console.log("ERROR ", err.message);
-                    }
+                }
                 )
+                .catch(err=>console.log("ERROR ", err))
         }
     }
 
