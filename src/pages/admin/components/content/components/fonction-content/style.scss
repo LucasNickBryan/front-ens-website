@@ -1,6 +1,7 @@
 .main_fc{
     width: 100%;
     height: calc(100% - 40px);
+    z-index: -100;
     // background-color: red;
 
     .liste_left{

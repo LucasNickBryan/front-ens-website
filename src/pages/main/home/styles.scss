@@ -4,6 +4,65 @@
     // padding: 0 !important;
   }
 
+  .first_fr{
+    display: block !important;
+    overflow: hidden;
+    background-image: url("../../../assets/images/wave.svg") !important;
+    background-repeat: no-repeat !important;
+    background-size: 75% !important;
+    background-position: left bottom !important;
+
+    .miafina{
+      display: none !important;
+    }
+
+    .frist_gauche{
+      // background-color: green;
+      width: 50%;
+      height: 100%;
+      float: left;
+      position: relative;
+      
+
+      .center_fr{
+        position: relative;
+
+        width: 100%;
+        height: 100%;
+        
+        .img_fr{
+          // background-color: red;
+          overflow: visible;
+          width: 75%;
+          height: 75%;
+          object-fit: cover;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+
+          
+        }
+      }
+    }
+
+    .first_droite{
+      // background-color: yellow;
+      width: 50%;
+      height: 100%;
+      float: left;
+      position: relative;
+
+      .center_fr{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      
+    }
+  }
+
   @media screen and (max-width: 1024px) {
     .hh_fr{
       // background-color: red;
@@ -15,5 +74,115 @@
       margin-right: -30px !important;
       // padding-right: 20px !important;
     }
+
+    .first_fr{
+      .first_droite{
+        
+        .center_fr{
+          width: 100%;
+          h2{
+            font-size: 400%;
+          }
+  
+          h3{
+            font-size: 600%;
+          }
+        }
+      }
+      
+    }
   }
+
+  @media screen and (max-width: 1200px) {
+    .first_fr{  
+      background-image: url("../../../assets/images/wave2.svg") !important;
+      background-size: 100% !important;
+      font-size: 50% !important;
+      
+      
+
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    .first_fr{  
+      background-color: red;
+     
+    }
+  }
+
+  @media screen and (max-width: 500px) {
+    .first_fr{  
+      background-image: url("../../../assets/images/wave3.svg") !important;
+      background-size: 100% !important;
+      font-size: 50% !important;
+
+      .tsy_miafina{
+        display: none !important;
+      }
+
+      .first_droite{
+        margin-top: 70px;
+        width: 100%;
+        height: 50%;
+        // background-color: red;
+
+        .center_fr{
+          width: 80%;
+          // transform: scale(75%);
+          
+          h2{
+            font-size: 300%;
+          }
+
+          h3{
+            font-size: 500%;
+          }
+        }
+      }
+
+      .miafina{
+        display: block !important;
+        // background-color: aqua;
+        width: 100%;
+        height: 50%;
+
+        .img_fr{
+          // height: 100% !important;
+          // width: 100% !important;
+          width: 400px !important;
+          height: 500px !important;
+          // background-color: red;
+        }
+      }
+    }
+
+    .overlay{
+      // min-height: 1024px;
+    }
+  }
+
+
+  @media screen and (max-height: 530px) {
+    .first_fr{
+
+      .first_droite{
+        
+
+        .center_fr{
+          width: 100%;
+
+          h2{
+            font-size: 300%;
+          }
+  
+          h3{
+            font-size: 400%;
+          }
+        }
+      }
+      
+    }
+  }
+
 }

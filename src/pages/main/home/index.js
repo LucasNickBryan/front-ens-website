@@ -11,7 +11,8 @@ import GalleryServices from "../../../services/Gallery.services";
 import { IMAGE_PATH } from "../../../config/modules";
 import ContentServices from "../../../services/Content.services";
 import PersonnelServices from "../../../services/Personnel.services";
-import DefaultUserImage from '../../../assets/icons/user.png'
+import DefaultUserImage from '../../../assets/icons/user.png';
+import oo from '../../../assets/images/ali.png';
 
 export const HomePage = () => {
   const [gallery, setGallery] = useState([])
@@ -73,18 +74,35 @@ export const HomePage = () => {
     <div className="HOME_STYLES">
       <div className="">
         <Header BackgroundUrl={BackgroundUrl}>
-          <div className="overlay">
-            <h2>Université de Fianarantsoa</h2>
-            <h3 className="title"> ENS Fianarantsoa</h3>
-            <h4 className="subtitle">
-              Association des Etudiants Normaliens Fianarantsoa
-            </h4>
+          <div className="overlay first_fr">
+            <div className="frist_gauche tsy_miafina">
+              <div className="center_fr">
+                <img src={oo} className="img_fr"></img>
+                </div>
+            </div>
 
-            {/* <div className="buttons text-center">
-              <a href="#service" className="btn btn-primary rounded w-lg btn">
-                Contactez nous
-              </a>
-            </div> */}
+            <div className="first_droite">
+              <div className="center_fr">
+                <h2>Université de Fianarantsoa</h2>
+                <h3 className="title"> ENS Fianarantsoa</h3>
+                <h4 className="subtitle">
+                  Association des Etudiants Normaliens Fianarantsoa
+                </h4>
+
+                <div className="buttons text-center">
+                  <a href="#service" className="btn btn-primary rounded w-lg btn">
+                    Contactez nous
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div className="frist_gauche miafina">
+              <div className="center_fr">
+                <img src={oo} className="img_fr"></img>
+                </div>
+            </div>
+
           </div>
         </Header>
 
