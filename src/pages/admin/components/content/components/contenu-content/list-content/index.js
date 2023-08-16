@@ -14,9 +14,9 @@ export default function ListContent(props) {
   const [openModal, setOpenModal] = useState(false);
   const [idToDelete, setIdToDelete] = useState(0);
 
-  // useEffect(() => {
-  //   fetchContent();
-  // }, []);
+  useEffect(() => {
+    fetchContent();
+  }, []);
 
   const onHandleDelete = (id) => {
     setOpenModal(true);

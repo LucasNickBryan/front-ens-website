@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Animation from '../../../../../ui/Animation'
+import MainServices from '../../../../../../services/Main.services'
 
 const MiniBox = (props) => {
   const { title, lastNumber, animate, duration } = props
@@ -30,7 +31,13 @@ const MiniBox = (props) => {
 }
 
 export const MainContent = () => {
-
+  useEffect(()=>{
+    MainServices.get()
+    .then(res=>{
+      console.log("res ", res.data);
+    })
+    .catch(err=>{})
+  }, [])
   return (
     <div>
       <div className='grid gap-3 grid-cols-5 xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 place-content-center'>

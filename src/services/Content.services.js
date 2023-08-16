@@ -21,6 +21,9 @@ class ContentServices {
     delete(id){
         return axios.delete(API_URL + "/contents/" + id, header());
     }
+    deletePicture(id){
+        return axios.delete(API_URL + "/contents/deletePicture/" + id, header());
+    }
 }
 
 export default new ContentServices()

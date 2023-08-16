@@ -374,13 +374,7 @@ export default function Staff(){
     
   return (
     <div className="PERSO_STYLES">
-      <Header BackgroundUrl={BackgroundUrl}>
-        <div className="overlay">
-          <div className="border p-3 title">
-            <h1>Personnels</h1>
-          </div>
-        </div>
-      </Header>
+      <Header/>
 
       <section>
       <div className="STAFF"> 

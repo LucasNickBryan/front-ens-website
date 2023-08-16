@@ -30,11 +30,13 @@ export const ContentProvider = ({ children }) => {
         service.get()
             .then((res) => {
                 setData(res.data.data)
+                { console.log("data ", res.data.data); }
             })
             .catch(err => { console.log("ERROR ", err); })
     }
 
     const addContent = (credential, callback_fn = () => { }) => {
+        console.log("DATA ", credential);
         notify(
             service.post(credential)
                 .then(() => {
@@ -59,6 +61,17 @@ export const ContentProvider = ({ children }) => {
     const deleteContent = (id) => {
         notify(
             service.delete(id)
+                .then(() => {
+                    fetchContent()
+                },
+                    err => { console.log("FAILED OPERATION", err.message); }
+                )
+        )
+    }
+    const deletePicture = (id) => {
+        console.log("ID ", id);
+        notify(
+            service.deletePicture(id)
                 .then((res) => {
                     fetchContent()
                 },
@@ -68,7 +81,7 @@ export const ContentProvider = ({ children }) => {
     }
 
     return (
-        <ContentContext.Provider value={{ contents: data, fetchContent, addContent, updateContent, deleteContent }} >
+        <ContentContext.Provider value={{ contents: data, fetchContent, addContent, updateContent, deleteContent, deletePicture }} >
             {children}
         </ContentContext.Provider>
     )
