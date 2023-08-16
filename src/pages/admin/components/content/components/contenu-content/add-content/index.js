@@ -48,7 +48,7 @@ function AddContent(props) {
       const newEditorState = EditorState.createWithContent(contentState);
       setEditorState(newEditorState)
     }
-  }, [idToUpdate])
+  }, [idToUpdate, contents])
 
   const {
     register,
