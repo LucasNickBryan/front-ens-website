@@ -97,7 +97,7 @@ export const NavbarAdmin = (props) => {
                 <span><i className='fa fa-users'></i> utilisateur(s)</span>
               </Link>
               <hr className='mt-3' />
-              <div className="text-gray-700 block px-4 py-2 text-sm dropdownmenu" onClick={logout}>
+              <div className="text-gray-700 block px-4 py-2 text-sm dropdownmenu cursor-pointer" onClick={logout}>
                 <span className='text-redcolor'><i className='fa fa-sign-out-alt'></i> se déconnecter</span>
               </div>
             </div>

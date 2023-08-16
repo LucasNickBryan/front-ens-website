@@ -17,7 +17,7 @@ const OPTIONS = [
 
 export default function AddUser(props) {
   const { idToUpdate, onHandleState } = props
-  const { users, updateUser, signUpUser } = useContext(UserContext)
+  const { users, user, updateUser, signUpUser } = useContext(UserContext)
   const [image, setImage] = useState([])
   const [currentImage, setCurrentImage] = useState(null)
   const [isUpadte, setIsUpdate] = useState(false)
@@ -88,10 +88,9 @@ export default function AddUser(props) {
     setIsPasswordVisible((prevState) => !prevState);
   }
 
-  return (
-    <div className='flex gap-5 justify-center'>
+  const FormValue = () => {
+    return (
       <form noValidate onSubmit={handleSubmit(confirmValues)} className='w-1/2 lg:!w-full p-5 shadow sm:shadow-none border rounded-lg'>
-
         <div className='pb-5'>
           <label className='uppercase'>photo</label>
           {
@@ -218,6 +217,25 @@ export default function AddUser(props) {
           }
         </div>
       </form>
+    )
+  }
+
+  return (
+    <div className='flex gap-5 justify-center'>
+      {
+        user?.role == "administrateur" ?
+          FormValue()
+          :
+          (
+            idToUpdate > 0 ? FormValue() 
+            :
+          <div className='bg-yellow-500 text-white p-3 rounded mt-5'>
+            <i className='fa fa-shield-alt' />
+            <span className='ml-2 text-lg font-bold'>Vous n'avez pas le privilège d'effectuer cette action !</span>
+            <div className='text-center'>Veuillez contacter l'administrateur du site.</div>
+          </div>
+          )
+      }
     </div>
   )
 }

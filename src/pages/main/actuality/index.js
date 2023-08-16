@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import "./styles.scss";
 import { SectionContentUI } from "../ui/section/SectionUI";
 import Header from "../layout/header";
-import BackgroundUrl from '../../../assets/images/imgs/header.JPG'
 import ContentServices from "../../../services/Content.services";
 
 const Actuality = () => {
